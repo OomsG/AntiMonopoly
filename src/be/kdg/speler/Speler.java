@@ -7,17 +7,14 @@ import java.util.ArrayList;
 public class Speler  {
     private String naam;
     private Rol rol;
-    private int score;
-    private int positie;
+    private int score = 0;
+    private int positie = 0;
     private ArrayList<Grond> bezittingen = null;
 
 
-    public Speler(String naam, Rol rol, int score, int positie) {
+    public Speler(String naam, Rol rol) {
         this.naam = naam;
         this.rol = rol;
-        this.score = score;
-        this.positie = positie;
-
     }
 
     public String getNaam() {
