@@ -1,5 +1,5 @@
 package be.kdg.vak;
 
-public class Gevangenis {
+public class Gevangenis implements Vak {
     protected String soort = "gevangenis";
 }
