@@ -21,7 +21,7 @@ public class Main {
         bord[9] = new Start();
         for(int i = 0;i<38;i++){
 
-            bord[i] =
+            //bord[i] =
         }
     }
 }
