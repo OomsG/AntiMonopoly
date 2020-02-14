@@ -2,11 +2,17 @@ package be.kdg.spel;
 
 import be.kdg.speler.Rol;
 import be.kdg.speler.Speler;
+import be.kdg.vak.*;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Spel {
+    private Scanner myKeyboard = new Scanner(System.in);
+    private Random generator = new Random();
+    Vak[] bord = new Vak[39];
+
     protected ArrayList<Speler> spelers = new ArrayList<Speler>();
 
     public void voegSpelerToe(Speler speler){
@@ -49,6 +55,59 @@ public class Spel {
             Speler speler = new Speler(naam, rolDefined);
             voegSpelerToe(speler);
             for(int x = 0;x<2;x++) System.out.println("\n");
+        }
+    }
+
+    public void maakBord() {
+        bord[0] = new Start();
+        bord[7] = new Fonds();
+        bord[10] = new Gevangenis();
+        bord[17] = new Fonds();
+        bord[20] = new VrijParkeren();
+        bord[22] = new Kans();
+        bord[27] = new Fonds();
+        bord[36] = new Kans();
+        // elke hoek heeft een vaste waarde
+
+        for (int i = 0; i < bord.length; i++) {
+            int prijs = 100;
+            if (bord[i] == null) {
+                bord[i] = new Grond(prijs,i);
+                prijs += 20;
+            }
+        }
+    }
+
+
+
+    public void startSpel() {
+        boolean einde = false;
+        System.out.println("Spel begint...");
+        int counter = 0;
+        while(!einde){
+            counter++;
+            for(int i = 0;i<spelers.size(); i++){
+                Speler speler = spelers.get(i);
+                System.out.println(counter+"--------------------");
+                System.out.println("Beurt aan "+speler.getNaam()+", uw vorige positie: "+speler.getPositie());
+                int newPos = speler.getPositie() + generator.nextInt(5)+1;
+                if(newPos >= 39){
+                    newPos -= 39;
+                }
+                speler.setPositie(newPos);
+                System.out.println("Uw nieuwe positie is: "+newPos);
+
+                if(this.bord[newPos].getSoort() == "grond"){
+                    Grond vak = (Grond)this.bord[newPos];
+                    if(!vak.isGekocht() && vak.getPrijs() <= speler.getScore()){
+                        System.out.println("Druk op '1' om de grond '"+vak.getNaam()+"' (€"+vak.getPrijs()+") te kopen. Druk op 0 om uw beurt te beëindigen.");
+                        if(myKeyboard.nextInt() == 1){
+
+                        }
+                    }
+                }
+
+            }
         }
     }
 }

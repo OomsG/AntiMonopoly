@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Speler  {
     private String naam;
     private Rol rol;
-    private int score = 0;
+    private int score = 1500;
     private int positie = 0;
     private ArrayList<Grond> bezittingen = null;
 
