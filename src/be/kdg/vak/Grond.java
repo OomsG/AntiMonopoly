@@ -16,17 +16,18 @@ public class Grond implements Vak {
         this.prijs = prijs;
         ArrayList<String> straatNamen = new ArrayList<String>();
         straatNamen.add("leeuw");
-        straatNamen.add("kreeft");
-        straatNamen.add("panther");
+        straatNamen.add("sander");
+        straatNamen.add("breda");
         straatNamen.add("tafel");
         straatNamen.add("kat");
         straatNamen.add("hond");
-        straatNamen.add("vis");
-        straatNamen.add("bever");
-        straatNamen.add("nummer");
-        straatNamen.add("kap");
-        straatNamen.add("grijs");
-        straatNamen.add("goud");
+        straatNamen.add("nathan");
+        straatNamen.add("sint");
+        straatNamen.add("amerika");
+        straatNamen.add("leopold");
+        straatNamen.add("maarten");
+        straatNamen.add("duin");
+        straatNamen.add("");
         this.naam = (straatNamen.get(generator.nextInt(straatNamen.size()))+straatNamen.get(generator.nextInt(straatNamen.size()))+"-straat "+nummer).toUpperCase();
 
     }
