@@ -34,6 +34,10 @@ public class Grond implements Vak {
 
     }
 
+    public void setGekocht(boolean gekocht) {
+        this.gekocht = gekocht;
+    }
+
     public String getNaam() {
         return naam;
     }
