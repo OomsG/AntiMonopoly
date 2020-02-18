@@ -23,6 +23,7 @@ public class Main extends Application {
         spel.maakBord();
         spel.startSpel();
 
+
     }
 
     @Override
