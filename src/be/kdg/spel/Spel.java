@@ -69,11 +69,11 @@ public class Spel {
         bord[36] = new Kans();
         // elke hoek heeft een vaste waarde
 
+        int prijs = 100;
         for (int i = 0; i < bord.length; i++) {
-            int prijs = 100;
             if (bord[i] == null) {
                 bord[i] = new Grond(prijs,i);
-                prijs += 20;
+                prijs += 15;
             }
         }
     }
@@ -103,7 +103,10 @@ public class Spel {
                     if(!vak.isGekocht() && vak.getPrijs() <= speler.getScore()){
                         System.out.print("Druk op '1' om de grond '"+vak.getNaam()+"' (€"+vak.getPrijs()+") te kopen. Druk op 0 om uw beurt te beëindigen. ");
                         if(myKeyboard.nextInt() == 1){
-
+                            speler.setScore(speler.getScore() - vak.getPrijs());
+                            vak.setGekocht(true);
+                            speler.voegBezittingToe(vak);
+                            System.out.println(speler.toonBezittingen());
                         }
                     }
                 }

@@ -9,12 +9,24 @@ public class Speler  {
     private Rol rol;
     private int score = 1500;
     private int positie = 0;
-    private ArrayList<Grond> bezittingen = null;
+    private ArrayList<Grond> bezittingen = new ArrayList<Grond>();
 
 
     public Speler(String naam, Rol rol) {
         this.naam = naam;
         this.rol = rol;
+    }
+
+    public void voegBezittingToe(Grond vak){
+        bezittingen.add(vak);
+    }
+
+    public String toonBezittingen(){
+        String resultaat = "Uw bezittingen:";
+        for(Grond bezitting : bezittingen){
+            resultaat += " "+bezitting.getNaam();
+        }
+        return resultaat;
     }
 
     public String getNaam() {
