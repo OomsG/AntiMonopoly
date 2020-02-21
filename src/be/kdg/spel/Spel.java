@@ -7,6 +7,7 @@ import be.kdg.vak.*;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Spel {
     private Scanner myKeyboard = new Scanner(System.in);
@@ -80,7 +81,7 @@ public class Spel {
 
 
 
-    public void startSpel() {
+    public void startSpel() throws InterruptedException {
         boolean einde = false;
         System.out.println("Spel begint...");
         int counter = 0;
@@ -108,10 +109,15 @@ public class Spel {
                             speler.voegBezittingToe(vak);
                             System.out.println(speler.toonBezittingen());
                         }
+                    } else if(vak.isGekocht() && vak.getPrijs()*0.3 <= speler.getScore()){
+                        speler.setScore((int)(speler.getScore()-vak.getPrijs()*0.2));
+                        System.out.println("*** U hebt "+vak.getPrijs()*0.3+" moeten betalen voor uw bezoek op de "+vak.getNaam()+".");
+                        System.out.println("Uw nieuwe balans: €"+speler.getScore());
                     }
                 }
 
             }
+            TimeUnit.MILLISECONDS.sleep(400);
         }
     }
 }
