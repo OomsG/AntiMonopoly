@@ -17,15 +17,6 @@ import java.util.Scanner;
 
 public class Main extends Application {
 
-    public static void main(String[] args) throws InterruptedException {
-        Spel spel = new Spel();
-        spel.maakSpelers();
-        spel.maakBord();
-        spel.startSpel();
-
-
-    }
-
     @Override
     public void start(Stage primaryStage)  {
         MonopolyModel model = new MonopolyModel();
@@ -35,4 +26,16 @@ public class Main extends Application {
         primaryStage.show();
 
     }
+
+    public static void main(String[] args) throws InterruptedException {
+        Application.launch(args);
+        Spel spel = new Spel();
+        spel.maakSpelers();
+        spel.maakBord();
+        spel.startSpel();
+
+
+    }
+
+
 }
