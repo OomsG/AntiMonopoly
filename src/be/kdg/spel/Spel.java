@@ -109,11 +109,25 @@ public class Spel {
                             speler.voegBezittingToe(vak);
                             System.out.println(speler.toonBezittingen());
                         }
-                    } else if(vak.isGekocht() && vak.getPrijs()*0.3 <= speler.getScore()){
-                        speler.setScore((int)(speler.getScore()-vak.getPrijs()*0.2));
-                        System.out.println("*** U hebt "+vak.getPrijs()*0.3+" moeten betalen voor uw bezoek op de "+vak.getNaam()+".");
+                    } else if(vak.isGekocht() && (vak.getPrijs()*0.3)+1 <= speler.getScore()){
+                        int boete = (int)(vak.getPrijs()*0.3);
+                        speler.setScore(speler.getScore()-boete);
+                        System.out.println("*** U hebt €"+boete+" moeten betalen voor uw bezoek op de "+vak.getNaam()+".");
                         System.out.println("Uw nieuwe balans: €"+speler.getScore());
+
+                        for(Speler eigenaar : spelers){
+                            if(eigenaar.toonBezittingen().contains(vak.getNaam())){
+                                eigenaar.setScore(eigenaar.getScore()+boete);
+                                System.out.println(eigenaar.getNaam()+" zijn balens is met €"+boete+" gestegen.");
+                            }
+
+                        }
+                    } else if(vak.isGekocht()) {
+                        einde = true;
+                        System.out.println("EINDE");
                     }
+                } else if(this.bord[newPos].getSoort() == "start"){
+                    speler.setScore(speler.getScore()+100);
                 }
 
             }
