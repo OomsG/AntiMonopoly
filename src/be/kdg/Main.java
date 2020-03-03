@@ -17,6 +17,7 @@ public class Main extends Application {
         new MonopolyPresenter(model, view);
         primaryStage.setScene(new Scene(view));
         primaryStage.show();
+        primaryStage.setResizable(false);
 
     }
 
