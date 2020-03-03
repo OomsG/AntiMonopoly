@@ -1,11 +1,6 @@
-package be.kdg.view;
+package be.kdg.spelerEenView;
 
 import be.kdg.model.MonopolyModel;
-import javafx.event.EventHandler;
-import javafx.geometry.Pos;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.text.Font;
 
 public class MonopolyPresenter {
         private MonopolyModel model;
