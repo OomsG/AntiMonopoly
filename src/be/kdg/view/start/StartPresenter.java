@@ -32,10 +32,9 @@ public class StartPresenter {
                 GamePresenter gamePresenter = new GamePresenter(model, gameView);
                 view.getScene().setRoot(gameView);
                 gameView.getScene().getWindow().sizeToScene();
-                Spel spel = new Spel();
-                spel.maakSpelers();
-                spel.maakBord();
-
+                // Spel spel = new Spel();
+                // spel.maakSpelers();
+                // spel.maakBord();
 
 
             }

@@ -16,6 +16,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
+import static java.awt.Color.black;
+
 public class StartView extends GridPane
         /* layout type */ {
 
@@ -62,7 +64,6 @@ public class StartView extends GridPane
         monopolistOfConcurrent4 = new ComboBox(monopolistOfConcurrentComboBoxKeuze);
 
 
-
 // Initialisatie van de Nodes
 // bvb.:
 // button = new Button("...")
@@ -70,16 +71,16 @@ public class StartView extends GridPane
     }
 
     private void layoutNodes() {
-        this.add(titelMetUitleg,0,1,2,1);
+        this.add(titelMetUitleg, 0, 1, 2, 1);
         this.add(lbMainLogo, 0, 0, 2, 1);
-        this.add(tfNaamSpeler1, 0, 2,1,1);
-        this.add(tfNaamSpeler2, 1, 2,1,1);
+        this.add(tfNaamSpeler1, 0, 2, 1, 1);
+        this.add(tfNaamSpeler2, 1, 2, 1, 1);
         this.add(tfNaamSpeler3, 0, 4);
         this.add(tfNaamSpeler4, 1, 4);
-        this.add(monopolistOfConcurrent1,0,2,1,1);
-        this.add(monopolistOfConcurrent2,1,2,1,1);
-        this.add(monopolistOfConcurrent3,0,4);
-        this.add(monopolistOfConcurrent4,1,4);
+        this.add(monopolistOfConcurrent1, 0, 2, 1, 1);
+        this.add(monopolistOfConcurrent2, 1, 2, 1, 1);
+        this.add(monopolistOfConcurrent3, 0, 4);
+        this.add(monopolistOfConcurrent4, 1, 4);
         this.add(btnBevestigSpelers, 0, 5);
         this.tfNaamSpeler1.setMaxWidth(150);
         this.tfNaamSpeler2.setMaxWidth(150);
@@ -88,9 +89,9 @@ public class StartView extends GridPane
         titelMetUitleg.setFill(Color.RED);
         titelMetUitleg.setFont(Font.font("Verdana", FontWeight.BOLD, 12));
         GridPane.setMargin(lbMainLogo, new Insets(0, 8, 5, 12));
-        GridPane.setMargin(titelMetUitleg, new Insets(0, 0, 0, 45));
-        GridPane.setMargin(tfNaamSpeler1, new Insets(20, 20, 20, 30));
-        GridPane.setMargin(tfNaamSpeler2, new Insets(20, 20, 20, 10));
+        GridPane.setMargin(titelMetUitleg, new Insets(0, 0, -25, 45));
+        GridPane.setMargin(tfNaamSpeler1, new Insets(5, 20, 10, 30));
+        GridPane.setMargin(tfNaamSpeler2, new Insets(5, 20, 10, 10));
         GridPane.setMargin(tfNaamSpeler3, new Insets(5, 20, 20, 30));
         GridPane.setMargin(tfNaamSpeler4, new Insets(5, 20, 20, 10));
         GridPane.setMargin(btnBevestigSpelers, new Insets(5, 0, 20, 180));
@@ -98,8 +99,28 @@ public class StartView extends GridPane
         GridPane.setMargin(monopolistOfConcurrent2, new Insets(90, 20, 20, 10));
         GridPane.setMargin(monopolistOfConcurrent3, new Insets(70, 20, 20, 30));
         GridPane.setMargin(monopolistOfConcurrent4, new Insets(70, 20, 20, 10));
+        btnBevestigSpelers.setStyle("-fx-background-color: \n" +
+                "        #a6b5c9,\n" +
+                "        linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),\n" +
+                "        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);-fx-text-fill: WHITE;-fx-font-weight: BOLD");
 
+        monopolistOfConcurrent1.setStyle("-fx-background-color: \n" +
+                "        #a6b5c9,\n" +
+                "        linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),\n" +
+                "        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);-fx-text-fill: WHITE;-fx-font-weight: BOLD");
 
+        monopolistOfConcurrent2.setStyle("-fx-background-color: \n" +
+                "        #a6b5c9,\n" +
+                "        linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),\n" +
+                "        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);-fx-text-fill: WHITE;-fx-font-weight: BOLD");
+        monopolistOfConcurrent3.setStyle("-fx-background-color: \n" +
+                "        #a6b5c9,\n" +
+                "        linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),\n" +
+                "        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);-fx-text-fill: WHITE;-fx-font-weight: BOLD");
+        monopolistOfConcurrent4.setStyle("-fx-background-color: \n" +
+                "        #a6b5c9,\n" +
+                "        linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),\n" +
+                "        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);-fx-text-fill: WHITE;-fx-font-weight: BOLD");
 
 
 // Layout van de Nodes
@@ -143,7 +164,6 @@ public class StartView extends GridPane
     public Button getBtnBevestigSpelers() {
         return btnBevestigSpelers;
     }
-
 
 
     // implementatie van de nodige
