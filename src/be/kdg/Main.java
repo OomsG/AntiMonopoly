@@ -26,11 +26,10 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) throws InterruptedException {
+
         Application.launch(args);
-        Spel spel = new Spel();
-        spel.maakSpelers();
-        spel.maakBord();
-        spel.startSpel();
+
+
 
 
     }

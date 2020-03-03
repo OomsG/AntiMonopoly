@@ -1,11 +1,13 @@
 package be.kdg.view.start;
 
+import be.kdg.speler.Rol;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -18,9 +20,9 @@ public class StartView extends GridPane
         /* layout type */ {
 
     // private Node attributen (controls)
-    private final ObservableList<String> monopolistOfConcurrentComboBoxKeuze = FXCollections.observableArrayList(
-            "Monopolist",
-            "Concurrent"
+    private final ObservableList<Rol> monopolistOfConcurrentComboBoxKeuze = FXCollections.observableArrayList(
+            Rol.MONOPOLIST,
+            Rol.CONCURRENT
     );
     private javafx.scene.control.TextField tfNaamSpeler1;
     private javafx.scene.control.TextField tfNaamSpeler2;
@@ -103,6 +105,39 @@ public class StartView extends GridPane
 // Layout van de Nodes
 // add… methodes (of set…)
 // Insets, padding, alignment, …
+    }
+
+
+    public TextField getTfNaamSpeler1() {
+        return tfNaamSpeler1;
+    }
+
+    public TextField getTfNaamSpeler2() {
+        return tfNaamSpeler2;
+    }
+
+    public TextField getTfNaamSpeler3() {
+        return tfNaamSpeler3;
+    }
+
+    public TextField getTfNaamSpeler4() {
+        return tfNaamSpeler4;
+    }
+
+    public ComboBox getMonopolistOfConcurrent1() {
+        return monopolistOfConcurrent1;
+    }
+
+    public ComboBox getMonopolistOfConcurrent2() {
+        return monopolistOfConcurrent2;
+    }
+
+    public ComboBox getMonopolistOfConcurrent3() {
+        return monopolistOfConcurrent3;
+    }
+
+    public ComboBox getMonopolistOfConcurrent4() {
+        return monopolistOfConcurrent4;
     }
 
     public Button getBtnBevestigSpelers() {

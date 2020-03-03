@@ -1,5 +1,6 @@
 package be.kdg.view.start;
 
+import be.kdg.spel.Spel;
 import be.kdg.view.game.GamePresenter;
 import be.kdg.view.game.GameView;
 import be.kdg.model.MonopolyModel;
@@ -30,11 +31,14 @@ public class StartPresenter {
         view.getBtnBevestigSpelers().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("test");
                 GameView gameView = new GameView();
                 GamePresenter gamePresenter = new GamePresenter(model, gameView);
                 view.getScene().setRoot(gameView);
                 gameView.getScene().getWindow().sizeToScene();
+                Spel spel = new Spel();
+                spel.maakSpelers();
+                spel.maakBord();
+
 
 
             }
