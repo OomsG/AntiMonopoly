@@ -1,4 +1,4 @@
-package be.kdg.vak;
+package be.kdg.spelLogica.vak;
 
 public class Gevangenis implements Vak {
     protected String soort = "gevangenis";

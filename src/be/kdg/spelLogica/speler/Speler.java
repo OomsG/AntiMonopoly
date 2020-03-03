@@ -1,6 +1,6 @@
-package be.kdg.speler;
+package be.kdg.spelLogica.speler;
 
-import be.kdg.vak.Grond;
+import be.kdg.spelLogica.vak.Grond;
 
 import java.util.ArrayList;
 

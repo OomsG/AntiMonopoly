@@ -1,6 +1,4 @@
-package be.kdg.vak;
-
-import be.kdg.speler.Speler;
+package be.kdg.spelLogica.vak;
 
 import java.util.ArrayList;
 import java.util.Random;

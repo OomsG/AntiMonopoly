@@ -1,4 +1,4 @@
-package be.kdg.vak;
+package be.kdg.spelLogica.vak;
 
 public interface Vak {
     String soort = null;

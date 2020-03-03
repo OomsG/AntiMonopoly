@@ -1,6 +1,6 @@
 package be.kdg.view.start;
 
-import be.kdg.speler.Rol;
+import be.kdg.spelLogica.speler.Rol;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;

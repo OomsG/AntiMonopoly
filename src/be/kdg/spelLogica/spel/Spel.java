@@ -1,8 +1,8 @@
-package be.kdg.spel;
+package be.kdg.spelLogica.spel;
 
-import be.kdg.speler.Rol;
-import be.kdg.speler.Speler;
-import be.kdg.vak.*;
+import be.kdg.spelLogica.speler.Rol;
+import be.kdg.spelLogica.speler.Speler;
+import be.kdg.spelLogica.vak.*;
 
 import java.util.ArrayList;
 import java.util.Random;

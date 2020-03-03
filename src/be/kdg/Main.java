@@ -1,7 +1,6 @@
 package be.kdg;
 
 import be.kdg.model.MonopolyModel;
-import be.kdg.spel.Spel;
 import be.kdg.view.start.StartPresenter;
 import be.kdg.view.start.StartView;
 import javafx.application.Application;

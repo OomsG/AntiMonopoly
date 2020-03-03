@@ -1,16 +1,13 @@
 package be.kdg.view.start;
 
-import be.kdg.spel.Spel;
+import be.kdg.spelLogica.spel.Spel;
 import be.kdg.view.game.GamePresenter;
 import be.kdg.view.game.GameView;
 import be.kdg.model.MonopolyModel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 

@@ -1,4 +1,4 @@
-package be.kdg.speler;
+package be.kdg.spelLogica.speler;
 
 public enum Rol {
     MONOPOLIST, CONCURRENT;

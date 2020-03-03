@@ -1,6 +1,5 @@
-package be.kdg.vak;
+package be.kdg.spelLogica.vak;
 
-import java.util.LinkedList;
 import java.util.Random;
 
 public class Kans implements Vak {
