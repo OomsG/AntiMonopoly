@@ -109,6 +109,8 @@ public class MonopolyView extends GridPane
         return btnBevestigSpelers;
     }
 
+
+
     // implementatie van de nodige
 // package-private Getters
 }

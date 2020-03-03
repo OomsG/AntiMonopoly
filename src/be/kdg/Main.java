@@ -6,6 +6,7 @@ import be.kdg.start.MonopolyPresenter;
 import be.kdg.start.MonopolyView;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -19,6 +20,8 @@ public class Main extends Application {
         startPresenter.addWindowEventHandlers();
         primaryStage.show();
         primaryStage.setResizable(false);
+        primaryStage.getIcons().add(new Image("pictogram.png"));
+        primaryStage.setTitle("Anti-Monopoly | Spelen maar!");
 
     }
 
