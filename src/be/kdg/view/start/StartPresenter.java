@@ -34,8 +34,8 @@ public class StartPresenter {
                 GameView gameView = new GameView();
                 GamePresenter gamePresenter = new GamePresenter(model, gameView);
                 view.getScene().setRoot(gameView);
-                // gameView.getScene().getWindow().setX(0);
-                // gameView.getScene().getWindow().setY(0);
+                gameView.getScene().getWindow().sizeToScene();
+
 
             }
         });
