@@ -59,6 +59,31 @@ public class Spel {
         }
     }
 
+    public void maakSpelers(String naam1, Rol rol1, String naam2, Rol rol2, String naam3, Rol rol3, String naam4, Rol rol4){
+        int aantalSpelers = 0;
+        if(naam1 != ""){
+            Speler speler = new Speler(naam1, rol1);
+            aantalSpelers++;
+        }
+        if(naam2 != ""){
+            Speler speler = new Speler(naam2, rol2);
+            aantalSpelers++;
+        }
+        if(naam3 != ""){
+            Speler speler = new Speler(naam3, rol3);
+            aantalSpelers++;
+        }
+        if(naam4 != ""){
+            Speler speler = new Speler(naam4, rol4);
+            aantalSpelers++;
+        }
+
+        if(aantalSpelers < 2){
+            System.out.println("Te weinig spelers, extra speler automatisch aangemaakt!");
+            Speler speler = new Speler("Guest"+(generator.nextInt(8999)+1000), Rol.MONOPOLIST);
+        }
+    }
+
     public void maakBord() {
         bord[0] = new Start();
         bord[7] = new Fonds();
