@@ -91,15 +91,18 @@ public class Spel {
                 Speler speler = spelers.get(i);
                 System.out.println("\n-"+counter+"--------------------");
                 System.out.println("Beurt aan "+speler.getNaam()+", uw vorige positie: "+speler.getPositie());
-                int newPos = speler.getPositie() + generator.nextInt(5)+1;
+                int newPos = speler.getPositie() + (generator.nextInt(5)+1)*2;
                 if(newPos >= 39){
                     newPos -= 39;
                 }
                 speler.setPositie(newPos);
                 System.out.println("Uw nieuwe positie is: "+newPos);
                 System.out.println("U hebt momenteel €"+speler.getScore());
-
-                if(this.bord[newPos].getSoort() == "grond"){
+                if(newPos == 0){
+                    speler.setScore(speler.getScore()+100);
+                    System.out.println("Doordat u op Start staat is uw balans met €100 gestegen.");
+                    System.out.println("Uw nieuwe balans: €"+speler.getScore());
+                } else if(this.bord[newPos].getSoort() == "grond"){
                     Grond vak = (Grond)this.bord[newPos];
                     if(!vak.isGekocht() && vak.getPrijs() <= speler.getScore()){
                         System.out.print("Druk op '1' om de grond '"+vak.getNaam()+"' (€"+vak.getPrijs()+") te kopen. Druk op 0 om uw beurt te beëindigen. ");
@@ -126,8 +129,6 @@ public class Spel {
                         einde = true;
                         System.out.println("EINDE");
                     }
-                } else if(this.bord[newPos].getSoort() == "start"){
-                    speler.setScore(speler.getScore()+100);
                 }
 
             }
