@@ -79,22 +79,22 @@ public class StartView extends GridPane
         this.add(monopolistOfConcurrent3,0,4);
         this.add(monopolistOfConcurrent4,1,4);
         this.add(btnBevestigSpelers, 0, 5);
-        this.tfNaamSpeler1.setMaxWidth(200);
-        this.tfNaamSpeler2.setMaxWidth(200);
-        this.tfNaamSpeler3.setMaxWidth(200);
-        this.tfNaamSpeler4.setMaxWidth(200);
+        this.tfNaamSpeler1.setMaxWidth(150);
+        this.tfNaamSpeler2.setMaxWidth(150);
+        this.tfNaamSpeler3.setMaxWidth(150);
+        this.tfNaamSpeler4.setMaxWidth(150);
         titelMetUitleg.setFill(Color.RED);
         titelMetUitleg.setFont(Font.font("Verdana", FontWeight.BOLD, 12));
         GridPane.setMargin(lbMainLogo, new Insets(0, 8, 5, 12));
         GridPane.setMargin(titelMetUitleg, new Insets(0, 0, 0, 45));
-        GridPane.setMargin(tfNaamSpeler1, new Insets(20, 20, 20, 10));
+        GridPane.setMargin(tfNaamSpeler1, new Insets(20, 20, 20, 30));
         GridPane.setMargin(tfNaamSpeler2, new Insets(20, 20, 20, 10));
-        GridPane.setMargin(tfNaamSpeler3, new Insets(5, 20, 20, 10));
+        GridPane.setMargin(tfNaamSpeler3, new Insets(5, 20, 20, 30));
         GridPane.setMargin(tfNaamSpeler4, new Insets(5, 20, 20, 10));
         GridPane.setMargin(btnBevestigSpelers, new Insets(5, 0, 20, 180));
-        GridPane.setMargin(monopolistOfConcurrent1, new Insets(90, 20, 20, 10));
+        GridPane.setMargin(monopolistOfConcurrent1, new Insets(90, 20, 20, 30));
         GridPane.setMargin(monopolistOfConcurrent2, new Insets(90, 20, 20, 10));
-        GridPane.setMargin(monopolistOfConcurrent3, new Insets(70, 20, 20, 10));
+        GridPane.setMargin(monopolistOfConcurrent3, new Insets(70, 20, 20, 30));
         GridPane.setMargin(monopolistOfConcurrent4, new Insets(70, 20, 20, 10));
 
 
