@@ -5,35 +5,41 @@ import be.kdg.view.game.GameView;
 import be.kdg.model.MonopolyModel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 
 public class StartPresenter {
-        private MonopolyModel model;
-        private StartView view;
-        public StartPresenter(
-                MonopolyModel model,
-                StartView view) {
-            this.model = model;
-            this.view = view;
-            this.updateView();
-        }
+    private MonopolyModel model;
+    private StartView view;
+
+    public StartPresenter(
+            MonopolyModel model,
+            StartView view) {
+        this.model = model;
+        this.view = view;
+        this.updateView();
+        addEventHandlers();
+    }
 
     private void addEventHandlers() {
-            view.getBtnBevestigSpelers().setOnAction(new EventHandler<ActionEvent>() {
+        view.getBtnBevestigSpelers().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("test");
                 GameView gameView = new GameView();
                 GamePresenter gamePresenter = new GamePresenter(model, gameView);
                 view.getScene().setRoot(gameView);
-                gameView.getScene().getWindow().sizeToScene();
+                // gameView.getScene().getWindow().setX(0);
+                // gameView.getScene().getWindow().setY(0);
+
             }
         });
     }
-
 
 
     public void addWindowEventHandlers() {
@@ -60,10 +66,10 @@ public class StartPresenter {
 // aan de controls uit de view.
 // Event handlers: roepen methodes aan uit het
 // model en zorgen voor een update van de view.
-        
-        private void updateView() {
+
+    private void updateView() {
 // Vult de view met data uit model
-        }
     }
+}
 
 
