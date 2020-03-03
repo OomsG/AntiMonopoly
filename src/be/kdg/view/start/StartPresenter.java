@@ -1,7 +1,7 @@
-package be.kdg.start;
+package be.kdg.view.start;
 
-import be.kdg.game.GamePresenter;
-import be.kdg.game.GameView;
+import be.kdg.view.game.GamePresenter;
+import be.kdg.view.game.GameView;
 import be.kdg.model.MonopolyModel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -25,6 +25,7 @@ public class StartPresenter {
             view.getBtnBevestigSpelers().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                System.out.println("test");
                 GameView gameView = new GameView();
                 GamePresenter gamePresenter = new GamePresenter(model, gameView);
                 view.getScene().setRoot(gameView);

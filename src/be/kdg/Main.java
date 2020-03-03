@@ -2,8 +2,8 @@ package be.kdg;
 
 import be.kdg.model.MonopolyModel;
 import be.kdg.spel.Spel;
-import be.kdg.start.StartPresenter;
-import be.kdg.start.StartView;
+import be.kdg.view.start.StartPresenter;
+import be.kdg.view.start.StartView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;

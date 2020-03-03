@@ -1,4 +1,4 @@
-package be.kdg.game;
+package be.kdg.view.game;
 
 
 import be.kdg.model.MonopolyModel;

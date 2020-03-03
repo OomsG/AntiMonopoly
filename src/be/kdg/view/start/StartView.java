@@ -1,4 +1,4 @@
-package be.kdg.start;
+package be.kdg.view.start;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
