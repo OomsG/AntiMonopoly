@@ -5,6 +5,8 @@ import java.util.Random;
 
 public class Kans implements Vak {
     protected String soort = "kans";
+    private Random generator = new Random();
+
     private String[] messages = {
             "U vindt een briefje van €%d op straat.",
             "U vindt een briefje van €%d in uw zetel.",
@@ -17,8 +19,6 @@ public class Kans implements Vak {
             "U wint een tombola en hebt tampasta ter waarde van €%d gewonnen!",
             "U wint een tombola en hebt toilet papier ter waarde van €%d gewonnen!"
     };
-
-    private Random generator = new Random();
 
     @Override
     public String getSoort() {
