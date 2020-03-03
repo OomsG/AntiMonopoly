@@ -1,4 +1,4 @@
-package be.kdg.start;
+package be.kdg.view.start;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,7 +14,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-public class MonopolyView extends GridPane
+public class StartView extends GridPane
         /* layout type */ {
 
     // private Node attributen (controls)
@@ -36,7 +36,7 @@ public class MonopolyView extends GridPane
     private Label lbMainLogo;
 
 
-    public MonopolyView() {
+    public StartView() {
         this.initialiseNodes();
         this.layoutNodes();
     }

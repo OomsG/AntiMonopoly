@@ -1,5 +1,7 @@
-package be.kdg.start;
+package be.kdg.view.start;
 
+import be.kdg.view.game.GamePresenter;
+import be.kdg.view.game.GameView;
 import be.kdg.model.MonopolyModel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -8,21 +10,22 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.WindowEvent;
 
 
-public class MonopolyPresenter {
+public class StartPresenter {
         private MonopolyModel model;
-        private MonopolyView view;
-        public MonopolyPresenter(
+        private StartView view;
+        public StartPresenter(
                 MonopolyModel model,
-                MonopolyView view) {
+                StartView view) {
             this.model = model;
             this.view = view;
             this.updateView();
         }
-/*
+
     private void addEventHandlers() {
-        MonopolyView.getBtnBevestigSpelers().setOnAction(new EventHandler<ActionEvent>() {
+            view.getBtnBevestigSpelers().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                System.out.println("test");
                 GameView gameView = new GameView();
                 GamePresenter gamePresenter = new GamePresenter(model, gameView);
                 view.getScene().setRoot(gameView);
@@ -31,7 +34,7 @@ public class MonopolyPresenter {
         });
     }
 
- */
+
 
     public void addWindowEventHandlers() {
         view.getScene().getWindow().setOnCloseRequest(new EventHandler<WindowEvent>() {
