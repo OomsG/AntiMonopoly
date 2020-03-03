@@ -8,7 +8,7 @@ public class Start implements Vak {
     }
 
     @Override
-    public Object getSoort() {
-        return null;
+    public String getSoort() {
+        return soort;
     }
 }
