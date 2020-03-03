@@ -2,8 +2,8 @@ package be.kdg;
 
 import be.kdg.model.MonopolyModel;
 import be.kdg.spel.Spel;
-import be.kdg.spelerEenView.MonopolyPresenter;
-import be.kdg.spelerEenView.MonopolyView;
+import be.kdg.start.MonopolyPresenter;
+import be.kdg.start.MonopolyView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -14,8 +14,9 @@ public class Main extends Application {
     public void start(Stage primaryStage)  {
         MonopolyModel model = new MonopolyModel();
         MonopolyView view = new MonopolyView();
-        new MonopolyPresenter(model, view);
+       MonopolyPresenter startPresenter = new MonopolyPresenter(model, view);
         primaryStage.setScene(new Scene(view));
+        startPresenter.addWindowEventHandlers();
         primaryStage.show();
         primaryStage.setResizable(false);
 
