@@ -36,6 +36,7 @@ public class GameView extends GridPane {
     }
 
     private void layoutNodes() {
+        // Controls aan GridPane toevoegen
         this.add(speelBord, 1, 0);
         speelBord.setFitHeight(900);
         speelBord.setFitWidth(1000);
@@ -45,8 +46,12 @@ public class GameView extends GridPane {
         this.add(lblinstructiesConsoleBox, 2, 0);
         GridPane.setMargin(lblinstructiesConsoleBox, new Insets(0, 45, 800, 45));
         this.add(btnBeurt, 2, 0);
+
+        // Margins & Padding
         GridPane.setMargin(btnBeurt, new Insets(150, 45, 200, 70));
         btnBeurt.setPadding(new Insets(20, 20, 20, 20));
+
+        // CSS
         lblinstructiesConsoleBox.setStyle("-fx-effect: dropshadow(one-pass-box, black, 100, 0.1, 1, 1);");
 
     }

@@ -71,6 +71,8 @@ public class StartView extends GridPane
     }
 
     private void layoutNodes() {
+
+        // Controls aan GridPane toevoegen
         this.add(titelMetUitleg, 0, 1, 2, 1);
         this.add(lbMainLogo, 0, 0, 2, 1);
         this.add(tfNaamSpeler1, 0, 2, 1, 1);
@@ -82,12 +84,16 @@ public class StartView extends GridPane
         this.add(monopolistOfConcurrent3, 0, 4);
         this.add(monopolistOfConcurrent4, 1, 4);
         this.add(btnBevestigSpelers, 0, 5);
+
+        // Extra
         this.tfNaamSpeler1.setMaxWidth(150);
         this.tfNaamSpeler2.setMaxWidth(150);
         this.tfNaamSpeler3.setMaxWidth(150);
         this.tfNaamSpeler4.setMaxWidth(150);
         titelMetUitleg.setFill(Color.RED);
         titelMetUitleg.setFont(Font.font("Verdana", FontWeight.BOLD, 12));
+
+        // Margins
         GridPane.setMargin(lbMainLogo, new Insets(0, 8, 5, 12));
         GridPane.setMargin(titelMetUitleg, new Insets(0, 0, -25, 45));
         GridPane.setMargin(tfNaamSpeler1, new Insets(5, 20, 10, 30));
@@ -99,6 +105,8 @@ public class StartView extends GridPane
         GridPane.setMargin(monopolistOfConcurrent2, new Insets(90, 20, 20, 10));
         GridPane.setMargin(monopolistOfConcurrent3, new Insets(70, 20, 20, 30));
         GridPane.setMargin(monopolistOfConcurrent4, new Insets(70, 20, 20, 10));
+
+        // CSS
         btnBevestigSpelers.setStyle("-fx-background-color: \n" +
                 "        #a6b5c9,\n" +
                 "        linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),\n" +
@@ -123,10 +131,8 @@ public class StartView extends GridPane
                 "        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);-fx-text-fill: WHITE;-fx-font-weight: BOLD");
 
 
-// Layout van de Nodes
-// add… methodes (of set…)
-// Insets, padding, alignment, …
     }
+
 
 
     public TextField getTfNaamSpeler1() {
