@@ -24,6 +24,7 @@ public class GameView extends GridPane {
     private javafx.scene.control.Button btnBeurt;
     private HBox hboxBord;
     private HBox hboxScheidingslijn;
+    private VBox vboxInterface;
 
 
     public GameView() {
@@ -34,9 +35,8 @@ public class GameView extends GridPane {
     private void initialiseNodes() {
         hboxBord = new HBox();
         hboxScheidingslijn = new HBox();
+        vboxInterface = new VBox();
 
-        //test = new Text("Console box hier");
-        //test.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
         speelBord = new ImageView(new Image("monopolySpeelBord.png"));
         scheidingsLijn = new ImageView(new Image("scheidingslijn.png"));
         lblinstructiesConsoleBox = new Label("labelInstructiesConsoleBox");
@@ -50,11 +50,14 @@ public class GameView extends GridPane {
 
     private void layoutNodes() {
 
+        // Controls aan boxen toevoegen
+
         hboxBord.getChildren().addAll(speelBord);
         speelBord.setFitHeight(700);
         speelBord.setFitWidth(800);
-
         hboxScheidingslijn.getChildren().addAll(scheidingsLijn);
+
+        // Boxen aan GridPane toevoegen
 
         this.add(hboxBord, 1, 0);
         this.add(hboxScheidingslijn, 2, 0);
