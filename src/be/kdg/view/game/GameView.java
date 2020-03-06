@@ -25,6 +25,7 @@ public class GameView extends GridPane {
     private HBox hboxBord;
     private HBox hboxScheidingslijn;
     private VBox vboxInterface;
+    private HBox hboxInterfaceKoopGrondEnBouwen;
 
 
     public GameView() {
@@ -36,7 +37,10 @@ public class GameView extends GridPane {
         hboxBord = new HBox();
         hboxScheidingslijn = new HBox();
         vboxInterface = new VBox();
-
+        hboxInterfaceKoopGrondEnBouwen = new HBox();
+        hboxInterfaceKoopGrondEnBouwen.setSpacing(10);
+        vboxInterface.setSpacing(70);
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         speelBord = new ImageView(new Image("monopolySpeelBord.png"));
         scheidingsLijn = new ImageView(new Image("scheidingslijn.png"));
         lblinstructiesConsoleBox = new Label("labelInstructiesConsoleBox");
@@ -45,53 +49,49 @@ public class GameView extends GridPane {
         btnDobbel = new Button("Dobbel");
         btnKoopGrond = new Button("Kopen");
         lblNaamBeurt = new Label("Sander speelt");
-
     }
 
     private void layoutNodes() {
 
-        // Controls aan boxen toevoegen
+        vboxInterface.setPrefWidth(200);
+        hboxInterfaceKoopGrondEnBouwen.setPrefWidth(100);
 
+        // Controls aan boxen toevoegen
         hboxBord.getChildren().addAll(speelBord);
         speelBord.setFitHeight(700);
         speelBord.setFitWidth(800);
         hboxScheidingslijn.getChildren().addAll(scheidingsLijn);
+        hboxInterfaceKoopGrondEnBouwen.getChildren().addAll(btnKoopGrond,btnBouwen);
+        vboxInterface.getChildren().addAll(lblinstructiesConsoleBox,lblNaamBeurt,btnDobbel,btnBeurt,hboxInterfaceKoopGrondEnBouwen);
+
+
+
 
         // Boxen aan GridPane toevoegen
 
         this.add(hboxBord, 1, 0);
         this.add(hboxScheidingslijn, 2, 0);
-
-        // Controls aan GridPane toevoegen
-       /* this.add(speelBord, 1, 0);
-        speelBord.setFitHeight(700);
-        speelBord.setFitWidth(800);
-        this.add(scheidingsLijn, 1, 0);
-        this.add(lblinstructiesConsoleBox, 2, 0);
-        this.add(btnBeurt, 2, 0);
-        this.add(btnDobbel,2,0);
-        */
+        this.add(vboxInterface, 3, 0);
 
 
         // Margins & Padding
 
         GridPane.setMargin(hboxScheidingslijn, new Insets(20, 40, 20, 40));
         GridPane.setMargin(hboxBord, new Insets(20, 0, 20, 0));
+        GridPane.setMargin(vboxInterface, new Insets(20, 40, 20, 40));
+
+        btnBeurt.setPadding(new Insets(20, 106, 20, 106));
+        btnDobbel.setPadding(new Insets(20, 100, 20, 100));
+        btnKoopGrond.setPadding(new Insets(10, 50, 10, 50));
+        btnBouwen.setPadding(new Insets(10, 50, 10, 50));
 
 
-        /*
-        GridPane.setMargin(speelBord, new Insets(0, 20, 0, 45));
 
-        GridPane.setMargin(scheidingsLijn, new Insets(0, 20, 0, 900));
 
-        GridPane.setMargin(lblinstructiesConsoleBox, new Insets(50, 45, 500, 45));
 
-        GridPane.setMargin(btnBeurt, new Insets(500, -50, 20, 30));
-        btnBeurt.setPadding(new Insets(25, 39, 25, 39));
 
-        GridPane.setMargin(btnDobbel, new Insets(300, -50, 20, 30));
-        btnDobbel.setPadding(new Insets(25, 32, 25, 32));
-*/
+        hboxInterfaceKoopGrondEnBouwen.setMargin(btnKoopGrond, new Insets(0, 40, 0, 0));
+
 
         // CSS
 
