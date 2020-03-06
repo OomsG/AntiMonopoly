@@ -17,8 +17,8 @@ public class GameView extends GridPane {
     //private Text test;
     private ImageView speelBord;
     private ImageView scheidingsLijn;
-    private TextArea lblinstructiesConsoleBox;
-    private Label lblNaamBeurt;
+    private TextArea tainstructiesConsoleBox;
+    private TextArea taNaamBeurt;
     private Button btnDobbel;
     private Button btnKoopGrond;
     private Button btnBouwen;
@@ -44,13 +44,14 @@ public class GameView extends GridPane {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         speelBord = new ImageView(new Image("monopolySpeelBord.png"));
         scheidingsLijn = new ImageView(new Image("scheidingslijn.png"));
-        lblinstructiesConsoleBox = new TextArea("labelInstructiesConsoleBox");
-        lblinstructiesConsoleBox.setEditable(false);
+        tainstructiesConsoleBox = new TextArea("labelInstructiesConsoleBox");
+        tainstructiesConsoleBox.setEditable(false);
         btnBeurt = new Button("Beurt");
         btnBouwen = new Button("Bouwen");
         btnDobbel = new Button("Dobbel");
         btnKoopGrond = new Button("Kopen");
-        lblNaamBeurt = new Label("Sander speelt");
+        taNaamBeurt = new TextArea("Sander speelt \n Saldo: 500€ \n Positie: 5");
+        taNaamBeurt.setEditable(false);
     }
 
     private void layoutNodes() {
@@ -64,7 +65,7 @@ public class GameView extends GridPane {
         speelBord.setFitWidth(800);
         hboxScheidingslijn.getChildren().addAll(scheidingsLijn);
         hboxInterfaceKoopGrondEnBouwen.getChildren().addAll(btnKoopGrond, btnBouwen);
-        vboxInterface.getChildren().addAll(lblinstructiesConsoleBox, lblNaamBeurt, btnDobbel, btnBeurt, hboxInterfaceKoopGrondEnBouwen);
+        vboxInterface.getChildren().addAll(tainstructiesConsoleBox, taNaamBeurt, btnDobbel, btnBeurt, hboxInterfaceKoopGrondEnBouwen);
 
 
         // Boxen aan GridPane toevoegen
