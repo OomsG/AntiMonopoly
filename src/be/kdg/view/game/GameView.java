@@ -46,24 +46,24 @@ public class GameView extends GridPane {
     private void layoutNodes() {
         // Controls aan GridPane toevoegen
         this.add(speelBord, 1, 0);
-        speelBord.setFitHeight(900);
-        speelBord.setFitWidth(1000);
+        speelBord.setFitHeight(700);
+        speelBord.setFitWidth(800);
         this.add(scheidingsLijn, 1, 0);
         this.add(lblinstructiesConsoleBox, 2, 0);
         this.add(btnBeurt, 2, 0);
         this.add(btnDobbel,2,0);
 
         // Margins & Padding
-        GridPane.setMargin(speelBord, new Insets(15, 20, 15, 45));
+        GridPane.setMargin(speelBord, new Insets(0, 20, 0, 45));
 
-        GridPane.setMargin(scheidingsLijn, new Insets(0, 20, 0, 1100));
+        GridPane.setMargin(scheidingsLijn, new Insets(0, 20, 0, 900));
 
-        GridPane.setMargin(lblinstructiesConsoleBox, new Insets(0, 45, 800, 45));
+        GridPane.setMargin(lblinstructiesConsoleBox, new Insets(50, 45, 800, 45));
 
-        GridPane.setMargin(btnBeurt, new Insets(500, -50, 200, 30));
+        GridPane.setMargin(btnBeurt, new Insets(500, -50, 20, 30));
         btnBeurt.setPadding(new Insets(25, 32, 32, 25));
 
-        GridPane.setMargin(btnDobbel, new Insets(300, -50, 200, 30));
+        GridPane.setMargin(btnDobbel, new Insets(300, -50, 20, 30));
         btnDobbel.setPadding(new Insets(25, 64, 25, 65));
 
 
@@ -82,6 +82,11 @@ public class GameView extends GridPane {
                 "        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);-fx-text-fill: WHITE;");
         btnDobbel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
 
+
+
+        //Extra
+
+        btnDobbel.setGraphic(new ImageView(new Image("dice.png")));
     }
 }
 

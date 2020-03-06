@@ -112,24 +112,6 @@ public class StartView extends GridPane
                 "        linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),\n" +
                 "        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);-fx-text-fill: WHITE;-fx-font-weight: BOLD");
 
-        monopolistOfConcurrent1.setStyle("-fx-background-color: \n" +
-                "        #a6b5c9,\n" +
-                "        linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),\n" +
-                "        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);-fx-text-fill: WHITE;-fx-font-weight: BOLD");
-
-        monopolistOfConcurrent2.setStyle("-fx-background-color: \n" +
-                "        #a6b5c9,\n" +
-                "        linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),\n" +
-                "        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);-fx-text-fill: WHITE;-fx-font-weight: BOLD");
-        monopolistOfConcurrent3.setStyle("-fx-background-color: \n" +
-                "        #a6b5c9,\n" +
-                "        linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),\n" +
-                "        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);-fx-text-fill: WHITE;-fx-font-weight: BOLD");
-        monopolistOfConcurrent4.setStyle("-fx-background-color: \n" +
-                "        #a6b5c9,\n" +
-                "        linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),\n" +
-                "        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);-fx-text-fill: WHITE;-fx-font-weight: BOLD");
-
 
     }
 
