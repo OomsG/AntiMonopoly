@@ -35,11 +35,11 @@ public class GameView extends GridPane {
         speelBord = new ImageView(new Image("monopolySpeelBord.png"));
         scheidingsLijn = new ImageView(new Image("scheidingslijn.png"));
         lblinstructiesConsoleBox = new Label("labelInstructiesConsoleBox");
-        btnBeurt = new Button("Volgende beurt");
+        btnBeurt = new Button("Beurt");
         btnBouwen = new Button("Bouwen");
         btnDobbel = new Button("Dobbel");
         btnKoopGrond = new Button("Kopen");
-        lblNaamBeurt = new Label("lblNaamBeurt");
+        lblNaamBeurt = new Label("Sander speelt");
 
     }
 
@@ -61,10 +61,10 @@ public class GameView extends GridPane {
         GridPane.setMargin(lblinstructiesConsoleBox, new Insets(50, 45, 800, 45));
 
         GridPane.setMargin(btnBeurt, new Insets(500, -50, 20, 30));
-        btnBeurt.setPadding(new Insets(25, 32, 32, 25));
+        btnBeurt.setPadding(new Insets(25, 39, 25, 39));
 
         GridPane.setMargin(btnDobbel, new Insets(300, -50, 20, 30));
-        btnDobbel.setPadding(new Insets(25, 64, 25, 65));
+        btnDobbel.setPadding(new Insets(25, 32, 25, 32));
 
 
         // CSS
@@ -87,6 +87,7 @@ public class GameView extends GridPane {
         //Extra
 
         btnDobbel.setGraphic(new ImageView(new Image("dice.png")));
+        btnBeurt.setGraphic(new ImageView(new Image("wisselspeler.png")));
     }
 }
 
