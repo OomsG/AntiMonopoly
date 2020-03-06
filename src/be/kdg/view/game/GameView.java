@@ -39,7 +39,7 @@ public class GameView extends GridPane {
         vboxInterface = new VBox();
         hboxInterfaceKoopGrondEnBouwen = new HBox();
         hboxInterfaceKoopGrondEnBouwen.setSpacing(10);
-        vboxInterface.setSpacing(70);
+        vboxInterface.setSpacing(40);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         speelBord = new ImageView(new Image("monopolySpeelBord.png"));
         scheidingsLijn = new ImageView(new Image("scheidingslijn.png"));
