@@ -1,6 +1,7 @@
 package be.kdg;
 
 import be.kdg.model.MonopolyModel;
+import be.kdg.spelLogica.spel.Spel;
 import be.kdg.view.start.StartPresenter;
 import be.kdg.view.start.StartView;
 import javafx.application.Application;
@@ -26,8 +27,11 @@ public class Main extends Application {
 
     public static void main(String[] args) throws InterruptedException {
 
-        Application.launch(args);
-
+        //Application.launch(args);
+        Spel spel = new Spel();
+        spel.maakSpelers();
+        spel.maakBord();
+        spel.startSpel();
 
 
 

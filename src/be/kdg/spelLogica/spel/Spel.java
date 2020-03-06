@@ -167,7 +167,7 @@ public class Spel {
                             }
                         }
                         System.out.println("Uw nieuwe balans: €"+speler.getScore());
-                    } else if(vak.isGekocht()) {
+                    } else if(speler.getScore() < 0) {
                         einde = true;
                     }
                 }
