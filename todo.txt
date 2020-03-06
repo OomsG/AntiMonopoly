@@ -1,0 +1,5 @@
+TODO LIST:
+
+- X , y posities bekijken voor pion
+- Dobbelen => random generator en pion beweegt
+- Logica bij alle knoppen
