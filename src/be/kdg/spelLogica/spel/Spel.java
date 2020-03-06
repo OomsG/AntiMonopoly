@@ -129,8 +129,21 @@ public class Spel {
                     System.out.println("Uw nieuwe balans: €"+speler.getScore());
                 } else if(this.bord[newPos].getSoort() == "kans"){
                     Kans kans = (Kans)this.bord[newPos];
+                    int prijs = ((generator.nextInt(8)+1)*100)-400;
+                    if(prijs > 0){
+                        System.out.printf("\n**"+kans.getPosMessage()+"\n",prijs);
+                    } else if(prijs < 0) {
+                        System.out.printf("\n**"+kans.getNegMessage()+"\n",prijs);
+                    } else {
+                        System.out.printf("\n**De bank had u een factuur gestuurt maar u hebt geluk. Uw ouders hebben deze al betaald.\n",prijs);
+                    }
+
+                    speler.setScore(speler.getScore()+prijs);
+                    System.out.println("Uw nieuwe balans: €"+speler.getScore());
+                } else if(this.bord[newPos].getSoort() == "fonds"){
+                    Fonds fonds = (Fonds)this.bord[newPos];
                     int prijs = (generator.nextInt(4)+1)*100;
-                    System.out.printf("\n**"+kans.getMessage()+"\n",prijs);
+                    System.out.printf("\n**"+fonds.getMessage()+"\n",prijs);
                     speler.setScore(speler.getScore()+prijs);
                     System.out.println("Uw nieuwe balans: €"+speler.getScore());
                 } else if(this.bord[newPos].getSoort() == "grond"){
@@ -154,7 +167,7 @@ public class Spel {
                             }
                         }
                         System.out.println("Uw nieuwe balans: €"+speler.getScore());
-                    } else if(vak.isGekocht()) {
+                    } else if(speler.getScore() < 0) {
                         einde = true;
                     }
                 }

@@ -6,7 +6,7 @@ public class Kans implements Vak {
     protected String soort = "kans";
     private Random generator = new Random();
 
-    private String[] messages = {
+    private String[] posMessages = {
             "U vindt een briefje van €%d op straat.",
             "U vindt een briefje van €%d in uw zetel.",
             "U hebt de lotto gewonnen en krijgt €%d.",
@@ -19,13 +19,27 @@ public class Kans implements Vak {
             "U wint een tombola en hebt toilet papier ter waarde van €%d gewonnen!"
     };
 
+    private String[] negMessages = {
+            "Netflix heeft u een onbetaalde factuur gestuurd van €%d.",
+            "De bank heeft u een onbetaalde factuur gestuurd van €%d.",
+            "ABInBev heeft u een onbetaalde factuur gestuurd van €%d.",
+            "De loodgieter heeft u een onbetaalde factuur gestuurd van €%d.",
+            "Proximus heeft u een onbetaalde factuur gestuurd van €%d.",
+            "Telenet heeft u een onbetaalde factuur gestuurd van €%d.",
+            "Electrabel heeft u een onbetaalde factuur gestuurd van €%d."
+    };
+
     @Override
     public String getSoort() {
         return soort;
     }
 
-    public String getMessage(){
-        int msgId = generator.nextInt(messages.length);
-        return messages[msgId];
+    public String getPosMessage(){
+        int msgId = generator.nextInt(posMessages.length);
+        return posMessages[msgId];
+    }
+    public String getNegMessage(){
+        int msgId = generator.nextInt(negMessages.length);
+        return negMessages[msgId];
     }
 }
