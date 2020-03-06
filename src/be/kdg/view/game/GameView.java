@@ -22,6 +22,8 @@ public class GameView extends GridPane {
     private Button btnKoopGrond;
     private Button btnBouwen;
     private javafx.scene.control.Button btnBeurt;
+    private HBox hboxBord;
+    private HBox hboxScheidingslijn;
 
 
     public GameView() {
@@ -30,6 +32,9 @@ public class GameView extends GridPane {
     }
 
     private void initialiseNodes() {
+        hboxBord = new HBox();
+        hboxScheidingslijn = new HBox();
+
         //test = new Text("Console box hier");
         //test.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
         speelBord = new ImageView(new Image("monopolySpeelBord.png"));
@@ -44,28 +49,46 @@ public class GameView extends GridPane {
     }
 
     private void layoutNodes() {
+
+        hboxBord.getChildren().addAll(speelBord);
+        speelBord.setFitHeight(700);
+        speelBord.setFitWidth(800);
+
+        hboxScheidingslijn.getChildren().addAll(scheidingsLijn);
+
+        this.add(hboxBord, 1, 0);
+        this.add(hboxScheidingslijn, 2, 0);
+
         // Controls aan GridPane toevoegen
-        this.add(speelBord, 1, 0);
+       /* this.add(speelBord, 1, 0);
         speelBord.setFitHeight(700);
         speelBord.setFitWidth(800);
         this.add(scheidingsLijn, 1, 0);
         this.add(lblinstructiesConsoleBox, 2, 0);
         this.add(btnBeurt, 2, 0);
         this.add(btnDobbel,2,0);
+        */
+
 
         // Margins & Padding
+
+        GridPane.setMargin(hboxScheidingslijn, new Insets(20, 40, 20, 40));
+        GridPane.setMargin(hboxBord, new Insets(20, 0, 20, 0));
+
+
+        /*
         GridPane.setMargin(speelBord, new Insets(0, 20, 0, 45));
 
         GridPane.setMargin(scheidingsLijn, new Insets(0, 20, 0, 900));
 
-        GridPane.setMargin(lblinstructiesConsoleBox, new Insets(50, 45, 800, 45));
+        GridPane.setMargin(lblinstructiesConsoleBox, new Insets(50, 45, 500, 45));
 
         GridPane.setMargin(btnBeurt, new Insets(500, -50, 20, 30));
         btnBeurt.setPadding(new Insets(25, 39, 25, 39));
 
         GridPane.setMargin(btnDobbel, new Insets(300, -50, 20, 30));
         btnDobbel.setPadding(new Insets(25, 32, 25, 32));
-
+*/
 
         // CSS
 
@@ -81,7 +104,6 @@ public class GameView extends GridPane {
                 "        linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),\n" +
                 "        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);-fx-text-fill: WHITE;");
         btnDobbel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
-
 
 
         //Extra
