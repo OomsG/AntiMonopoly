@@ -63,24 +63,35 @@ public class Spel {
         int aantalSpelers = 0;
         if(naam1 != ""){
             Speler speler = new Speler(naam1, rol1);
+            voegSpelerToe(speler);
             aantalSpelers++;
         }
         if(naam2 != ""){
             Speler speler = new Speler(naam2, rol2);
+            voegSpelerToe(speler);
             aantalSpelers++;
         }
         if(naam3 != ""){
             Speler speler = new Speler(naam3, rol3);
+            voegSpelerToe(speler);
             aantalSpelers++;
         }
         if(naam4 != ""){
             Speler speler = new Speler(naam4, rol4);
+            voegSpelerToe(speler);
             aantalSpelers++;
         }
 
-        if(aantalSpelers < 2){
+        if(aantalSpelers < 1){
             System.out.println("Te weinig spelers, extra speler automatisch aangemaakt!");
             Speler speler = new Speler("Guest"+(generator.nextInt(8999)+1000), Rol.MONOPOLIST);
+        }
+        if(aantalSpelers < 2){
+            System.out.println("Te weinig spelers, extra spelers automatisch aangemaakt!");
+            Speler speler1 = new Speler("Guest1_"+(generator.nextInt(8999)+1000), Rol.MONOPOLIST);
+            Speler speler2 = new Speler("Guest2_"+(generator.nextInt(8999)+1000), Rol.MONOPOLIST);
+            voegSpelerToe(speler1);
+            voegSpelerToe(speler2);
         }
     }
 

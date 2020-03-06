@@ -135,36 +135,33 @@ public class StartView extends GridPane
 
 
 
-    public TextField getTfNaamSpeler1() {
-        return tfNaamSpeler1;
+    public String getTfNaamSpeler1() {
+        return tfNaamSpeler1.getText();
     }
 
-    public TextField getTfNaamSpeler2() {
-        return tfNaamSpeler2;
+    public String getTfNaamSpeler2() {
+        return tfNaamSpeler2.getText();
     }
 
-    public TextField getTfNaamSpeler3() {
-        return tfNaamSpeler3;
+    public String getTfNaamSpeler3() {
+        return tfNaamSpeler3.getText();
     }
 
-    public TextField getTfNaamSpeler4() {
-        return tfNaamSpeler4;
+    public String getTfNaamSpeler4() {
+        return tfNaamSpeler4.getText();
     }
 
-    public ComboBox getMonopolistOfConcurrent1() {
-        return monopolistOfConcurrent1;
+    public Rol getMonopolistOfConcurrent1() {
+        return (Rol)monopolistOfConcurrent1.getValue();
     }
-
-    public ComboBox getMonopolistOfConcurrent2() {
-        return monopolistOfConcurrent2;
+    public Rol getMonopolistOfConcurrent2() {
+        return (Rol)monopolistOfConcurrent2.getValue();
     }
-
-    public ComboBox getMonopolistOfConcurrent3() {
-        return monopolistOfConcurrent3;
+    public Rol getMonopolistOfConcurrent3() {
+        return (Rol)monopolistOfConcurrent3.getValue();
     }
-
-    public ComboBox getMonopolistOfConcurrent4() {
-        return monopolistOfConcurrent4;
+    public Rol getMonopolistOfConcurrent4() {
+        return (Rol)monopolistOfConcurrent4.getValue();
     }
 
     public Button getBtnBevestigSpelers() {
