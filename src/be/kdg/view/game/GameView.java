@@ -3,6 +3,7 @@ package be.kdg.view.game;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -16,7 +17,7 @@ public class GameView extends GridPane {
     //private Text test;
     private ImageView speelBord;
     private ImageView scheidingsLijn;
-    private Label lblinstructiesConsoleBox;
+    private TextArea lblinstructiesConsoleBox;
     private Label lblNaamBeurt;
     private Button btnDobbel;
     private Button btnKoopGrond;
@@ -43,7 +44,8 @@ public class GameView extends GridPane {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         speelBord = new ImageView(new Image("monopolySpeelBord.png"));
         scheidingsLijn = new ImageView(new Image("scheidingslijn.png"));
-        lblinstructiesConsoleBox = new Label("labelInstructiesConsoleBox");
+        lblinstructiesConsoleBox = new TextArea("labelInstructiesConsoleBox");
+        lblinstructiesConsoleBox.setDisable(true);
         btnBeurt = new Button("Beurt");
         btnBouwen = new Button("Bouwen");
         btnDobbel = new Button("Dobbel");
@@ -61,10 +63,8 @@ public class GameView extends GridPane {
         speelBord.setFitHeight(700);
         speelBord.setFitWidth(800);
         hboxScheidingslijn.getChildren().addAll(scheidingsLijn);
-        hboxInterfaceKoopGrondEnBouwen.getChildren().addAll(btnKoopGrond,btnBouwen);
-        vboxInterface.getChildren().addAll(lblinstructiesConsoleBox,lblNaamBeurt,btnDobbel,btnBeurt,hboxInterfaceKoopGrondEnBouwen);
-
-
+        hboxInterfaceKoopGrondEnBouwen.getChildren().addAll(btnKoopGrond, btnBouwen);
+        vboxInterface.getChildren().addAll(lblinstructiesConsoleBox, lblNaamBeurt, btnDobbel, btnBeurt, hboxInterfaceKoopGrondEnBouwen);
 
 
         // Boxen aan GridPane toevoegen
@@ -78,19 +78,20 @@ public class GameView extends GridPane {
 
         GridPane.setMargin(hboxScheidingslijn, new Insets(20, 40, 20, 40));
         GridPane.setMargin(hboxBord, new Insets(20, 0, 20, 0));
-        GridPane.setMargin(vboxInterface, new Insets(20, 40, 20, 40));
-
-        btnBeurt.setPadding(new Insets(20, 106, 20, 106));
-        btnDobbel.setPadding(new Insets(20, 100, 20, 100));
-        btnKoopGrond.setPadding(new Insets(10, 50, 10, 50));
-        btnBouwen.setPadding(new Insets(10, 50, 10, 50));
-
-
-
-
-
-
+        GridPane.setMargin(vboxInterface, new Insets(20, 40, 20, 10));
         hboxInterfaceKoopGrondEnBouwen.setMargin(btnKoopGrond, new Insets(0, 40, 0, 0));
+
+        btnBeurt.setPrefWidth(212);
+        btnBeurt.setPrefHeight(40);
+        btnDobbel.setPrefWidth(212);
+        btnDobbel.setPrefHeight(40);
+        btnBouwen.setPrefWidth(106);
+        btnBouwen.setPrefHeight(40);
+        btnKoopGrond.setPrefWidth(106);
+        btnKoopGrond.setPrefHeight(40);
+
+
+
 
 
         // CSS
@@ -107,6 +108,11 @@ public class GameView extends GridPane {
                 "        linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),\n" +
                 "        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);-fx-text-fill: WHITE;");
         btnDobbel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
+
+        btnKoopGrond.setStyle("-fx-background-color: \n" +
+                "        #a6b5c9,\n" +
+                "        linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),\n" +
+                "        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);-fx-text-fill: WHITE;");
 
 
         //Extra
