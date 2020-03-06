@@ -1,6 +1,7 @@
 package be.kdg.view.start;
 
 import be.kdg.spelLogica.spel.Spel;
+import be.kdg.spelLogica.speler.Rol;
 import be.kdg.view.game.GamePresenter;
 import be.kdg.view.game.GameView;
 import be.kdg.model.MonopolyModel;
@@ -28,13 +29,18 @@ public class StartPresenter {
         view.getBtnBevestigSpelers().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+
                 GameView gameView = new GameView();
                 GamePresenter gamePresenter = new GamePresenter(model, gameView);
                 view.getScene().setRoot(gameView);
                 gameView.getScene().getWindow().sizeToScene();
-                // Spel spel = new Spel();
-                // spel.maakSpelers();
-                // spel.maakBord();
+                Spel spel = new Spel();
+
+                spel.maakSpelers(view.getTfNaamSpeler1(), view.getMonopolistOfConcurrent1(),
+                                 view.getTfNaamSpeler2(), view.getMonopolistOfConcurrent2(),
+                                 view.getTfNaamSpeler3(), view.getMonopolistOfConcurrent3(),
+                                 view.getTfNaamSpeler4(), view.getMonopolistOfConcurrent4());
+                spel.maakBord();
 
 
             }
