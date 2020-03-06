@@ -42,6 +42,7 @@ public class GameView extends GridPane {
         hboxInterfaceKoopGrondEnBouwen.setSpacing(10);
         vboxInterface.setSpacing(40);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //controls
         speelBord = new ImageView(new Image("monopolySpeelBord.png"));
         scheidingsLijn = new ImageView(new Image("scheidingslijn.png"));
         tainstructiesConsoleBox = new TextArea("labelInstructiesConsoleBox");
@@ -50,15 +51,11 @@ public class GameView extends GridPane {
         btnBouwen = new Button("Bouwen");
         btnDobbel = new Button("Dobbel");
         btnKoopGrond = new Button("Kopen");
-        taNaamBeurt = new TextArea("Sander speelt \n Saldo: 500€ \n Positie: 5");
+        taNaamBeurt = new TextArea(" Speler: Nathan \n Saldo: xxx€ \n Positie: n");
         taNaamBeurt.setEditable(false);
     }
 
     private void layoutNodes() {
-
-        vboxInterface.setPrefWidth(200);
-        hboxInterfaceKoopGrondEnBouwen.setPrefWidth(100);
-
         // Controls aan boxen toevoegen
         hboxBord.getChildren().addAll(speelBord);
         speelBord.setFitHeight(700);
@@ -66,7 +63,6 @@ public class GameView extends GridPane {
         hboxScheidingslijn.getChildren().addAll(scheidingsLijn);
         hboxInterfaceKoopGrondEnBouwen.getChildren().addAll(btnKoopGrond, btnBouwen);
         vboxInterface.getChildren().addAll(tainstructiesConsoleBox, taNaamBeurt, btnDobbel, btnBeurt, hboxInterfaceKoopGrondEnBouwen);
-
 
         // Boxen aan GridPane toevoegen
 
@@ -82,6 +78,11 @@ public class GameView extends GridPane {
         GridPane.setMargin(vboxInterface, new Insets(20, 40, 20, 10));
         hboxInterfaceKoopGrondEnBouwen.setMargin(btnKoopGrond, new Insets(0, 40, 0, 0));
 
+
+        // Widths & Heights
+
+        vboxInterface.setPrefWidth(200);
+        hboxInterfaceKoopGrondEnBouwen.setPrefWidth(100);
         btnBeurt.setPrefWidth(212);
         btnBeurt.setPrefHeight(40);
         btnDobbel.setPrefWidth(212);
@@ -90,10 +91,8 @@ public class GameView extends GridPane {
         btnBouwen.setPrefHeight(40);
         btnKoopGrond.setPrefWidth(106);
         btnKoopGrond.setPrefHeight(40);
-
-
-
-
+        taNaamBeurt.setPrefHeight(100);
+        tainstructiesConsoleBox.setPrefHeight(150);
 
         // CSS
 
@@ -120,8 +119,10 @@ public class GameView extends GridPane {
                 "        linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),\n" +
                 "        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);-fx-text-fill: WHITE;");
 
+        taNaamBeurt.setStyle("-fx-background-color: GREY; -fx-text-alignment:CENTER; -fx-alignment: CENTER; -fx-font-weight: BOLD; -fx-border-color: linear-gradient(#303842 0%, #3e5577 20%, #375074 100%);-fx-border-width: 6");
+        tainstructiesConsoleBox.setStyle("-fx-background-color: GREY; -fx-text-alignment:CENTER; -fx-alignment: CENTER; -fx-font-weight: BOLD; -fx-border-color: linear-gradient(#303842 0%, #3e5577 20%, #375074 100%);-fx-border-width: 6");
 
-        //Extra
+        // Icons
 
         btnDobbel.setGraphic(new ImageView(new Image("dice.png")));
         btnBeurt.setGraphic(new ImageView(new Image("wisselspeler.png")));

@@ -34,8 +34,11 @@ public class StartPresenter {
                 GamePresenter gamePresenter = new GamePresenter(model, gameView);
                 view.getScene().setRoot(gameView);
                 gameView.getScene().getWindow().sizeToScene();
-                Spel spel = new Spel();
+                gameView.setPrefWidth(100);
+                gameView.setPrefHeight(500);
 
+
+                Spel spel = new Spel();
                 int aantalIngevuldeVelden = 0;
                 if(view.getTfNaamSpeler1().isBlank()) aantalIngevuldeVelden++;
                 if(view.getTfNaamSpeler2().isBlank()) aantalIngevuldeVelden++;
