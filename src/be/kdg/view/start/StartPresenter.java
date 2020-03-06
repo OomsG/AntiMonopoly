@@ -36,12 +36,12 @@ public class StartPresenter {
                 gameView.getScene().getWindow().sizeToScene();
                 Spel spel = new Spel();
 
-                int aantalIngevuldeVelden = 0;
+               /* int aantalIngevuldeVelden = 0;
                 if(view.getTfNaamSpeler1().isBlank()) aantalIngevuldeVelden++;
                 if(view.getTfNaamSpeler2().isBlank()) aantalIngevuldeVelden++;
                 if(view.getTfNaamSpeler3().isBlank()) aantalIngevuldeVelden++;
                 if(view.getTfNaamSpeler4().isBlank()) aantalIngevuldeVelden++;
-                if(aantalIngevuldeVelden < 2) event.consume();
+                if(aantalIngevuldeVelden < 2) event.consume();*/
 
                 spel.maakSpelers(view.getTfNaamSpeler1(), view.getMonopolistOfConcurrent1(),
                                  view.getTfNaamSpeler2(), view.getMonopolistOfConcurrent2(),
