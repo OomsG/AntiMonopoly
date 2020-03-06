@@ -98,14 +98,9 @@ public class Spel {
             System.out.println("4 ingevuld: "+naam4+" "+rol4);
         }
 
-        if(aantalSpelers < 1){
+        while(aantalSpelers++ < 2){
             System.out.println("Te weinig spelers, extra speler automatisch aangemaakt!");
-            Speler speler = new Speler("Guest1_"+(generator.nextInt(8999)+1000), Rol.MONOPOLIST);
-            voegSpelerToe(speler);
-        }
-        if(aantalSpelers < 2){
-            System.out.println("Te weinig spelers, extra spelers automatisch aangemaakt!");
-            Speler speler = new Speler("Guest2_"+(generator.nextInt(8999)+1000), Rol.MONOPOLIST);
+            Speler speler = new Speler("Guest"+aantalSpelers+"_"+(generator.nextInt(8999)+1000), Rol.MONOPOLIST);
             voegSpelerToe(speler);
         }
     }
