@@ -61,25 +61,41 @@ public class Spel {
 
     public void maakSpelers(String naam1, Rol rol1, String naam2, Rol rol2, String naam3, Rol rol3, String naam4, Rol rol4){
         int aantalSpelers = 0;
-        if(naam1 != ""){
+        if(naam1.length() > 0){
+            if(rol1 != Rol.MONOPOLIST && rol1 != Rol.CONCURRENT){
+                rol1 = Rol.MONOPOLIST;
+            }
             Speler speler = new Speler(naam1, rol1);
             voegSpelerToe(speler);
             aantalSpelers++;
+            System.out.println("1 ingevuld: "+naam1+" "+rol1);
         }
-        if(naam2 != ""){
+        if(naam2.length() > 0){
+            if(rol2 != Rol.MONOPOLIST && rol2 != Rol.CONCURRENT){
+                rol2 = Rol.MONOPOLIST;
+            }
             Speler speler = new Speler(naam2, rol2);
             voegSpelerToe(speler);
             aantalSpelers++;
+            System.out.println("2 ingevuld: "+naam2+" "+rol2);
         }
-        if(naam3 != ""){
+        if(naam3.length() > 0){
+            if(rol3 != Rol.MONOPOLIST && rol3 != Rol.CONCURRENT){
+                rol3 = Rol.MONOPOLIST;
+            }
             Speler speler = new Speler(naam3, rol3);
             voegSpelerToe(speler);
             aantalSpelers++;
+            System.out.println("3 ingevuld: "+naam3+" "+rol3);
         }
-        if(naam4 != ""){
+        if(naam4.length() > 0){
+            if(rol4 != Rol.MONOPOLIST && rol4 != Rol.CONCURRENT){
+                rol4 = Rol.MONOPOLIST;
+            }
             Speler speler = new Speler(naam4, rol4);
             voegSpelerToe(speler);
             aantalSpelers++;
+            System.out.println("4 ingevuld: "+naam4+" "+rol4);
         }
 
         if(aantalSpelers < 1){
