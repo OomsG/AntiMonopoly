@@ -45,7 +45,7 @@ public class GameView extends GridPane {
         speelBord = new ImageView(new Image("monopolySpeelBord.png"));
         scheidingsLijn = new ImageView(new Image("scheidingslijn.png"));
         lblinstructiesConsoleBox = new TextArea("labelInstructiesConsoleBox");
-        lblinstructiesConsoleBox.setDisable(true);
+        lblinstructiesConsoleBox.setEditable(false);
         btnBeurt = new Button("Beurt");
         btnBouwen = new Button("Bouwen");
         btnDobbel = new Button("Dobbel");

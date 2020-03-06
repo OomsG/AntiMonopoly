@@ -15,7 +15,7 @@ public class GamePresenter {
     }
 
     private void addEventHandlers() {
-
+        //view.getScene().
     }
 }
 

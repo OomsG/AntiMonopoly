@@ -43,8 +43,6 @@ public class StartPresenter {
                 if(view.getTfNaamSpeler4().isBlank()) aantalIngevuldeVelden++;
                 if(aantalIngevuldeVelden < 2) event.consume();
 
-                System.out.println("yes");
-
                 spel.maakSpelers(view.getTfNaamSpeler1(), view.getMonopolistOfConcurrent1(),
                                  view.getTfNaamSpeler2(), view.getMonopolistOfConcurrent2(),
                                  view.getTfNaamSpeler3(), view.getMonopolistOfConcurrent3(),
