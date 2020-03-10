@@ -1,5 +1,6 @@
 package be.kdg.view.game;
 
+import be.kdg.spelLogica.spel.Spel;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -27,11 +28,18 @@ public class GameView extends GridPane {
     private HBox hboxScheidingslijn;
     private VBox vboxInterface;
     private HBox hboxInterfaceKoopGrondEnBouwen;
+    private Spel spel;
 
 
-    public GameView() {
+    public GameView(Spel spel) {
         initialiseNodes();
         layoutNodes();
+        this.spel = spel;
+
+    }
+
+    public Spel getSpel() {
+        return spel;
     }
 
     private void initialiseNodes() {

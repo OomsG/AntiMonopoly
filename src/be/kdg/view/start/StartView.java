@@ -165,6 +165,7 @@ public class StartView extends GridPane
     }
 
 
+
     // implementatie van de nodige
 // package-private Getters
 }
