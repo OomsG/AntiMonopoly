@@ -28,6 +28,7 @@ public class GamePresenter {
                 if(i >= model.getSpelers().size()){
                     i = 0;
                 }
+                view.getTaNaamBeurt().setText("YOLO");
                 /*String tekst = "Speler: "+ model.getSpelers().get(i).getNaam()
                         +"\nRol: "+ model.getSpelers().get(i).getRol()
                         +"\nSaldo: €"+ model.getSpelers().get(i).getScore()
