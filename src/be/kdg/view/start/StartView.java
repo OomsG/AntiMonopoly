@@ -1,6 +1,7 @@
 package be.kdg.view.start;
 
 import be.kdg.spelLogica.speler.Rol;
+import com.sun.security.auth.NTNumericCredential;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -40,9 +41,11 @@ public class StartView extends GridPane
     private Label lbMainLogo;
 
 
+
     public StartView() {
         this.initialiseNodes();
         this.layoutNodes();
+
     }
 
     private void initialiseNodes() {
@@ -64,11 +67,17 @@ public class StartView extends GridPane
         monopolistOfConcurrent4 = new ComboBox(monopolistOfConcurrentComboBoxKeuze);
 
 
+
+
+
+
 // Initialisatie van de Nodes
 // bvb.:
 // button = new Button("...")
 // label = new Label("...")
     }
+
+
 
     private void layoutNodes() {
 
