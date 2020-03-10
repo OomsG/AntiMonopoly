@@ -65,6 +65,7 @@ public class StartView extends GridPane
         monopolistOfConcurrent2 = new ComboBox(monopolistOfConcurrentComboBoxKeuze);
         monopolistOfConcurrent3 = new ComboBox(monopolistOfConcurrentComboBoxKeuze);
         monopolistOfConcurrent4 = new ComboBox(monopolistOfConcurrentComboBoxKeuze);
+        titelMetUitleg.setVisible(false);
 
 
 
@@ -132,6 +133,10 @@ public class StartView extends GridPane
 
     public String getTfNaamSpeler2() {
         return tfNaamSpeler2.getText();
+    }
+
+    public Text getTitelMetUitleg() {
+        return titelMetUitleg;
     }
 
     public String getTfNaamSpeler3() {

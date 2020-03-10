@@ -49,6 +49,8 @@ public class StartPresenter {
                     spel.maakBord();
                 } else {
                     System.out.println("Niet genoeg users ingevuld");
+                    view.getTitelMetUitleg().setVisible(true);
+
                 }
 
 
