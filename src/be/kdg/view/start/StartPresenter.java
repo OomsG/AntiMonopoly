@@ -34,21 +34,22 @@ public class StartPresenter {
                 if(!view.getTfNaamSpeler2().isEmpty()) aantalIngevuldeVelden++;
                 if(!view.getTfNaamSpeler3().isEmpty()) aantalIngevuldeVelden++;
                 if(!view.getTfNaamSpeler4().isEmpty()) aantalIngevuldeVelden++;
-                while(aantalIngevuldeVelden < 2){
-                    event.consume();
+                if(aantalIngevuldeVelden >= 2){
+                    GameView gameView = new GameView();
+                    GamePresenter gamePresenter = new GamePresenter(model, gameView);
+                    view.getScene().setRoot(gameView);
+                    gameView.getScene().getWindow().sizeToScene();
+                    gameView.setPrefWidth(100);
+                    gameView.setPrefHeight(500);
+                    Spel spel = new Spel();
+                    spel.maakSpelers(view.getTfNaamSpeler1(), view.getMonopolistOfConcurrent1(),
+                            view.getTfNaamSpeler2(), view.getMonopolistOfConcurrent2(),
+                            view.getTfNaamSpeler3(), view.getMonopolistOfConcurrent3(),
+                            view.getTfNaamSpeler4(), view.getMonopolistOfConcurrent4());
+                    spel.maakBord();
+                } else {
+                    System.out.println("Niet genoeg users ingevuld");
                 }
-                GameView gameView = new GameView();
-                GamePresenter gamePresenter = new GamePresenter(model, gameView);
-                view.getScene().setRoot(gameView);
-                gameView.getScene().getWindow().sizeToScene();
-                gameView.setPrefWidth(100);
-                gameView.setPrefHeight(500);
-                Spel spel = new Spel();
-                spel.maakSpelers(view.getTfNaamSpeler1(), view.getMonopolistOfConcurrent1(),
-                        view.getTfNaamSpeler2(), view.getMonopolistOfConcurrent2(),
-                        view.getTfNaamSpeler3(), view.getMonopolistOfConcurrent3(),
-                        view.getTfNaamSpeler4(), view.getMonopolistOfConcurrent4());
-                spel.maakBord();
 
 
             }
