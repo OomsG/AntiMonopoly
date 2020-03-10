@@ -29,7 +29,14 @@ public class StartPresenter {
         view.getBtnBevestigSpelers().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
+                int aantalIngevuldeVelden = 0;
+                if(!view.getTfNaamSpeler1().isEmpty()) aantalIngevuldeVelden++;
+                if(!view.getTfNaamSpeler2().isEmpty()) aantalIngevuldeVelden++;
+                if(!view.getTfNaamSpeler3().isEmpty()) aantalIngevuldeVelden++;
+                if(!view.getTfNaamSpeler4().isEmpty()) aantalIngevuldeVelden++;
+                while(aantalIngevuldeVelden < 2){
+                    event.consume();
+                }
                 GameView gameView = new GameView();
                 GamePresenter gamePresenter = new GamePresenter(model, gameView);
                 view.getScene().setRoot(gameView);
