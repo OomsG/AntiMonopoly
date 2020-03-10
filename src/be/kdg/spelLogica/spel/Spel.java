@@ -3,6 +3,7 @@ package be.kdg.spelLogica.spel;
 import be.kdg.spelLogica.speler.Rol;
 import be.kdg.spelLogica.speler.Speler;
 import be.kdg.spelLogica.vak.*;
+import be.kdg.view.game.GamePresenter;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -144,6 +145,7 @@ public class Spel {
                 speler.setPositie(newPos);
                 System.out.println("Uw nieuwe positie is: "+newPos);
                 System.out.println("U hebt momenteel €"+speler.getScore());
+
                 if(this.bord[newPos].getSoort() == "start"){
                     speler.setScore(speler.getScore()+100);
                     System.out.println("**Doordat u op Start staat is uw balans met €100 gestegen.");

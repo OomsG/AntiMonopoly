@@ -2,6 +2,7 @@ package be.kdg.view.game;
 
 
 import be.kdg.model.MonopolyModel;
+import be.kdg.spelLogica.speler.Speler;
 import be.kdg.view.start.StartPresenter;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,16 +18,20 @@ public class GamePresenter {
         addEventHandlers();
     }
 
+    int i = -1;
     private void addEventHandlers() {
         //view.getScene().
         view.getBtnBeurt().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
-                String tekst = "Speler: "+ view.getSpel().getSpelers().get(0).getNaam()
-                        +"\nRol: "+ view.getSpel().getSpelers().get(0).getRol()
-                        +"\nSaldo: €"+ view.getSpel().getSpelers().get(0).getScore()
-                        +"\nPositie: "+ view.getSpel().getSpelers().get(0).getPositie();
+                i++;
+                if(i >= view.getSpel().getSpelers().size()){
+                    i = 0;
+                }
+                String tekst = "Speler: "+ view.getSpel().getSpelers().get(i).getNaam()
+                        +"\nRol: "+ view.getSpel().getSpelers().get(i).getRol()
+                        +"\nSaldo: €"+ view.getSpel().getSpelers().get(i).getScore()
+                        +"\nPositie: "+ view.getSpel().getSpelers().get(i).getPositie();
                 view.getTaNaamBeurt().setText(tekst);
             }
         });

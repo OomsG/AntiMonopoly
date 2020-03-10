@@ -59,7 +59,7 @@ public class GameView extends GridPane {
         btnBouwen = new Button("Bouwen");
         btnDobbel = new Button("Dobbel");
         btnKoopGrond = new Button("Kopen");
-        taNaamBeurt = new TextArea(" Speler: " +"\n Saldo: xxx€ \n Positie: n");
+        taNaamBeurt = new TextArea("Druk op Beurt\nom te beginnen.");
         taNaamBeurt.setEditable(false);
     }
 
