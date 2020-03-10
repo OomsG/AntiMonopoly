@@ -202,7 +202,7 @@ public class Spel {
                 Speler speler = spelers.get(i);
                 System.out.println("\n-"+counter+"--------------------");
                 System.out.println("Beurt aan "+speler.getNaam()+", uw vorige positie: "+speler.getPositie());
-                
+
 
                 int newPos = dobbelNewPos(speler);
                 speler.setPositie(newPos);

@@ -1,6 +1,5 @@
 package be.kdg;
 
-import be.kdg.model.MonopolyModel;
 import be.kdg.spelLogica.spel.Spel;
 import be.kdg.view.start.StartPresenter;
 import be.kdg.view.start.StartView;
@@ -13,7 +12,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage)  {
-        MonopolyModel model = new MonopolyModel();
+        Spel model = new Spel();
         StartView view = new StartView();
        StartPresenter startPresenter = new StartPresenter(model, view);
         primaryStage.setScene(new Scene(view));

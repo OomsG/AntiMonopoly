@@ -1,7 +1,7 @@
 package be.kdg.view.game;
 
 
-import be.kdg.model.MonopolyModel;
+import be.kdg.spelLogica.spel.Spel;
 import be.kdg.spelLogica.speler.Speler;
 import be.kdg.view.start.StartPresenter;
 import javafx.event.ActionEvent;
@@ -10,9 +10,9 @@ import javafx.event.EventHandler;
 
 public class GamePresenter {
     private GameView view;
-    private MonopolyModel model;
+    private Spel model;
 
-    public GamePresenter(MonopolyModel model, GameView view) {
+    public GamePresenter(Spel model, GameView view) {
         this.view = view;
         this.model = model;
         addEventHandlers();
@@ -25,14 +25,14 @@ public class GamePresenter {
             @Override
             public void handle(ActionEvent event) {
                 i++;
-                if(i >= view.getSpel().getSpelers().size()){
+                if(i >= model.getSpelers().size()){
                     i = 0;
                 }
-                String tekst = "Speler: "+ view.getSpel().getSpelers().get(i).getNaam()
-                        +"\nRol: "+ view.getSpel().getSpelers().get(i).getRol()
-                        +"\nSaldo: €"+ view.getSpel().getSpelers().get(i).getScore()
-                        +"\nPositie: "+ view.getSpel().getSpelers().get(i).getPositie();
-                view.getTaNaamBeurt().setText(tekst);
+                /*String tekst = "Speler: "+ model.getSpelers().get(i).getNaam()
+                        +"\nRol: "+ model.getSpelers().get(i).getRol()
+                        +"\nSaldo: €"+ model.getSpelers().get(i).getScore()
+                        +"\nPositie: "+ model.getSpelers().get(i).getPositie();
+                view.getTaNaamBeurt().setText(tekst);*/
             }
         });
     }

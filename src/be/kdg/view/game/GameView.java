@@ -28,18 +28,12 @@ public class GameView extends GridPane {
     private HBox hboxScheidingslijn;
     private VBox vboxInterface;
     private HBox hboxInterfaceKoopGrondEnBouwen;
-    private Spel spel;
 
 
-    public GameView(Spel spel) {
+    public GameView() {
         initialiseNodes();
         layoutNodes();
-        this.spel = spel;
 
-    }
-
-    public Spel getSpel() {
-        return spel;
     }
 
     private void initialiseNodes() {
