@@ -4,6 +4,7 @@ import be.kdg.spelLogica.speler.Rol;
 import be.kdg.spelLogica.speler.Speler;
 import be.kdg.spelLogica.vak.*;
 import be.kdg.view.game.GamePresenter;
+import be.kdg.view.game.GameView;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -13,6 +14,8 @@ import java.util.concurrent.TimeUnit;
 public class Spel {
     private Scanner myKeyboard = new Scanner(System.in);
     private Random generator = new Random();
+    private boolean einde = false;
+    private boolean spelerHeeftGedobbeld;
     Vak[] bord = new Vak[39];
 
     protected ArrayList<Speler> spelers = new ArrayList<Speler>();
@@ -126,73 +129,96 @@ public class Spel {
         }
     }
 
+    public void opFonds(int newPos, Speler speler){
+        Fonds fonds = (Fonds)this.bord[newPos];
+        int prijs = (generator.nextInt(4)+1)*100;
+        System.out.printf("\n**"+fonds.getMessage()+"\n",prijs);
+        speler.setScore(speler.getScore()+prijs);
+        System.out.println("Uw nieuwe balans: €"+speler.getScore());
+    }
 
+    public void opGrond(int newPos, Speler speler){
+        Grond vak = (Grond)this.bord[newPos];
+        if(!vak.isGekocht() && vak.getPrijs() <= speler.getScore()){
+            System.out.print("**Druk op '1' om de grond '"+vak.getNaam()+"' (€"+vak.getPrijs()+") te kopen. Druk op 0 om uw beurt te beëindigen. ");
+            if(myKeyboard.nextInt() == 1){
+                speler.setScore(speler.getScore() - vak.getPrijs());
+                vak.setGekocht(true);
+                speler.voegBezittingToe(vak);
+                System.out.println(speler.toonBezittingen());
+            }
+        } else if(vak.isGekocht() && (vak.getPrijs()*0.3)+1 <= speler.getScore()){
+            int boete = (int)(vak.getPrijs()*0.3);
+            speler.setScore(speler.getScore()-boete);
+            System.out.println("** U hebt €"+boete+" moeten betalen voor uw bezoek op de "+vak.getNaam()+".");
+            for(Speler eigenaar : spelers){
+                if(eigenaar.toonBezittingen().contains(vak.getNaam())){
+                    eigenaar.setScore(eigenaar.getScore()+boete);
+                    System.out.println(eigenaar.getNaam()+" zijn balens is met €"+boete+" gestegen.");
+                }
+            }
+            System.out.println("Uw nieuwe balans: €"+speler.getScore());
+        } else if(speler.getScore() < 0) {
+            einde = true;
+        }
+    }
+
+    public void opKans(int newPos, Speler speler){
+        Kans kans = (Kans)this.bord[newPos];
+        int prijs = ((generator.nextInt(8)+1)*100)-400;
+        if(prijs > 0){
+            System.out.printf("\n**"+kans.getPosMessage()+"\n",prijs);
+        } else if(prijs < 0) {
+            System.out.printf("\n**"+kans.getNegMessage()+"\n",prijs);
+        } else {
+            System.out.printf("\n**De bank had u een factuur gestuurt maar u hebt geluk. Uw ouders hebben deze al betaald.\n",prijs);
+        }
+
+        speler.setScore(speler.getScore()+prijs);
+        System.out.println("Uw nieuwe balans: €"+speler.getScore());
+    }
+
+    public void opStart(int newPos, Speler speler){
+        speler.setScore(speler.getScore()+100);
+        System.out.println("**Doordat u op Start staat is uw balans met €100 gestegen.");
+        System.out.println("Uw nieuwe balans: €"+speler.getScore());
+    }
+
+    public int dobbelNewPos(Speler speler){
+        int newPos = speler.getPositie() + (generator.nextInt(5)+1)*2;
+        if(newPos >= 39){
+            newPos -= 39;
+        }
+        return newPos;
+    }
 
     public void startSpel() throws InterruptedException {
-        boolean einde = false;
         System.out.println("Spel begint...");
         int counter = 0;
         while(!einde){
             counter++;
             for(int i = 0;i<spelers.size(); i++){
+                spelerHeeftGedobbeld = false;
                 Speler speler = spelers.get(i);
                 System.out.println("\n-"+counter+"--------------------");
                 System.out.println("Beurt aan "+speler.getNaam()+", uw vorige positie: "+speler.getPositie());
-                int newPos = speler.getPositie() + (generator.nextInt(5)+1)*2;
-                if(newPos >= 39){
-                    newPos -= 39;
-                }
+                
+
+                int newPos = dobbelNewPos(speler);
                 speler.setPositie(newPos);
+                spelerHeeftGedobbeld = true;
+
                 System.out.println("Uw nieuwe positie is: "+newPos);
                 System.out.println("U hebt momenteel €"+speler.getScore());
 
                 if(this.bord[newPos].getSoort() == "start"){
-                    speler.setScore(speler.getScore()+100);
-                    System.out.println("**Doordat u op Start staat is uw balans met €100 gestegen.");
-                    System.out.println("Uw nieuwe balans: €"+speler.getScore());
+                    opStart(newPos,speler);
                 } else if(this.bord[newPos].getSoort() == "kans"){
-                    Kans kans = (Kans)this.bord[newPos];
-                    int prijs = ((generator.nextInt(8)+1)*100)-400;
-                    if(prijs > 0){
-                        System.out.printf("\n**"+kans.getPosMessage()+"\n",prijs);
-                    } else if(prijs < 0) {
-                        System.out.printf("\n**"+kans.getNegMessage()+"\n",prijs);
-                    } else {
-                        System.out.printf("\n**De bank had u een factuur gestuurt maar u hebt geluk. Uw ouders hebben deze al betaald.\n",prijs);
-                    }
-
-                    speler.setScore(speler.getScore()+prijs);
-                    System.out.println("Uw nieuwe balans: €"+speler.getScore());
+                    opKans(newPos, speler);
                 } else if(this.bord[newPos].getSoort() == "fonds"){
-                    Fonds fonds = (Fonds)this.bord[newPos];
-                    int prijs = (generator.nextInt(4)+1)*100;
-                    System.out.printf("\n**"+fonds.getMessage()+"\n",prijs);
-                    speler.setScore(speler.getScore()+prijs);
-                    System.out.println("Uw nieuwe balans: €"+speler.getScore());
+                    opFonds(newPos, speler);
                 } else if(this.bord[newPos].getSoort() == "grond"){
-                    Grond vak = (Grond)this.bord[newPos];
-                    if(!vak.isGekocht() && vak.getPrijs() <= speler.getScore()){
-                        System.out.print("**Druk op '1' om de grond '"+vak.getNaam()+"' (€"+vak.getPrijs()+") te kopen. Druk op 0 om uw beurt te beëindigen. ");
-                        if(myKeyboard.nextInt() == 1){
-                            speler.setScore(speler.getScore() - vak.getPrijs());
-                            vak.setGekocht(true);
-                            speler.voegBezittingToe(vak);
-                            System.out.println(speler.toonBezittingen());
-                        }
-                    } else if(vak.isGekocht() && (vak.getPrijs()*0.3)+1 <= speler.getScore()){
-                        int boete = (int)(vak.getPrijs()*0.3);
-                        speler.setScore(speler.getScore()-boete);
-                        System.out.println("** U hebt €"+boete+" moeten betalen voor uw bezoek op de "+vak.getNaam()+".");
-                        for(Speler eigenaar : spelers){
-                            if(eigenaar.toonBezittingen().contains(vak.getNaam())){
-                                eigenaar.setScore(eigenaar.getScore()+boete);
-                                System.out.println(eigenaar.getNaam()+" zijn balens is met €"+boete+" gestegen.");
-                            }
-                        }
-                        System.out.println("Uw nieuwe balans: €"+speler.getScore());
-                    } else if(speler.getScore() < 0) {
-                        einde = true;
-                    }
+                    opGrond(newPos, speler);
                 }
 
             }
