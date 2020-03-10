@@ -50,10 +50,7 @@ public class StartPresenter {
                 } else {
                     System.out.println("Niet genoeg users ingevuld");
                     view.getTitelMetUitleg().setVisible(true);
-
                 }
-
-
             }
         });
     }

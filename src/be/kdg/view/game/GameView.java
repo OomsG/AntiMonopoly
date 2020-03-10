@@ -55,6 +55,26 @@ public class GameView extends GridPane {
         taNaamBeurt.setEditable(false);
     }
 
+    public TextArea getTaNaamBeurt() {
+        return taNaamBeurt;
+    }
+
+    public Button getBtnDobbel() {
+        return btnDobbel;
+    }
+
+    public Button getBtnKoopGrond() {
+        return btnKoopGrond;
+    }
+
+    public Button getBtnBouwen() {
+        return btnBouwen;
+    }
+
+    public Button getBtnBeurt() {
+        return btnBeurt;
+    }
+
     private void layoutNodes() {
         // Controls aan boxen toevoegen
         hboxBord.getChildren().addAll(speelBord);
@@ -126,6 +146,8 @@ public class GameView extends GridPane {
 
         btnDobbel.setGraphic(new ImageView(new Image("dice.png")));
         btnBeurt.setGraphic(new ImageView(new Image("wisselspeler.png")));
+
+
     }
 }
 
