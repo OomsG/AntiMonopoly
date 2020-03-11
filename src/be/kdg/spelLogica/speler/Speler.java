@@ -2,6 +2,7 @@ package be.kdg.spelLogica.speler;
 
 import be.kdg.spelLogica.vak.Grond;
 
+import javax.swing.text.html.ImageView;
 import java.util.ArrayList;
 
 public class Speler  {

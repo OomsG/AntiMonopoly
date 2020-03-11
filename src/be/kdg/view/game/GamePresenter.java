@@ -36,6 +36,16 @@ public class GamePresenter {
                 view.getTaNaamBeurt().setText(tekst);*/
             }
         });
+
+        view.getBtnDobbel().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                model.dobbelNewPos(model.getSpelers().get(1));
+            }
+        });
+
+
+
     }
 }
 
