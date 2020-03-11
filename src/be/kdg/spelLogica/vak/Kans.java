@@ -5,6 +5,13 @@ import java.util.Random;
 public class Kans implements Vak {
     protected String soort = "kans";
     private Random generator = new Random();
+    /*protected final double x;
+    protected final double y;*/
+
+    /*public Kans(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }*/
 
     private String[] posMessages = {
             "U vindt een briefje van €%d op straat.",
