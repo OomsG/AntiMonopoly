@@ -5,18 +5,18 @@ import be.kdg.spelLogica.vak.Grond;
 import javax.swing.text.html.ImageView;
 import java.util.ArrayList;
 
-public class Speler  {
-    private String naam;
-    private Rol rol;
-    private int score = 1500;
-    private int positie = 0;
-    private ArrayList<Grond> bezittingen = new ArrayList<Grond>();
+    public class Speler  {
+        private String naam;
+        private Rol rol;
+        private int score = 1500;
+        private int positie = 0;
+        private ArrayList<Grond> bezittingen = new ArrayList<Grond>();
 
 
-    public Speler(String naam, Rol rol) {
-        this.naam = naam;
-        this.rol = rol;
-    }
+        public Speler(String naam, Rol rol) {
+            this.naam = naam;
+            this.rol = rol;
+        }
 
     public void voegBezittingToe(Grond vak){
         bezittingen.add(vak);
