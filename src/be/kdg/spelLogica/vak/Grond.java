@@ -9,6 +9,8 @@ public class Grond implements Vak {
     private int prijs;
     private String naam;
     private Random generator = new Random();
+    private double x;
+    private double y;
 
     public Grond(int prijs, int nummer) {
         this.prijs = prijs;
@@ -29,8 +31,30 @@ public class Grond implements Vak {
         straatNamen.add("kong");
         straatNamen.add("");
         this.naam = (straatNamen.get(generator.nextInt(straatNamen.size()))+straatNamen.get(generator.nextInt(straatNamen.size()))+"-straat "+nummer).toUpperCase();
-
     }
+
+    public Grond(int prijs, int nummer, double x, double y) {
+        this.prijs = prijs;
+        ArrayList<String> straatNamen = new ArrayList<String>();
+        straatNamen.add("leeuw");
+        straatNamen.add("sander");
+        straatNamen.add("breda");
+        straatNamen.add("tafel");
+        straatNamen.add("kat");
+        straatNamen.add("hond");
+        straatNamen.add("nathan");
+        straatNamen.add("sint");
+        straatNamen.add("amerika");
+        straatNamen.add("leopold");
+        straatNamen.add("maarten");
+        straatNamen.add("duin");
+        straatNamen.add("hong");
+        straatNamen.add("kong");
+        straatNamen.add("");
+        this.naam = (straatNamen.get(generator.nextInt(straatNamen.size()))+straatNamen.get(generator.nextInt(straatNamen.size()))+"-straat "+nummer).toUpperCase();
+        this.x = x;
+        this.y = y;
+     }
 
     public void setGekocht(boolean gekocht) {
         this.gekocht = gekocht;
