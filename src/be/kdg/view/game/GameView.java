@@ -29,7 +29,6 @@ public class GameView extends GridPane {
     private VBox vboxInterface;
     private HBox hboxInterfaceKoopGrondEnBouwen;
 
-
     public GameView() {
         initialiseNodes();
         layoutNodes();
@@ -75,6 +74,10 @@ public class GameView extends GridPane {
 
     public Button getBtnBeurt() {
         return btnBeurt;
+    }
+
+    public ImageView getSpeelBord() {
+        return speelBord;
     }
 
     private void layoutNodes() {

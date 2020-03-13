@@ -6,6 +6,7 @@ import be.kdg.spelLogica.speler.Speler;
 import be.kdg.view.start.StartPresenter;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 
 
 public class GamePresenter {
@@ -36,6 +37,13 @@ public class GamePresenter {
                 view.getTaNaamBeurt().setText(tekst);*/
             }
         });
+
+    view.getSpeelBord().setOnMousePressed(new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            System.out.println("X: "+event.getX()+" | Y: "+event.getY());
+        }
+    });
 
         view.getBtnDobbel().setOnAction(new EventHandler<ActionEvent>() {
             @Override
