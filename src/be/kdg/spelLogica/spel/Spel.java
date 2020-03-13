@@ -131,7 +131,7 @@ public class Spel {
                 } else if(i <= 20){
                     if(i == 10) grondYCoords = 580+60;
                     grondXCoords = 40;
-                    grondYCoords -= 66;
+                    grondYCoords -= 65.5;
                     System.out.println("Grond " + i + " krijgt X:" + grondXCoords + " en Y:" + grondYCoords);
                 }
                 bord[i] = new Grond(prijs,i,grondXCoords,grondYCoords);

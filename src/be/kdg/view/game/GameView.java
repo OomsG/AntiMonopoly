@@ -54,6 +54,7 @@ public class GameView extends GridPane {
         btnKoopGrond = new Button("Kopen");
         taNaamBeurt = new TextArea("Druk op Beurt\nom te beginnen.");
         taNaamBeurt.setEditable(false);
+
     }
 
     public TextArea getTaNaamBeurt() {
@@ -86,6 +87,7 @@ public class GameView extends GridPane {
 
     private void layoutNodes() {
         // Controls aan boxen toevoegen
+
         hboxBord.getChildren().addAll(speelBord);
         speelBord.setFitHeight(700);
         speelBord.setFitWidth(800);
@@ -106,7 +108,6 @@ public class GameView extends GridPane {
         GridPane.setMargin(hboxBord, new Insets(20, 0, 20, 0));
         GridPane.setMargin(vboxInterface, new Insets(20, 40, 20, 10));
         hboxInterfaceKoopGrondEnBouwen.setMargin(btnKoopGrond, new Insets(0, 40, 0, 0));
-
 
         // Widths & Heights
 
