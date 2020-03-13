@@ -2,6 +2,7 @@ package be.kdg.view.game;
 
 import be.kdg.spelLogica.spel.Spel;
 import javafx.geometry.Insets;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -54,7 +55,6 @@ public class GameView extends GridPane {
         btnKoopGrond = new Button("Kopen");
         taNaamBeurt = new TextArea("Druk op Beurt\nom te beginnen.");
         taNaamBeurt.setEditable(false);
-
     }
 
     public TextArea getTaNaamBeurt() {
