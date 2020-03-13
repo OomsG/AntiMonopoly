@@ -121,9 +121,20 @@ public class Spel {
         // elke hoek heeft een vaste waarde
 
         int prijs = 100;
+        int grondXCoords = 660;
+        int grondYCoords = 650;
         for (int i = 0; i < bord.length; i++) {
             if (bord[i] == null) {
-                bord[i] = new Grond(prijs,i);
+                if(i <= 9) {
+                    grondXCoords -= 67;
+                    grondYCoords = 650;
+                } else if(i <= 20){
+                    if(i == 10) grondYCoords = 580+60;
+                    grondXCoords = 40;
+                    grondYCoords -= 66;
+                    System.out.println("Grond " + i + " krijgt X:" + grondXCoords + " en Y:" + grondYCoords);
+                }
+                bord[i] = new Grond(prijs,i,grondXCoords,grondYCoords);
                 prijs += 15;
             }
         }
