@@ -16,7 +16,7 @@ public class Spel {
     private Random generator = new Random();
     private boolean einde = false;
     private boolean spelerHeeftGedobbeld;
-    Vak[] bord = new Vak[39];
+    Vak[] bord = new Vak[40];
 
     protected ArrayList<Speler> spelers = new ArrayList<Speler>();
 
@@ -111,29 +111,65 @@ public class Spel {
 
     public void maakBord() {
         bord[0] = new Start();
-        bord[7] = new Fonds();
+        bord[2] = new Fonds();
+        bord[7] = new Kans();
         bord[10] = new Gevangenis();
         bord[17] = new Fonds();
         bord[20] = new VrijParkeren();
         bord[22] = new Kans();
-        bord[27] = new Fonds();
+        bord[30] = new Fonds(); //moet politie zijn
+        bord[33] = new Fonds();
         bord[36] = new Kans();
         // elke hoek heeft een vaste waarde
 
         int prijs = 100;
-        int grondXCoords = 660;
+        int grondXCoords = 730;
         int grondYCoords = 650;
-        for (int i = 0; i < bord.length; i++) {
+        /*for (int i = 0; i < bord.length; i++) {
             if (bord[i] == null) {
                 if(i <= 9) {
-                    grondXCoords -= 67;
+                    grondXCoords -= 66;
                     grondYCoords = 650;
+                    if(i == 3) grondXCoords = 530;
                 } else if(i <= 20){
                     if(i == 10) grondYCoords = 580+60;
+                    if(i == 13) grondYCoords += 20;
+                    if(i == 15 || i == 19) grondYCoords += 10;
+                    if(i == 18) grondYCoords -= 42;
                     grondXCoords = 40;
-                    grondYCoords -= 65.5;
-                    System.out.println("Grond " + i + " krijgt X:" + grondXCoords + " en Y:" + grondYCoords);
+                    grondYCoords -= 66;
+                } else if(i <= 30){
+                    grondXCoords += 66;
+                    grondYCoords = 35;
+                    if(i == 21) grondXCoords = 130;
+                    if(i == 23) grondXCoords = 265;
+                } else if(i <= 40){
+                    grondXCoords = 760;
+                    grondYCoords += 66;
+
                 }
+                bord[i] = new Grond(prijs,i,grondXCoords,grondYCoords);
+                prijs += 15;
+            }
+        }*/
+        for (int i = 0; i < bord.length; i++) {
+            if(i <= 9) {
+                if(i == 3) grondXCoords = 464;
+                grondXCoords -= 66;
+                grondYCoords = 650;
+            } else if(i <= 20){
+                if(i == 10) grondYCoords = 580+60;
+                grondXCoords = 40;
+                grondYCoords -= 66;
+            } else if(i <= 30){
+                if(i == 21) grondXCoords = 64;
+                grondXCoords += 66;
+                grondYCoords = 35;
+            } else if(i <= 40){
+                grondXCoords = 760;
+                grondYCoords += 66;
+            }
+            if (bord[i] == null) {
                 bord[i] = new Grond(prijs,i,grondXCoords,grondYCoords);
                 prijs += 15;
             }
