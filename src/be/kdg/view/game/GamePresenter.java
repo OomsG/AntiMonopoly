@@ -56,6 +56,7 @@ public class GamePresenter {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("bouwen");
+                view.getTainstructiesConsoleBox().setText(view.getTainstructiesConsoleBox().getText() + "\n x heeft gebouwd.");
             }
         });
 
@@ -63,6 +64,7 @@ public class GamePresenter {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("grond");
+                view.getTainstructiesConsoleBox().setText(view.getTainstructiesConsoleBox().getText() + "\n x heeft gekocht.");
             }
         });
 

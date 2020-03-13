@@ -80,6 +80,10 @@ public class GameView extends GridPane {
         return speelBord;
     }
 
+    public TextArea getTainstructiesConsoleBox() {
+        return tainstructiesConsoleBox;
+    }
+
     private void layoutNodes() {
         // Controls aan boxen toevoegen
         hboxBord.getChildren().addAll(speelBord);
