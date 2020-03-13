@@ -48,11 +48,23 @@ public class GamePresenter {
         view.getBtnDobbel().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                model.dobbelNewPos(model.getSpelers().get(1));
+
             }
         });
 
+        view.getBtnBouwen().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("bouwen");
+            }
+        });
 
+        view.getBtnKoopGrond().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("grond");
+            }
+        });
 
     }
 }
