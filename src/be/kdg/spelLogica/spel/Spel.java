@@ -63,6 +63,10 @@ public class Spel {
         }
     }
 
+    public Vak getVak(int positie){
+        return bord[positie];
+    }
+
     public void maakSpelers(String naam1, Rol rol1, String naam2, Rol rol2, String naam3, Rol rol3, String naam4, Rol rol4){
         int aantalSpelers = 0;
         if(naam1.length() > 0){
@@ -231,6 +235,18 @@ public class Spel {
         System.out.println("Uw nieuwe balans: €"+speler.getScore());
     }
 
+    public void opWelkVak(int newPos, Speler speler){
+        if(this.bord[newPos].getSoort() == "start"){
+            opStart(newPos,speler);
+        } else if(this.bord[newPos].getSoort() == "kans"){
+            opKans(newPos, speler);
+        } else if(this.bord[newPos].getSoort() == "fonds"){
+            opFonds(newPos, speler);
+        } else if(this.bord[newPos].getSoort() == "grond"){
+            opGrond(newPos, speler);
+        }
+    }
+
     public int dobbelNewPos(Speler speler){
         int newPos = speler.getPositie() + (generator.nextInt(5)+1)*2;
         if(newPos >= 39){
@@ -263,15 +279,7 @@ public class Spel {
                 System.out.println("Uw nieuwe positie is: "+newPos);
                 System.out.println("U hebt momenteel €"+speler.getScore());
 
-                if(this.bord[newPos].getSoort() == "start"){
-                    opStart(newPos,speler);
-                } else if(this.bord[newPos].getSoort() == "kans"){
-                    opKans(newPos, speler);
-                } else if(this.bord[newPos].getSoort() == "fonds"){
-                    opFonds(newPos, speler);
-                } else if(this.bord[newPos].getSoort() == "grond"){
-                    opGrond(newPos, speler);
-                }
+                opWelkVak(newPos, speler);
 
             }
             TimeUnit.MILLISECONDS.sleep(400);
