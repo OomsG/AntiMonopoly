@@ -88,6 +88,10 @@ public class GameView extends GridPane {
         return tainstructiesConsoleBox;
     }
 
+    public void voegToeAanConsoleBox(String log){
+        getTainstructiesConsoleBox().setText(getTainstructiesConsoleBox().getText()+"\n"+log);
+    }
+
     private void layoutNodes() {
         // Controls aan boxen toevoegen
 

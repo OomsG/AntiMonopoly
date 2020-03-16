@@ -12,14 +12,14 @@ import javafx.stage.WindowEvent;
 
 
 public class StartPresenter {
-    private Spel model;
+    //private Spel model;
     private StartView view;
     private Spel spel;
 
     public StartPresenter(
             Spel model,
             StartView view) {
-        this.model = model;
+        this.spel = model;
         this.view = view;
         this.updateView();
         addEventHandlers();
@@ -42,7 +42,7 @@ public class StartPresenter {
                             view.getTfNaamSpeler4(), view.getMonopolistOfConcurrent4());
                     spel.maakBord();
                     GameView gameView = new GameView();
-                    GamePresenter gamePresenter = new GamePresenter(model, gameView);
+                    GamePresenter gamePresenter = new GamePresenter(spel, gameView);
                     view.getScene().setRoot(gameView);
                     gameView.getScene().getWindow().sizeToScene();
                     gameView.setPrefWidth(100);

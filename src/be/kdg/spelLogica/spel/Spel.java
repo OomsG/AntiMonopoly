@@ -239,7 +239,10 @@ public class Spel {
         return newPos;
     }
 
-
+    public int dobbelNewPos(){
+        int newPos = (generator.nextInt(5)+1)*2;
+        return newPos;
+    }
 
     public void startSpel() throws InterruptedException {
         System.out.println("Spel begint...");
@@ -276,4 +279,7 @@ public class Spel {
         System.out.println("EINDE");
     }
 
+    public void start(){
+
+    }
 }
