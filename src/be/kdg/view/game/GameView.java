@@ -162,12 +162,13 @@ public class GameView extends GridPane {
                 "        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);-fx-text-fill: WHITE;");
 
         taNaamBeurt.setStyle("-fx-background-color: GREY; -fx-text-alignment:CENTER; -fx-alignment: CENTER; -fx-font-weight: BOLD; -fx-border-color: linear-gradient(#303842 0%, #3e5577 20%, #375074 100%);-fx-border-width: 6");
-        tainstructiesConsoleBox.setStyle("-fx-background-color: GREY; -fx-text-alignment:CENTER; -fx-alignment: CENTER; -fx-font-weight: BOLD; -fx-border-color: linear-gradient(#303842 0%, #3e5577 20%, #375074 100%);-fx-border-width: 6");
+        tainstructiesConsoleBox.setStyle("-fx-background-color: GREY; -fx-text-alignment:CENTER; -fx-alignment: CENTER; -fx-border-color: linear-gradient(#303842 0%, #3e5577 20%, #375074 100%);-fx-border-width: 6");
 
         // Icons
 
         btnDobbel.setGraphic(new ImageView(new Image("dice.png")));
         btnBeurt.setGraphic(new ImageView(new Image("wisselspeler.png")));
+        tainstructiesConsoleBox.setFont(Font.font("Verdana", FontWeight.BOLD, 8));
 
 
     }
