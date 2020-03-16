@@ -30,12 +30,12 @@ public class GamePresenter {
                 if(i >= model.getSpelers().size()){
                     i = 0;
                 }
-                view.getTaNaamBeurt().setText("YOLO");
-                /*String tekst = "Speler: "+ model.getSpelers().get(i).getNaam()
+                //view.getTaNaamBeurt().setText("YOLO");
+                String tekst = "Speler: "+ model.getSpelers().get(i).getNaam()
                         +"\nRol: "+ model.getSpelers().get(i).getRol()
                         +"\nSaldo: €"+ model.getSpelers().get(i).getScore()
                         +"\nPositie: "+ model.getSpelers().get(i).getPositie();
-                view.getTaNaamBeurt().setText(tekst);*/
+                view.getTaNaamBeurt().setText(tekst);
             }
         });
 

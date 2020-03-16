@@ -10,6 +10,7 @@ import java.util.ArrayList;
         private Rol rol;
         private int score = 1500;
         private int positie = 0;
+        private boolean beurt = false;
         private ArrayList<Grond> bezittingen = new ArrayList<Grond>();
 
 
@@ -29,6 +30,14 @@ import java.util.ArrayList;
         }
         return resultaat;
     }
+
+    public boolean isBeurt() {
+            return beurt;
+        }
+
+    public void setBeurt(boolean beurt) {
+            this.beurt = beurt;
+        }
 
     public String getNaam() {
         return naam;

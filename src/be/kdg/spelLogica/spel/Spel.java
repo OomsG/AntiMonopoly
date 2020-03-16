@@ -273,4 +273,8 @@ public class Spel {
         }
         System.out.println("EINDE");
     }
+
+    public void start(){
+
+    }
 }
