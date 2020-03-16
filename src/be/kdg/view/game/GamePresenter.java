@@ -70,6 +70,7 @@ public class GamePresenter {
                     System.out.println("Geef de beurt eerst aan de volgende!");
                     view.voegToeAanConsoleBox("Geef de beurt eerst aan de volgende!!");
                 }
+                System.out.println("gedrukt");
             }
         });
 
