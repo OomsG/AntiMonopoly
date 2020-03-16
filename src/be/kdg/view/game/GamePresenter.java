@@ -43,7 +43,6 @@ public class GamePresenter {
                             +"\nPositie: "+ model.getSpelers().get(i).getPositie();
                     view.getTaNaamBeurt().setText(tekst);
                 } else {
-                    System.out.println("Je moet eerst dobbelen!");
                     view.voegToeAanConsoleBox("Je moet eerst dobbelen!");
                 }
             }
@@ -52,6 +51,7 @@ public class GamePresenter {
             @Override
             public void handle(ActionEvent event) {
                 if(heeftGedobbeld == false){
+                    view.voegToeAanConsoleBox("**Gooit de dobbelstenen** (spannend)");
                     Speler mySpeler = null;
                     System.out.println("Start dobbel");
                     for(Speler speler : model.getSpelers()){
@@ -67,7 +67,6 @@ public class GamePresenter {
                     mySpeler.setPositie(newPos);
                     heeftGedobbeld = true;
                 } else {
-                    System.out.println("Geef de beurt eerst aan de volgende!");
                     view.voegToeAanConsoleBox("Geef de beurt eerst aan de volgende!!");
                 }
                 System.out.println("gedrukt");
