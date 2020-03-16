@@ -14,15 +14,17 @@ public class GamePresenter {
     private GameView view;
     private Spel model;
     private boolean heeftGedobbeld = true;
+    int i = -1;
 
     public GamePresenter(Spel model, GameView view) {
         this.view = view;
         this.model = model;
         addEventHandlers();
+        view.getBtnBeurt().fire();
     }
 
-    int i = -1;
     private void addEventHandlers() {
+
         //view.getScene().
         view.getBtnBeurt().setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -37,6 +39,7 @@ public class GamePresenter {
                         speler.setBeurt(false);
                     }
                     model.getSpelers().get(i).setBeurt(true);
+                    view.voegToeAanConsoleBox("Beurt doorgegeven aan "+model.getSpelers().get(i).getNaam());
                     String tekst = "Speler: "+ model.getSpelers().get(i).getNaam()
                             +"\nRol: "+ model.getSpelers().get(i).getRol()
                             +"\nSaldo: €"+ model.getSpelers().get(i).getScore()
@@ -51,7 +54,7 @@ public class GamePresenter {
             @Override
             public void handle(ActionEvent event) {
                 if(heeftGedobbeld == false){
-                    view.voegToeAanConsoleBox("**Gooit de dobbelstenen** (spannend)");
+                    view.voegToeAanConsoleBox("Gooit de dobbelstenen (spannend)");
                     Speler mySpeler = null;
                     System.out.println("Start dobbel");
                     for(Speler speler : model.getSpelers()){
@@ -66,10 +69,15 @@ public class GamePresenter {
                     System.out.println("New position: "+newPos);
                     mySpeler.setPositie(newPos);
                     heeftGedobbeld = true;
+
+                    String tekst = "Speler: "+ model.getSpelers().get(i).getNaam()
+                            +"\nRol: "+ model.getSpelers().get(i).getRol()
+                            +"\nSaldo: €"+ model.getSpelers().get(i).getScore()
+                            +"\nPositie: "+ model.getSpelers().get(i).getPositie();
+                    view.getTaNaamBeurt().setText(tekst);
                 } else {
                     view.voegToeAanConsoleBox("Geef de beurt eerst aan de volgende!!");
                 }
-                System.out.println("gedrukt");
             }
         });
 
@@ -79,13 +87,6 @@ public class GamePresenter {
             System.out.println("X: "+event.getX()+" | Y: "+event.getY());
         }
     });
-
-        view.getBtnDobbel().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-
-            }
-        });
 
         view.getBtnBouwen().setOnAction(new EventHandler<ActionEvent>() {
             @Override
