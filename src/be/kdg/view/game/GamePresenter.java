@@ -6,7 +6,7 @@ import be.kdg.spelLogica.speler.Speler;
 import be.kdg.view.start.StartPresenter;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.input.MouseDragEvent;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 
@@ -39,12 +39,12 @@ public class GamePresenter {
             }
         });
 
-        view.getSpeelBord().setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println("X: "+event.getX()+" | Y: "+event.getY());
-            }
-        });
+    view.getSpeelBord().setOnMousePressed(new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            System.out.println("X: "+event.getX()+" | Y: "+event.getY());
+        }
+    });
 
         view.getBtnDobbel().setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -58,6 +58,7 @@ public class GamePresenter {
             public void handle(ActionEvent event) {
                 System.out.println("bouwen");
                 view.getTainstructiesConsoleBox().setText(view.getTainstructiesConsoleBox().getText() + "\n x heeft gebouwd.");
+
             }
         });
 

@@ -239,6 +239,8 @@ public class Spel {
         return newPos;
     }
 
+
+
     public void startSpel() throws InterruptedException {
         System.out.println("Spel begint...");
         int counter = 0;
@@ -273,4 +275,5 @@ public class Spel {
         }
         System.out.println("EINDE");
     }
+
 }
