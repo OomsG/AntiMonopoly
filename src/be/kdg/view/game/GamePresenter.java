@@ -13,7 +13,7 @@ import javafx.scene.input.MouseEvent;
 public class GamePresenter {
     private GameView view;
     private Spel model;
-    private boolean heeftGedobbeld;
+    private boolean heeftGedobbeld = true;
 
     public GamePresenter(Spel model, GameView view) {
         this.view = view;
@@ -28,6 +28,7 @@ public class GamePresenter {
             @Override
             public void handle(ActionEvent event) {
                 if(heeftGedobbeld == true){
+                    heeftGedobbeld = false;
                     i++;
                     if(i >= model.getSpelers().size()){
                         i = 0;
@@ -36,38 +37,39 @@ public class GamePresenter {
                         speler.setBeurt(false);
                     }
                     model.getSpelers().get(i).setBeurt(true);
-                    heeftGedobbeld = false;
                     String tekst = "Speler: "+ model.getSpelers().get(i).getNaam()
                             +"\nRol: "+ model.getSpelers().get(i).getRol()
                             +"\nSaldo: €"+ model.getSpelers().get(i).getScore()
                             +"\nPositie: "+ model.getSpelers().get(i).getPositie();
                     view.getTaNaamBeurt().setText(tekst);
+                } else {
+                    System.out.println("Je moet eerst dobbelen!");
+                    view.voegToeAanConsoleBox("Je moet eerst dobbelen!");
                 }
             }
         });
         view.getBtnDobbel().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Speler mySpeler = null;
-                System.out.println("Start dobbel");
-                for(Speler speler : model.getSpelers()){
-                    if(speler.isBeurt() == true){
-                        mySpeler = speler;
+                if(heeftGedobbeld == false){
+                    Speler mySpeler = null;
+                    System.out.println("Start dobbel");
+                    for(Speler speler : model.getSpelers()){
+                        if(speler.isBeurt() == true){
+                            mySpeler = speler;
+                        }
                     }
+                    int newPos = model.dobbelNewPos() + mySpeler.getPositie();
+                    if(newPos >= 39){
+                        newPos -= 39;
+                    }
+                    System.out.println("New position: "+newPos);
+                    mySpeler.setPositie(newPos);
+                    heeftGedobbeld = true;
+                } else {
+                    System.out.println("Geef de beurt eerst aan de volgende!");
+                    view.voegToeAanConsoleBox("Geef de beurt eerst aan de volgende!!");
                 }
-                int newPos = model.dobbelNewPos() + mySpeler.getPositie();
-                if(newPos >= 39){
-                    newPos -= 39;
-                }
-                System.out.println("New position: "+newPos);
-                mySpeler.setPositie(newPos);
-                heeftGedobbeld = true;
-
-                String tekst = "Speler: "+ model.getSpelers().get(i).getNaam()
-                        +"\nRol: "+ model.getSpelers().get(i).getRol()
-                        +"\nSaldo: €"+ model.getSpelers().get(i).getScore()
-                        +"\nPositie: "+ model.getSpelers().get(i).getPositie();
-                view.getTaNaamBeurt().setText(tekst);
             }
         });
 
