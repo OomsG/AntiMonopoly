@@ -204,7 +204,7 @@ public class Spel {
                 System.out.println(eigenaar.getNaam()+" zijn balens is met €"+boete+" gestegen.");
             }
         }
-        return speler.getNaam() + " heeft €"+boete+" moeten betalen aan "+deEigenaar.getNaam();
+        return speler.getNaam() + " heeft €"+boete+" boete moeten betalen aan "+deEigenaar.getNaam();
     }
 
     public void opGrond(int newPos, Speler speler){

@@ -144,7 +144,7 @@ public class GamePresenter {
                     }
                 }
                 spel.koopGrond(mySpeler,huidigeGrond);
-                view.voegToeAanConsoleBox("Grond gekocht");
+                view.voegToeAanConsoleBox(mySpeler.getNaam() + " heeft "+huidigeGrond.getNaam()+" gekocht");
                 view.updateGetTaNaamBeurt(spel.getSpelers().get(i));
                 view.toggleKoopGrond(false);
             }
