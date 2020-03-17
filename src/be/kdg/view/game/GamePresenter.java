@@ -67,7 +67,7 @@ public class GamePresenter {
                     }
                     int mijnGooi = spel.dobbelNewPos();
                     int newPos = mijnGooi + mySpeler.getPositie();
-                    view.voegToeAanConsoleBox("Dobbelen.. U hebt "+mijnGooi+" gegooid!");
+                    view.voegToeAanConsoleBox("Dobbelen... U hebt "+mijnGooi+" gegooid!");
                     if(newPos >= 39){
                         newPos -= 39;
                     }
@@ -144,7 +144,7 @@ public class GamePresenter {
                     }
                 }
                 spel.koopGrond(mySpeler,huidigeGrond);
-                view.voegToeAanConsoleBox(mySpeler.getNaam() + " heeft "+huidigeGrond.getNaam()+" gekocht");
+                view.voegToeAanConsoleBox("Hoera! " + mySpeler.getNaam() + " heeft "+huidigeGrond.getNaam()+" gekocht");
                 view.updateGetTaNaamBeurt(spel.getSpelers().get(i));
                 view.toggleKoopGrond(false);
             }
