@@ -26,7 +26,7 @@ import java.util.ArrayList;
     public String toonBezittingen(){
         String resultaat = "";
         for(Grond bezitting : bezittingen){
-            resultaat += "\n"+bezitting.getNaam();
+            resultaat += "\n- "+bezitting.getNaam();
         }
         return resultaat;
     }

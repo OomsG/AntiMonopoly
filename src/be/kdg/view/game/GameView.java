@@ -68,6 +68,14 @@ public class GameView extends GridPane {
         btnBouwen.setVisible(status);
     }
 
+    public void toggleBeurtBtn(boolean status){
+        btnBeurt.setVisible(status);
+    }
+
+    public void toggleDobbelBtn(boolean status){
+        btnDobbel.setVisible(status);
+    }
+
     public void updateGetTaNaamBeurt(Speler speler){
         String tekst = "Speler: "+ speler.getNaam()
                 +"\nRol: "+ speler.getRol()

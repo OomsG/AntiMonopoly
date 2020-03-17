@@ -35,6 +35,8 @@ public class GamePresenter {
                 if(heeftGedobbeld == true){
                     heeftGedobbeld = false;
                     kanGrondKopen = false;
+                    view.toggleDobbelBtn(true);
+                    view.toggleBeurtBtn(false);
                     view.toggleKoopGrond(false);
                     view.toggleGrondBouwen(false);
                     i++;
@@ -49,6 +51,7 @@ public class GamePresenter {
                     view.voegToeAanConsoleBox("Beurt doorgegeven aan "+ spel.getSpelers().get(i).getNaam());
                     view.updateGetTaNaamBeurt(spel.getSpelers().get(i));
                 } else {
+                    view.toggleDobbelBtn(true);
                     view.voegToeAanConsoleBox("Je moet eerst dobbelen!");
                 }
             }
@@ -75,6 +78,7 @@ public class GamePresenter {
                     System.out.println("New position: "+newPos);
                     mySpeler.setPositie(newPos);
                     heeftGedobbeld = true;
+                    view.toggleDobbelBtn(false);
 
                     if(spel.getVak(newPos).getSoort() == "grond"){
                         Grond huidigVak = (Grond) spel.getVak(newPos);
@@ -112,8 +116,10 @@ public class GamePresenter {
                         }
                     }
                     view.updateGetTaNaamBeurt(spel.getSpelers().get(i));
+                    view.toggleBeurtBtn(true);
                 } else {
                     view.voegToeAanConsoleBox("Geef de beurt eerst aan de volgende!");
+                    view.toggleBeurtBtn(true);
                 }
             }
         });
