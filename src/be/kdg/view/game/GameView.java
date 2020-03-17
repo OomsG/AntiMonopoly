@@ -149,7 +149,7 @@ public class GameView extends GridPane {
         btnBouwen.setPrefHeight(40);
         btnKoopGrond.setPrefWidth(106);
         btnKoopGrond.setPrefHeight(40);
-        taNaamBeurt.setPrefHeight(150);
+        taNaamBeurt.setPrefHeight(160);
         tainstructiesConsoleBox.setPrefHeight(180);
 
         // CSS
