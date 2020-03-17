@@ -1,6 +1,7 @@
 package be.kdg.view.game;
 
 import be.kdg.spelLogica.spel.Spel;
+import be.kdg.spelLogica.speler.Speler;
 import javafx.geometry.Insets;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
@@ -67,6 +68,15 @@ public class GameView extends GridPane {
 
     public void toggleGrondBouwen(boolean status){
         btnBouwen.setVisible(status);
+    }
+
+    public void updateGetTaNaamBeurt(Speler speler){
+        String tekst = "Speler: "+ speler.getNaam()
+                +"\nRol: "+ speler.getRol()
+                +"\nSaldo: €"+ speler.getScore()
+                +"\nPositie: "+ speler.getPositie()
+                +"\n"+ speler.toonBezittingen();
+        getTaNaamBeurt().setText(tekst);
     }
 
     public TextArea getTaNaamBeurt() {

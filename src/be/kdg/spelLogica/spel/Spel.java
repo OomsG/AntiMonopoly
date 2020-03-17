@@ -63,6 +63,12 @@ public class Spel {
         }
     }
 
+    public void koopGrond(Speler speler, Grond grond){
+        speler.setScore(speler.getScore() - grond.getPrijs());
+        grond.setGekocht(true);
+        speler.voegBezittingToe(grond);
+    }
+
     public Vak getVak(int positie){
         return bord[positie];
     }
@@ -229,7 +235,7 @@ public class Spel {
         System.out.println("Uw nieuwe balans: €"+speler.getScore());
     }
 
-    public void opStart(int newPos, Speler speler){
+    public void opStart(Speler speler){
         speler.setScore(speler.getScore()+100);
         System.out.println("**Doordat u op Start staat is uw balans met €100 gestegen.");
         System.out.println("Uw nieuwe balans: €"+speler.getScore());
@@ -237,7 +243,7 @@ public class Spel {
 
     public void opWelkVak(int newPos, Speler speler){
         if(this.bord[newPos].getSoort() == "start"){
-            opStart(newPos,speler);
+            opStart(speler);
         } else if(this.bord[newPos].getSoort() == "kans"){
             opKans(newPos, speler);
         } else if(this.bord[newPos].getSoort() == "fonds"){

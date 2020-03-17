@@ -14,6 +14,7 @@ public class GamePresenter {
     private Spel spel;
     private boolean heeftGedobbeld = true;
     private boolean kanGrondKopen = false;
+    private Grond huidigeGrond = null;
     int i = -1;
 
     public GamePresenter(Spel model, GameView view) {
@@ -44,11 +45,7 @@ public class GamePresenter {
                     }
                     spel.getSpelers().get(i).setBeurt(true);
                     view.voegToeAanConsoleBox("Beurt doorgegeven aan "+ spel.getSpelers().get(i).getNaam());
-                    String tekst = "Speler: "+ spel.getSpelers().get(i).getNaam()
-                            +"\nRol: "+ spel.getSpelers().get(i).getRol()
-                            +"\nSaldo: €"+ spel.getSpelers().get(i).getScore()
-                            +"\nPositie: "+ spel.getSpelers().get(i).getPositie();
-                    view.getTaNaamBeurt().setText(tekst);
+                    view.updateGetTaNaamBeurt(spel.getSpelers().get(i));
                 } else {
                     view.voegToeAanConsoleBox("Je moet eerst dobbelen!");
                 }
@@ -83,28 +80,25 @@ public class GamePresenter {
                             view.toggleKoopGrond(true);
                             kanGrondKopen = true;
                             System.out.println("Mogelijkheid om huis te kopen: JA");
+                            huidigeGrond = huidigVak;
                         } else if(huidigVak.isGekocht() && mySpeler.toonBezittingen().equals(huidigVak)){
                             view.toggleGrondBouwen(true);
                             System.out.println("Speler kan bouwen");
+                            huidigeGrond = huidigVak;
                         } else if(huidigVak.isGekocht() && (huidigVak.getPrijs()*0.3)+1 <= mySpeler.getScore()){
-
+                            huidigeGrond = huidigVak;
                             System.out.println("Speler moet boete betalen");
                         } else if(mySpeler.getScore() < 0) {
 
                             System.out.println("Speler kan boete niet betalen..");
                         }
                     }
-
-                    String tekst = "Speler: "+ spel.getSpelers().get(i).getNaam()
-                            +"\nRol: "+ spel.getSpelers().get(i).getRol()
-                            +"\nSaldo: €"+ spel.getSpelers().get(i).getScore()
-                            +"\nPositie: "+ spel.getSpelers().get(i).getPositie();
-                    view.getTaNaamBeurt().setText(tekst);
+                    view.updateGetTaNaamBeurt(spel.getSpelers().get(i));
 
 
 
                 } else {
-                    view.voegToeAanConsoleBox("Geef de beurt eerst aan de volgende!!");
+                    view.voegToeAanConsoleBox("Geef de beurt eerst aan de volgende!");
                 }
             }
         });
@@ -128,7 +122,15 @@ public class GamePresenter {
         view.getBtnKoopGrond().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                Speler mySpeler = null;
+                for(Speler speler : spel.getSpelers()){
+                    if(speler.isBeurt() == true){
+                        mySpeler = speler;
+                    }
+                }
+                spel.koopGrond(mySpeler,huidigeGrond);
                 view.voegToeAanConsoleBox("Grond gekocht");
+                view.updateGetTaNaamBeurt(spel.getSpelers().get(i));
             }
         });
 
