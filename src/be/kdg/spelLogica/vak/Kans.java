@@ -13,27 +13,14 @@ public class Kans implements Vak {
         this.y = y;
     }*/
 
-    private String[] posMessages = {
-            "U vindt een briefje van €%d op straat.",
-            "U vindt een briefje van €%d in uw zetel.",
-            "U hebt de lotto gewonnen en krijgt €%d.",
-            "Een neef die je niet kent is gestorven. U erft €%d.",
-            "Een nicht die je niet kent is gestorven. U erft €%d.",
-            "U wint een tombola en hebt een voetbal ter waarde van €%d gewonnen!",
-            "U wint een tombola en hebt een fiets ter waarde van €%d gewonnen!",
-            "U wint een tombola en hebt een trui ter waarde van €%d gewonnen!",
-            "U wint een tombola en hebt tampasta ter waarde van €%d gewonnen!",
-            "U wint een tombola en hebt toilet papier ter waarde van €%d gewonnen!"
-    };
-
     private String[] negMessages = {
-            "Netflix heeft u een onbetaalde factuur gestuurd van €%d.",
-            "De bank heeft u een onbetaalde factuur gestuurd van €%d.",
-            "ABInBev heeft u een onbetaalde factuur gestuurd van €%d.",
-            "De loodgieter heeft u een onbetaalde factuur gestuurd van €%d.",
-            "Proximus heeft u een onbetaalde factuur gestuurd van €%d.",
-            "Telenet heeft u een onbetaalde factuur gestuurd van €%d.",
-            "Electrabel heeft u een onbetaalde factuur gestuurd van €%d."
+            "Netflix heeft %s een onbetaalde factuur gestuurd van €%d.",
+            "De bank heeft %s een onbetaalde factuur gestuurd van €%d.",
+            "ABInBev heeft %s een onbetaalde factuur gestuurd van €%d.",
+            "De loodgieter heeft %s een onbetaalde factuur gestuurd van €%d.",
+            "Proximus heeft %s een onbetaalde factuur gestuurd van €%d.",
+            "Telenet heeft %s een onbetaalde factuur gestuurd van €%d.",
+            "Electrabel heeft %s een onbetaalde factuur gestuurd van €%d."
     };
 
     @Override
@@ -42,8 +29,8 @@ public class Kans implements Vak {
     }
 
     public String getPosMessage(){
-        int msgId = generator.nextInt(posMessages.length);
-        return posMessages[msgId];
+        Fonds fonds = new Fonds();
+        return fonds.getMessage();
     }
     public String getNegMessage(){
         int msgId = generator.nextInt(negMessages.length);

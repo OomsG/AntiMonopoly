@@ -3,7 +3,9 @@ package be.kdg.view.game;
 
 import be.kdg.spelLogica.spel.Spel;
 import be.kdg.spelLogica.speler.Speler;
+import be.kdg.spelLogica.vak.Fonds;
 import be.kdg.spelLogica.vak.Grond;
+import be.kdg.spelLogica.vak.Kans;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
@@ -89,14 +91,28 @@ public class GamePresenter {
                             huidigeGrond = huidigVak;
                             System.out.println("Speler moet boete betalen");
                         } else if(mySpeler.getScore() < 0) {
-
                             System.out.println("Speler kan boete niet betalen..");
+                        }
+                    } else {
+                        String vakSoort = spel.opWelkVak(newPos,mySpeler);
+                        if(vakSoort == "fonds"){
+                            Fonds fonds = new Fonds();
+                            String msg = String.format(fonds.getMessage(),mySpeler.getNaam(),spel.opFonds(newPos,mySpeler));
+                            view.voegToeAanConsoleBox(msg);
+                        } else if(vakSoort == "kans"){
+                            Kans kans = new Kans();
+                            String msg;
+                            int prijs = spel.opKans(newPos,mySpeler);
+                            if(prijs > 0){
+                                msg = kans.getPosMessage();
+                            } else {
+                                msg = kans.getNegMessage();
+                            }
+                            String msgFinal = String.format(msg,mySpeler.getNaam(),prijs);
+                            view.voegToeAanConsoleBox(msgFinal);
                         }
                     }
                     view.updateGetTaNaamBeurt(spel.getSpelers().get(i));
-
-
-
                 } else {
                     view.voegToeAanConsoleBox("Geef de beurt eerst aan de volgende!");
                 }

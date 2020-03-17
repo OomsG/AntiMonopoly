@@ -7,16 +7,16 @@ public class Fonds implements Vak {
     private Random generator = new Random();
 
     private String[] messages = {
-            "U vindt een briefje van €%d op straat.",
-            "U vindt een briefje van €%d in uw zetel.",
-            "U hebt de lotto gewonnen en krijgt €%d.",
-            "Een neef die je niet kent is gestorven. U erft €%d.",
-            "Een nicht die je niet kent is gestorven. U erft €%d.",
-            "U wint een tombola en hebt een voetbal ter waarde van €%d gewonnen!",
-            "U wint een tombola en hebt een fiets ter waarde van €%d gewonnen!",
-            "U wint een tombola en hebt een trui ter waarde van €%d gewonnen!",
-            "U wint een tombola en hebt tampasta ter waarde van €%d gewonnen!",
-            "U wint een tombola en hebt toilet papier ter waarde van €%d gewonnen!"
+            "%s vindt een briefje van €%d op straat.",
+            "%s vindt een briefje van €%d in zijn zetel.",
+            "%s heeft de lotto gewonnen en krijgt €%d.",
+            "Een neef die je niet kent is gestorven. %s erft €%d.",
+            "Een nicht die je niet kent is gestorven. %s erft €%d.",
+            "%s wint een tombola en heeft een voetbal ter waarde van €%d gewonnen!",
+            "%s wint een tombola en heeft een fiets ter waarde van €%d gewonnen!",
+            "%s wint een tombola en heeft een trui ter waarde van €%d gewonnen!",
+            "%s wint een tombola en heeft tampasta ter waarde van €%d gewonnen!",
+            "%s wint een tombola en heeft toilet papier ter waarde van €%d gewonnen!"
     };
 
     @Override

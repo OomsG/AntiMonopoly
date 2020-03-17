@@ -186,12 +186,11 @@ public class Spel {
         }
     }
 
-    public void opFonds(int newPos, Speler speler){
+    public int opFonds(int newPos, Speler speler){
         Fonds fonds = (Fonds)this.bord[newPos];
         int prijs = (generator.nextInt(4)+1)*100;
-        System.out.printf("\n**"+fonds.getMessage()+"\n",prijs);
         speler.setScore(speler.getScore()+prijs);
-        System.out.println("Uw nieuwe balans: €"+speler.getScore());
+        return prijs;
     }
 
     public void opGrond(int newPos, Speler speler){
@@ -220,36 +219,27 @@ public class Spel {
         }
     }
 
-    public void opKans(int newPos, Speler speler){
+    public int opKans(int newPos, Speler speler){
         Kans kans = (Kans)this.bord[newPos];
-        int prijs = ((generator.nextInt(8)+1)*100)-400;
-        if(prijs > 0){
-            System.out.printf("\n**"+kans.getPosMessage()+"\n",prijs);
-        } else if(prijs < 0) {
-            System.out.printf("\n**"+kans.getNegMessage()+"\n",prijs);
-        } else {
-            System.out.printf("\n**De bank had u een factuur gestuurt maar u hebt geluk. Uw ouders hebben deze al betaald.\n",prijs);
-        }
-
+        int prijs = 0;
+        while(prijs == 0) prijs = ((generator.nextInt(8)-4))*100;
         speler.setScore(speler.getScore()+prijs);
-        System.out.println("Uw nieuwe balans: €"+speler.getScore());
+        return prijs;
     }
 
     public void opStart(Speler speler){
         speler.setScore(speler.getScore()+100);
-        System.out.println("**Doordat u op Start staat is uw balans met €100 gestegen.");
-        System.out.println("Uw nieuwe balans: €"+speler.getScore());
     }
 
-    public void opWelkVak(int newPos, Speler speler){
+    public String opWelkVak(int newPos, Speler speler){
         if(this.bord[newPos].getSoort() == "start"){
-            opStart(speler);
+            return "start";
         } else if(this.bord[newPos].getSoort() == "kans"){
-            opKans(newPos, speler);
+            return "kans";
         } else if(this.bord[newPos].getSoort() == "fonds"){
-            opFonds(newPos, speler);
-        } else if(this.bord[newPos].getSoort() == "grond"){
-            opGrond(newPos, speler);
+            return "fonds";
+        } else {
+            return "undefined";
         }
     }
 
