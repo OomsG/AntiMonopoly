@@ -4,10 +4,13 @@ import be.kdg.spelLogica.spel.Spel;
 import be.kdg.spelLogica.speler.Rol;
 import be.kdg.view.game.GamePresenter;
 import be.kdg.view.game.GameView;
+import be.kdg.view.help.HelpPresenter;
+import be.kdg.view.help.HelpView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.WindowEvent;
 
 
@@ -75,7 +78,19 @@ public class StartPresenter {
                 }
             }
         });
+
+        view.getHelpIcon().setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                HelpView helpView = new HelpView();
+                HelpPresenter helpPresenter = new HelpPresenter(spel, helpView);
+                view.getScene().setRoot(helpView);
+                helpView.getScene().getWindow().sizeToScene();
+            }
+        });
     }
+
+
 
 // Koppelt event handlers (anon. inner klassen)
 // aan de controls uit de view.

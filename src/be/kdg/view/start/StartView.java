@@ -39,6 +39,7 @@ public class StartView extends GridPane
     private Button btnBevestigSpelers;
     private Image mainLogo;
     private Label lbMainLogo;
+    private ImageView helpIcon;
 
 
 
@@ -66,11 +67,7 @@ public class StartView extends GridPane
         monopolistOfConcurrent3 = new ComboBox(monopolistOfConcurrentComboBoxKeuze);
         monopolistOfConcurrent4 = new ComboBox(monopolistOfConcurrentComboBoxKeuze);
         titelMetUitleg.setVisible(false);
-
-
-
-
-
+        helpIcon = new ImageView(new Image("question.png"));
 
 // Initialisatie van de Nodes
 // bvb.:
@@ -94,6 +91,7 @@ public class StartView extends GridPane
         this.add(monopolistOfConcurrent3, 0, 4);
         this.add(monopolistOfConcurrent4, 1, 4);
         this.add(btnBevestigSpelers, 0, 5);
+        this.add(helpIcon,0,5);
 
         // Extra
         this.tfNaamSpeler1.setMaxWidth(150);
@@ -111,6 +109,7 @@ public class StartView extends GridPane
         GridPane.setMargin(tfNaamSpeler3, new Insets(5, 20, 20, 30));
         GridPane.setMargin(tfNaamSpeler4, new Insets(5, 20, 20, 10));
         GridPane.setMargin(btnBevestigSpelers, new Insets(5, 0, 20, 180));
+        GridPane.setMargin(helpIcon, new Insets(5,0,20,10));
         GridPane.setMargin(monopolistOfConcurrent1, new Insets(90, 20, 20, 30));
         GridPane.setMargin(monopolistOfConcurrent2, new Insets(90, 20, 20, 10));
         GridPane.setMargin(monopolistOfConcurrent3, new Insets(70, 20, 20, 30));
@@ -164,9 +163,12 @@ public class StartView extends GridPane
         return btnBevestigSpelers;
     }
 
+    public ImageView getHelpIcon() {
+        return helpIcon;
+    }
 
 
-    // implementatie van de nodige
+// implementatie van de nodige
 // package-private Getters
 }
 
