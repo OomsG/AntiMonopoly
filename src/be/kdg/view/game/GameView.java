@@ -136,6 +136,7 @@ public class GameView extends GridPane {
         GridPane.setMargin(vboxInterface, new Insets(20, 40, 20, 10));
         hboxInterfaceKoopGrondEnBouwen.setMargin(btnKoopGrond, new Insets(0, 40, 0, 0));
 
+
         // Widths & Heights
 
         vboxInterface.setPrefWidth(200);
@@ -148,8 +149,8 @@ public class GameView extends GridPane {
         btnBouwen.setPrefHeight(40);
         btnKoopGrond.setPrefWidth(106);
         btnKoopGrond.setPrefHeight(40);
-        taNaamBeurt.setPrefHeight(100);
-        tainstructiesConsoleBox.setPrefHeight(150);
+        taNaamBeurt.setPrefHeight(150);
+        tainstructiesConsoleBox.setPrefHeight(180);
 
         // CSS
 
