@@ -67,7 +67,7 @@ public class GamePresenter {
                     }
                     int mijnGooi = spel.dobbelNewPos();
                     int newPos = mijnGooi + mySpeler.getPositie();
-                    view.voegToeAanConsoleBox("Dobbelen... U hebt "+mijnGooi+" gegooid!");
+                    view.voegToeAanConsoleBox("Dobbelen.. U hebt "+mijnGooi+" gegooid!");
                     if(newPos >= 39){
                         newPos -= 39;
                     }
@@ -88,10 +88,9 @@ public class GamePresenter {
                             System.out.println("Speler kan bouwen");
                             huidigeGrond = huidigVak;
                         } else if(huidigVak.isGekocht() && (huidigVak.getPrijs()*0.3)+1 <= mySpeler.getScore()){
-                            huidigeGrond = huidigVak;
-                            System.out.println("Speler moet boete betalen");
+                            view.voegToeAanConsoleBox(spel.boeteBetalen(newPos, mySpeler, huidigVak));
                         } else if(mySpeler.getScore() < 0) {
-                            System.out.println("Speler kan boete niet betalen...");
+                            System.out.println("Speler kan boete niet betalen..");
                         }
                     } else {
                         String vakSoort = spel.opWelkVak(newPos,mySpeler);
@@ -130,7 +129,7 @@ public class GamePresenter {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("bouwen");
-                view.voegToeAanConsoleBox("Hoera! Je hebt een huis gebouwd.");
+                view.voegToeAanConsoleBox("Huis gebouwd op grond");
 
             }
         });
@@ -145,7 +144,7 @@ public class GamePresenter {
                     }
                 }
                 spel.koopGrond(mySpeler,huidigeGrond);
-                view.voegToeAanConsoleBox("Woohoo! Grond gekocht.");
+                view.voegToeAanConsoleBox(mySpeler.getNaam() + " heeft "+huidigeGrond.getNaam()+" gekocht");
                 view.updateGetTaNaamBeurt(spel.getSpelers().get(i));
                 view.toggleKoopGrond(false);
             }
