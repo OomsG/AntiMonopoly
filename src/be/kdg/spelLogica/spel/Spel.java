@@ -207,6 +207,7 @@ public class Spel {
         return speler.getNaam() + " heeft €"+boete+" boete moeten betalen aan "+deEigenaar.getNaam();
     }
 
+    //moet herbekeken worden
     public void opGrond(int newPos, Speler speler){
         Grond vak = (Grond)this.bord[newPos];
         if(!vak.isGekocht() && vak.getPrijs() <= speler.getScore()){
