@@ -30,7 +30,6 @@ public class GameView extends GridPane {
     private HBox hboxScheidingslijn;
     private VBox vboxInterface;
     private HBox hboxInterfaceKoopGrondEnBouwen;
-    private ImageView pionTest;
 
 
     public GameView() {
@@ -50,7 +49,6 @@ public class GameView extends GridPane {
         //controls
         //speelBord = new ImageView(new Image("monopolySpeelBord.png"));
         speelBord = new ImageView(new Image("monopolySpeelBordNummers.png"));
-         pionTest = new ImageView(new Image("blauw.jpg"));
         scheidingsLijn = new ImageView(new Image("scheidingslijn.png"));
         tainstructiesConsoleBox = new TextArea("labelInstructiesConsoleBox");
         tainstructiesConsoleBox.setEditable(false);
@@ -118,7 +116,6 @@ public class GameView extends GridPane {
         hboxBord.getChildren().addAll(speelBord);
         speelBord.setFitHeight(700);
         speelBord.setFitWidth(800);
-        hboxBord.getChildren().add(pionTest);
         hboxScheidingslijn.getChildren().addAll(scheidingsLijn);
         hboxInterfaceKoopGrondEnBouwen.getChildren().addAll(btnKoopGrond, btnBouwen);
         vboxInterface.getChildren().addAll(tainstructiesConsoleBox, taNaamBeurt, btnDobbel, btnBeurt, hboxInterfaceKoopGrondEnBouwen);
@@ -126,8 +123,7 @@ public class GameView extends GridPane {
 
         // Boxen aan GridPane toevoegen
 
-        pionTest.setX(48);
-        pionTest.setX(233);
+
         this.add(hboxBord, 1, 0);
         this.add(hboxScheidingslijn, 2, 0);
         this.add(vboxInterface, 3, 0);
@@ -188,6 +184,8 @@ public class GameView extends GridPane {
         btnDobbel.setGraphic(new ImageView(new Image("dice.png")));
         btnBeurt.setGraphic(new ImageView(new Image("wisselspeler.png")));
         tainstructiesConsoleBox.setFont(Font.font("Verdana", FontWeight.BOLD, 8));
+
+
 
 
     }
