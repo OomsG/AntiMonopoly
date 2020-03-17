@@ -88,8 +88,7 @@ public class GamePresenter {
                             System.out.println("Speler kan bouwen");
                             huidigeGrond = huidigVak;
                         } else if(huidigVak.isGekocht() && (huidigVak.getPrijs()*0.3)+1 <= mySpeler.getScore()){
-                            huidigeGrond = huidigVak;
-                            System.out.println("Speler moet boete betalen");
+                            view.voegToeAanConsoleBox(spel.boeteBetalen(newPos, mySpeler, huidigVak));
                         } else if(mySpeler.getScore() < 0) {
                             System.out.println("Speler kan boete niet betalen..");
                         }

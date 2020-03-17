@@ -193,6 +193,20 @@ public class Spel {
         return prijs;
     }
 
+    public String boeteBetalen(int newPos, Speler speler, Grond vak){
+        int boete = (int)(vak.getPrijs()*0.3);
+        speler.setScore(speler.getScore()-boete);
+        Speler deEigenaar = null;
+        for(Speler eigenaar : spelers){
+            if(eigenaar.toonBezittingen().contains(vak.getNaam())){
+                eigenaar.setScore(eigenaar.getScore()+boete);
+                deEigenaar = eigenaar;
+                System.out.println(eigenaar.getNaam()+" zijn balens is met €"+boete+" gestegen.");
+            }
+        }
+        return speler.getNaam() + " heeft €"+boete+" moeten betalen aan "+deEigenaar.getNaam();
+    }
+
     public void opGrond(int newPos, Speler speler){
         Grond vak = (Grond)this.bord[newPos];
         if(!vak.isGekocht() && vak.getPrijs() <= speler.getScore()){
