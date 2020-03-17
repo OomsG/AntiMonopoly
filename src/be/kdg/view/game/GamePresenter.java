@@ -33,9 +33,11 @@ public class GamePresenter {
                     heeftGedobbeld = false;
                     kanGrondKopen = false;
                     view.toggleKoopGrond(false);
+                    view.toggleGrondBouwen(false);
                     i++;
                     if(i >= spel.getSpelers().size()){
                         i = 0;
+                        view.voegToeAanConsoleBox("-- RONDE --");
                     }
                     for(Speler speler : spel.getSpelers()){
                         speler.setBeurt(false);
@@ -56,7 +58,7 @@ public class GamePresenter {
             @Override
             public void handle(ActionEvent event) {
                 if(heeftGedobbeld == false){
-                    view.voegToeAanConsoleBox("Gooit de dobbelstenen (spannend)");
+                    //view.voegToeAanConsoleBox("Gooit de dobbelstenen (spannend)");
                     Speler mySpeler = null;
                     System.out.println("Start dobbel");
                     for(Speler speler : spel.getSpelers()){
@@ -64,7 +66,9 @@ public class GamePresenter {
                             mySpeler = speler;
                         }
                     }
-                    int newPos = spel.dobbelNewPos() + mySpeler.getPositie();
+                    int mijnGooi = spel.dobbelNewPos();
+                    int newPos = mijnGooi + mySpeler.getPositie();
+                    view.voegToeAanConsoleBox("Dobbelen.. U hebt "+mijnGooi+" gegooid!");
                     if(newPos >= 39){
                         newPos -= 39;
                     }
@@ -79,6 +83,9 @@ public class GamePresenter {
                             view.toggleKoopGrond(true);
                             kanGrondKopen = true;
                             System.out.println("Mogelijkheid om huis te kopen: JA");
+                        } else if(huidigVak.isGekocht() && mySpeler.toonBezittingen().equals(huidigVak)){
+                            view.toggleGrondBouwen(true);
+                            System.out.println("Speler kan bouwen");
                         } else if(huidigVak.isGekocht() && (huidigVak.getPrijs()*0.3)+1 <= mySpeler.getScore()){
 
                             System.out.println("Speler moet boete betalen");
@@ -105,7 +112,7 @@ public class GamePresenter {
     view.getSpeelBord().setOnMousePressed(new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
-            System.out.println("X: "+event.getX()+" | Y: "+event.getY());
+            System.out.println("Host clicked on; X: "+event.getX()+" | Y: "+event.getY());
         }
     });
 
@@ -113,7 +120,7 @@ public class GamePresenter {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("bouwen");
-                view.getTainstructiesConsoleBox().setText(view.getTainstructiesConsoleBox().getText() + "\n x heeft gebouwd.");
+                view.voegToeAanConsoleBox("Huis gebouwd op grond");
 
             }
         });
@@ -121,8 +128,7 @@ public class GamePresenter {
         view.getBtnKoopGrond().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("grond");
-                view.getTainstructiesConsoleBox().setText(view.getTainstructiesConsoleBox().getText() + "\n x heeft gekocht.");
+                view.voegToeAanConsoleBox("Grond gekocht");
             }
         });
 

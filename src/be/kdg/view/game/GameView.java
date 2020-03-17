@@ -65,6 +65,10 @@ public class GameView extends GridPane {
         btnKoopGrond.setVisible(status);
     }
 
+    public void toggleGrondBouwen(boolean status){
+        btnBouwen.setVisible(status);
+    }
+
     public TextArea getTaNaamBeurt() {
         return taNaamBeurt;
     }
