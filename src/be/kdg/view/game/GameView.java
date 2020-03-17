@@ -47,7 +47,8 @@ public class GameView extends GridPane {
         vboxInterface.setSpacing(40);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //controls
-        speelBord = new ImageView(new Image("monopolySpeelBord.png"));
+        //speelBord = new ImageView(new Image("monopolySpeelBord.png"));
+        speelBord = new ImageView(new Image("monopolySpeelBordNummers.png"));
          pionTest = new ImageView(new Image("blauw.jpg"));
         scheidingsLijn = new ImageView(new Image("scheidingslijn.png"));
         tainstructiesConsoleBox = new TextArea("labelInstructiesConsoleBox");
