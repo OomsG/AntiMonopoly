@@ -75,7 +75,7 @@ public class GameView extends GridPane {
                 +"\nRol: "+ speler.getRol()
                 +"\nSaldo: €"+ speler.getScore()
                 +"\nPositie: "+ speler.getPositie()
-                +"\n"+ speler.toonBezittingen();
+                +"\nBezittingen: "+ speler.toonBezittingen();
         getTaNaamBeurt().setText(tekst);
     }
 

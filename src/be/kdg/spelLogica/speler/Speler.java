@@ -24,9 +24,9 @@ import java.util.ArrayList;
     }
 
     public String toonBezittingen(){
-        String resultaat = "Uw bezittingen:";
+        String resultaat = "";
         for(Grond bezitting : bezittingen){
-            resultaat += " "+bezitting.getNaam();
+            resultaat += "\n"+bezitting.getNaam();
         }
         return resultaat;
     }
