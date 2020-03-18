@@ -193,17 +193,24 @@ public class Spel {
         return prijs;
     }
 
-    public String boeteBetalen(int newPos, Speler speler, Grond vak){
-        int boete = (int)(vak.getPrijs()*0.3);
-        speler.setScore(speler.getScore()-boete);
+    public String boeteBetalen(Speler speler, Grond vak){
+        int boete;
         Speler deEigenaar = null;
         for(Speler eigenaar : spelers){
             if(eigenaar.toonBezittingen().contains(vak.getNaam())){
-                eigenaar.setScore(eigenaar.getScore()+boete);
                 deEigenaar = eigenaar;
-                System.out.println(eigenaar.getNaam()+" zijn balens is met €"+boete+" gestegen.");
             }
         }
+
+        if(vak.isHuisGebouwd() && deEigenaar.getRol() == Rol.MONOPOLIST){
+            boete = (int)(vak.getPrijs()*0.7);
+        } else if(vak.isHuisGebouwd()){
+            boete = (int)(vak.getPrijs()*0.5);
+        } else {
+            boete = (int)(vak.getPrijs()*0.3);
+        }
+        speler.setScore(speler.getScore()-boete);
+        deEigenaar.setScore(deEigenaar.getScore()+boete);
         return speler.getNaam() + " heeft €"+boete+" boete moeten betalen aan "+deEigenaar.getNaam();
     }
 

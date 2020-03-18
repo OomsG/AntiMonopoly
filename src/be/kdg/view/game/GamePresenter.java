@@ -101,8 +101,10 @@ public class GamePresenter {
                                     System.out.println("Speler kan bouwen");
                                 }
                             } else {
-                                if(huidigVak.isGekocht() && (huidigVak.getPrijs()*0.3)+1 <= mySpeler.getScore()){
-                                    view.voegToeAanConsoleBox(spel.boeteBetalen(newPos, mySpeler, huidigVak));
+                                if(huidigVak.isGekocht() && !huidigVak.isHuisGebouwd() && (huidigVak.getPrijs()*0.3)+1 <= mySpeler.getScore()) {
+                                    view.voegToeAanConsoleBox(spel.boeteBetalen(mySpeler, huidigVak));
+                                } else if(huidigVak.isGekocht() && huidigVak.isHuisGebouwd() && (huidigVak.getPrijs()*0.5)+1 <= mySpeler.getScore()){
+                                    view.voegToeAanConsoleBox(spel.boeteBetalen(mySpeler, huidigVak));
                                 } else if(mySpeler.getScore() < 0) {
                                     System.out.println("Speler kan boete niet betalen..");
                                     view.voegToeAanConsoleBox(mySpeler.getNaam() + " kan boete niet betalen!");

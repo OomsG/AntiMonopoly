@@ -45,7 +45,7 @@ public class Grond implements Vak {
     }
 
     public void setHuisGebouwd(Speler speler, boolean huisKopen) {
-        double prijsHuis = getPrijs()*0.6;
+        double prijsHuis = getPrijs()*1.2;
         if(isHuisGebouwd() == false){
             //koopt huis
             speler.setScore((int)(speler.getScore() - prijsHuis));
