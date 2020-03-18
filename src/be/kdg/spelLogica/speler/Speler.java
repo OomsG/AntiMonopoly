@@ -26,7 +26,10 @@ import java.util.ArrayList;
     public String toonBezittingen(){
         String resultaat = "";
         for(Grond bezitting : bezittingen){
-            resultaat += "\n- "+bezitting.getNaam();
+            String voegHuisToeAanLijst;
+            if(bezitting.isHuisGebouwd()) voegHuisToeAanLijst = " + HUIS";
+            else voegHuisToeAanLijst = "";
+            resultaat += "\n- "+bezitting.getNaam()+voegHuisToeAanLijst;
         }
         return resultaat;
     }

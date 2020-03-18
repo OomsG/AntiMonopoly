@@ -92,12 +92,12 @@ public class GamePresenter {
                             huidigeGrond = huidigVak;
                             boolean eigenBezitting = false;
                             for(Grond grond : mySpeler.getBezittingen()){
-                                if(grond.getNaam().equals(huidigeGrond.getNaam())){
+                                if(grond.getNaam() == huidigeGrond.getNaam()){
                                     eigenBezitting = true;
                                 }
                             }
                             if(eigenBezitting){
-                                if(huidigeGrond.getPrijs()*0.6 >= mySpeler.getScore()){
+                                if(huidigeGrond.getPrijs()*1.2 <= mySpeler.getScore()){
                                     view.toggleGrondBouwen(true,(int)(huidigeGrond.getPrijs()*0.6));
                                     System.out.println("Speler kan bouwen");
                                 }
