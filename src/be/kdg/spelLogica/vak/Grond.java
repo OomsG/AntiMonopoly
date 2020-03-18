@@ -6,6 +6,7 @@ import java.util.Random;
 public class Grond implements Vak {
     protected String soort = "grond";
     private boolean gekocht = false;
+    private boolean huisGebouwd = false;
     private int prijs;
     private String naam;
     private Random generator = new Random();
@@ -35,6 +36,14 @@ public class Grond implements Vak {
         straatNamen.add("kong");
         straatNamen.add("");
         this.naam = (straatNamen.get(generator.nextInt(straatNamen.size()))+straatNamen.get(generator.nextInt(straatNamen.size()))+"-straat "+nummer).toUpperCase();
+    }
+
+    public boolean isHuisGebouwd() {
+        return huisGebouwd;
+    }
+
+    public void setHuisGebouwd(boolean huisGebouwd) {
+        this.huisGebouwd = huisGebouwd;
     }
 
     public Grond(int prijs, int nummer, double x, double y) {
