@@ -17,13 +17,11 @@ public class Spel {
     private Random generator = new Random();
     private boolean einde = false;
     private boolean spelerHeeftGedobbeld;
-    private LocalTime startTijd;
+    private LocalTime startTijd = LocalTime.now();
     private LocalTime eindTijd;
     Vak[] bord = new Vak[40];
 
-    public Spel(LocalTime startTijd) {
-        this.startTijd = startTijd;
-    }
+
 
     protected ArrayList<Speler> spelers = new ArrayList<Speler>();
 

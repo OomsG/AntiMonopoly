@@ -41,7 +41,7 @@ public class StartPresenter {
                 if(!view.getTfNaamSpeler3().isEmpty()) aantalIngevuldeVelden++;
                 if(!view.getTfNaamSpeler4().isEmpty()) aantalIngevuldeVelden++;
                 if(aantalIngevuldeVelden >= 2){
-                    spel = new Spel(LocalTime.now());
+                    spel = new Spel();
                     spel.maakSpelers(view.getTfNaamSpeler1(), view.getMonopolistOfConcurrent1(),
                             view.getTfNaamSpeler2(), view.getMonopolistOfConcurrent2(),
                             view.getTfNaamSpeler3(), view.getMonopolistOfConcurrent3(),
