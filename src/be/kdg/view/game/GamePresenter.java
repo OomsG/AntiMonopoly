@@ -154,6 +154,8 @@ public class GamePresenter {
                             }
                             String msgFinal = String.format(msg,mySpeler.getNaam(),prijs);
                             view.voegToeAanConsoleBox(msgFinal);
+                        } else if(vakSoort == "vrijparkeren"){
+                            view.voegToeAanConsoleBox(mySpeler.getNaam()+" heeft €100 gekregen omdat hij op vrij parkeren is beland!");
                         }
                     }
                     view.updateGetTaNaamBeurt(spel.getSpelers().get(i));

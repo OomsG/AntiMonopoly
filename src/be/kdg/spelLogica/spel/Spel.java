@@ -271,6 +271,9 @@ public class Spel {
             return "kans";
         } else if(this.bord[newPos].getSoort() == "fonds"){
             return "fonds";
+        } else if(this.bord[newPos].getSoort() == "vrijparkeren"){
+            speler.setScore(speler.getScore()+100);
+            return "vrijparkeren";
         } else {
             return "undefined";
         }
