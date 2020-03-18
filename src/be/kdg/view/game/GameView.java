@@ -75,9 +75,9 @@ public class GameView extends GridPane {
         btnKoopGrond.setText("Kopen €"+prijs);
     }
 
-    public void toggleGrondBouwen(boolean status, int prijs){
+    public void toggleGrondBouwen(boolean status, int prijs, boolean isHuisGebouwd){
         btnBouwen.setVisible(status);
-        if(status){
+        if(isHuisGebouwd){
             btnBouwen.setText("Bouwen €"+prijs);
         } else {
             btnBouwen.setText("Verkopen €"+prijs);

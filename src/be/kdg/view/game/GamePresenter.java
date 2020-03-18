@@ -98,7 +98,11 @@ public class GamePresenter {
                             }
                             if(eigenBezitting){
                                 if(huidigeGrond.getPrijs()*1.2 <= mySpeler.getScore()){
-                                    view.toggleGrondBouwen(true,(int)(huidigeGrond.getPrijs()*0.6));
+                                    if(huidigeGrond.isHuisGebouwd()){
+                                        view.toggleGrondBouwen(true,(int)(huidigeGrond.getPrijs()*1.2), true);
+                                    } else {
+                                        view.toggleGrondBouwen(true,(int)(huidigeGrond.getPrijs()*1.2), false);
+                                    }
                                     System.out.println("Speler kan bouwen");
                                 }
                             } else {
