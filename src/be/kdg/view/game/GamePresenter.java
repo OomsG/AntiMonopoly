@@ -76,14 +76,15 @@ public class GamePresenter {
                         newPos -= 39;
                     }
 
+                    mySpeler.setScore(mySpeler.getScore()+spel.voorbijStart(mySpeler, mySpeler.getPositie(),newPos));
                     if(spel.voorbijStart(mySpeler, mySpeler.getPositie(),newPos) > 0){
                         if(spel.voorbijStart(mySpeler, mySpeler.getPositie(),newPos) == 200){
                             view.voegToeAanConsoleBox(mySpeler.getNaam()+" is voorbij start gekomen en krijgt dus €200.");
                         } else {
                             view.voegToeAanConsoleBox(mySpeler.getNaam()+" is op start beland en krijgt dus €400.");
                         }
+                        view.updateGetTaNaamBeurt(mySpeler);
                     }
-                    mySpeler.setScore(mySpeler.getScore()+spel.voorbijStart(mySpeler, mySpeler.getPositie(),newPos));
 
                     System.out.println("New position: "+newPos);
                     mySpeler.setPositie(newPos);
