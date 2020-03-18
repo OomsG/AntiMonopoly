@@ -26,6 +26,8 @@ view.getBtnTerug().setOnAction(new EventHandler<ActionEvent>() {
         StartPresenter startPresenter = new StartPresenter(spel, startView);
         view.getScene().setRoot(startView);
         startView.getScene().getWindow().sizeToScene();
+        startView.setStyle("-fx-background-image: url(achtergrond.jpg); -fx-background-position: center center");
+
     }
 });
     }

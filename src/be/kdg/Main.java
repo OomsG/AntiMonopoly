@@ -21,6 +21,7 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.getIcons().add(new Image("pictogram.png"));
         primaryStage.setTitle("Anti-Monopoly | Spelen maar!");
+        view.setStyle("-fx-background-image: url(achtergrond.jpg); -fx-background-position: center center");
 
     }
 

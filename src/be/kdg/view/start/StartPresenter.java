@@ -48,6 +48,7 @@ public class StartPresenter {
                     GamePresenter gamePresenter = new GamePresenter(spel, gameView);
                     view.getScene().setRoot(gameView);
                     gameView.getScene().getWindow().sizeToScene();
+                    gameView.setStyle("-fx-background-image: url(achtergrond.jpg); -fx-background-position: center center; -fx-background-size: 2000 1700");
                     gameView.setPrefWidth(100);
                     gameView.setPrefHeight(500);
                 } else {
@@ -86,6 +87,8 @@ public class StartPresenter {
                 HelpPresenter helpPresenter = new HelpPresenter(spel, helpView);
                 view.getScene().setRoot(helpView);
                 helpView.getScene().getWindow().sizeToScene();
+                helpView.setStyle("-fx-background-image: url(achtergrond.jpg); -fx-background-position: center center; -fx-background-size: 1024 950");
+
             }
         });
     }
