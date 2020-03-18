@@ -207,6 +207,9 @@ public class GamePresenter {
                 view.voegToeAanConsoleBox("Hoera! " + mySpeler.getNaam() + " heeft "+huidigeGrond.getNaam()+" gekocht");
                 view.updateGetTaNaamBeurt(mySpeler);
                 view.toggleKoopGrond(false);
+                if(mySpeler.getScore() >= (int)(huidigeGrond.getPrijs()*1.2)){
+                    view.toggleGrondBouwen(true,(int)(huidigeGrond.getPrijs()*1.2),false);
+                }
             }
         });
 
