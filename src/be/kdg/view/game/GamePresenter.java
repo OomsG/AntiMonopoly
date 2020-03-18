@@ -84,7 +84,7 @@ public class GamePresenter {
                     if(spel.getVak(newPos).getSoort() == "grond"){
                         Grond huidigVak = (Grond) spel.getVak(newPos);
                         if(!huidigVak.isGekocht() && huidigVak.getPrijs() <= mySpeler.getScore()){
-                            view.toggleKoopGrond(true);
+                            view.toggleKoopGrond(true,huidigVak.getPrijs());
                             kanGrondKopen = true;
                             System.out.println("Mogelijkheid om huis te kopen: JA");
                             huidigeGrond = huidigVak;
@@ -98,7 +98,7 @@ public class GamePresenter {
                             }
                             if(eigenBezitting){
                                 if(huidigeGrond.getPrijs()*0.6 >= mySpeler.getScore()){
-                                    view.toggleGrondBouwen(true);
+                                    view.toggleGrondBouwen(true,(int)(huidigeGrond.getPrijs()*0.6));
                                     System.out.println("Speler kan bouwen");
                                 }
                             } else {

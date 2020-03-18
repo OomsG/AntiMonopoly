@@ -62,10 +62,26 @@ public class GameView extends GridPane {
 
     public void toggleKoopGrond(boolean status){
         btnKoopGrond.setVisible(status);
+        btnKoopGrond.setText("Kopen");
     }
 
     public void toggleGrondBouwen(boolean status){
         btnBouwen.setVisible(status);
+        btnBouwen.setText("Bouwen");
+    }
+
+    public void toggleKoopGrond(boolean status, int prijs){
+        btnKoopGrond.setVisible(status);
+        btnKoopGrond.setText("Kopen €"+prijs);
+    }
+
+    public void toggleGrondBouwen(boolean status, int prijs){
+        btnBouwen.setVisible(status);
+        if(status){
+            btnBouwen.setText("Bouwen -€"+prijs);
+        } else {
+            btnBouwen.setText("Verkopen +€"+prijs);
+        }
     }
 
     public void toggleBeurtBtn(boolean status){
