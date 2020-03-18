@@ -13,11 +13,14 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.WindowEvent;
 
+import java.time.LocalTime;
+
 
 public class StartPresenter {
     //private Spel model;
     private StartView view;
     private Spel spel;
+    private LocalTime beginTijd;
 
     public StartPresenter(
             Spel model,
@@ -51,6 +54,8 @@ public class StartPresenter {
                     gameView.setStyle("-fx-background-image: url(achtergrond.jpg); -fx-background-position: center center; -fx-background-size: 2000 1700");
                     gameView.setPrefWidth(100);
                     gameView.setPrefHeight(500);
+                    beginTijd = LocalTime.now();
+                    System.out.println(beginTijd);
                 } else {
                     System.out.println("Niet genoeg users ingevuld");
                     view.getTitelMetUitleg().setVisible(true);
