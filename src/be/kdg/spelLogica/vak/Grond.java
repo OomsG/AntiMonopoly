@@ -1,5 +1,7 @@
 package be.kdg.spelLogica.vak;
 
+import be.kdg.spelLogica.speler.Speler;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -42,8 +44,16 @@ public class Grond implements Vak {
         return huisGebouwd;
     }
 
-    public void setHuisGebouwd(boolean huisGebouwd) {
-        this.huisGebouwd = huisGebouwd;
+    public void setHuisGebouwd(Speler speler, boolean huisKopen) {
+        double prijsHuis = getPrijs()*0.6;
+        if(isHuisGebouwd() == false){
+            //koopt huis
+            speler.setScore((int)(speler.getScore() - prijsHuis));
+        } else {
+            //verkoopt huis
+            speler.setScore((int)(speler.getScore() + prijsHuis));
+        }
+        this.huisGebouwd = huisKopen;
     }
 
     public Grond(int prijs, int nummer, double x, double y) {

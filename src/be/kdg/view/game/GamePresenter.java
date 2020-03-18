@@ -87,14 +87,25 @@ public class GamePresenter {
                             kanGrondKopen = true;
                             System.out.println("Mogelijkheid om huis te kopen: JA");
                             huidigeGrond = huidigVak;
-                        } else if(huidigVak.isGekocht() && mySpeler.toonBezittingen().equals(huidigVak)){
-                            view.toggleGrondBouwen(true);
-                            System.out.println("Speler kan bouwen");
+                        } else if(huidigVak.isGekocht()){
                             huidigeGrond = huidigVak;
-                        } else if(huidigVak.isGekocht() && (huidigVak.getPrijs()*0.3)+1 <= mySpeler.getScore()){
-                            view.voegToeAanConsoleBox(spel.boeteBetalen(newPos, mySpeler, huidigVak));
-                        } else if(mySpeler.getScore() < 0) {
-                            System.out.println("Speler kan boete niet betalen..");
+                            boolean eigenBezitting = false;
+                            for(Grond grond : mySpeler.getBezittingen()){
+                                if(grond.getNaam().equals(huidigeGrond.getNaam())){
+                                    eigenBezitting = true;
+                                }
+                            }
+                            if(eigenBezitting){
+                                view.toggleGrondBouwen(true);
+                                System.out.println("Speler kan bouwen");
+                            } else {
+                                if(huidigVak.isGekocht() && (huidigVak.getPrijs()*0.3)+1 <= mySpeler.getScore()){
+                                    view.voegToeAanConsoleBox(spel.boeteBetalen(newPos, mySpeler, huidigVak));
+                                } else if(mySpeler.getScore() < 0) {
+                                    System.out.println("Speler kan boete niet betalen..");
+                                    view.voegToeAanConsoleBox(mySpeler.getNaam() + " kan boete niet betalen!");
+                                }
+                            }
                         }
                     } else {
                         String vakSoort = spel.opWelkVak(newPos,mySpeler);
@@ -134,9 +145,22 @@ public class GamePresenter {
         view.getBtnBouwen().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                Speler mySpeler = null;
+                for(Speler speler : spel.getSpelers()){
+                    if(speler.isBeurt() == true){
+                        mySpeler = speler;
+                    }
+                }
                 System.out.println("bouwen");
-                view.voegToeAanConsoleBox("Huis gebouwd op grond");
-
+                if(!huidigeGrond.isHuisGebouwd()){
+                    huidigeGrond.setHuisGebouwd(mySpeler,true);
+                    view.voegToeAanConsoleBox("Hoera! Huis gebouwd op grond!");
+                } else {
+                    huidigeGrond.setHuisGebouwd(mySpeler,false);
+                    view.voegToeAanConsoleBox("Oh nee.. Huis verkocht!");
+                }
+                view.toggleGrondBouwen(false);
+                view.updateGetTaNaamBeurt(mySpeler);
             }
         });
 
@@ -151,7 +175,7 @@ public class GamePresenter {
                 }
                 spel.koopGrond(mySpeler,huidigeGrond);
                 view.voegToeAanConsoleBox("Hoera! " + mySpeler.getNaam() + " heeft "+huidigeGrond.getNaam()+" gekocht");
-                view.updateGetTaNaamBeurt(spel.getSpelers().get(i));
+                view.updateGetTaNaamBeurt(mySpeler);
                 view.toggleKoopGrond(false);
             }
         });

@@ -71,4 +71,7 @@ import java.util.ArrayList;
         this.positie = positie;
     }
 
-}
+        public ArrayList<Grond> getBezittingen() {
+            return bezittingen;
+        }
+    }
