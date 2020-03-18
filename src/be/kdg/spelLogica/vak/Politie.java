@@ -1,7 +1,7 @@
 package be.kdg.spelLogica.vak;
 
-public class Gevangenis implements Vak {
-    protected String soort = "gevangenis";
+public class Politie implements Vak {
+    protected String soort = "politie";
 
     @Override
     public String getSoort() {
