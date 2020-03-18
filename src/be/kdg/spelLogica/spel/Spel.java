@@ -193,6 +193,15 @@ public class Spel {
         return prijs;
     }
 
+    public int voorbijStart(Speler speler, int vorigePositie, int nieuwePositie){
+        if(nieuwePositie == 0){
+            return 400;
+        } else if(nieuwePositie < vorigePositie){
+            return 200;
+        }
+        return 0;
+    }
+
     public String boeteBetalen(Speler speler, Grond vak){
         int boete;
         Speler deEigenaar = null;
