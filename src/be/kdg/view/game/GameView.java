@@ -169,7 +169,7 @@ public class GameView extends GridPane {
         btnBeurt.setPrefHeight(40);
         btnDobbel.setPrefWidth(212);
         btnDobbel.setPrefHeight(40);
-        btnBouwen.setPrefWidth(260); //normaal 106
+        btnBouwen.setPrefWidth(280); //normaal 106
         btnBouwen.setPrefHeight(40);
         btnKoopGrond.setPrefWidth(270); //normaal 106
         btnKoopGrond.setPrefHeight(40);
