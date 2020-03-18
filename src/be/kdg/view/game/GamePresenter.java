@@ -96,8 +96,10 @@ public class GamePresenter {
                                 }
                             }
                             if(eigenBezitting){
-                                view.toggleGrondBouwen(true);
-                                System.out.println("Speler kan bouwen");
+                                if(huidigeGrond.getPrijs()*0.6 >= mySpeler.getScore()){
+                                    view.toggleGrondBouwen(true);
+                                    System.out.println("Speler kan bouwen");
+                                }
                             } else {
                                 if(huidigVak.isGekocht() && (huidigVak.getPrijs()*0.3)+1 <= mySpeler.getScore()){
                                     view.voegToeAanConsoleBox(spel.boeteBetalen(newPos, mySpeler, huidigVak));
