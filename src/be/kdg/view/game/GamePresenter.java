@@ -165,13 +165,6 @@ public class GamePresenter {
             }
         });
 
-    view.getSpeelBord().setOnMousePressed(new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent event) {
-            System.out.println("Host clicked on; X: "+event.getX()+" | Y: "+event.getY());
-        }
-    });
-
         view.getBtnBouwen().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
