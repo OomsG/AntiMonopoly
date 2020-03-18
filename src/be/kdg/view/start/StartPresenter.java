@@ -20,7 +20,7 @@ public class StartPresenter {
     //private Spel model;
     private StartView view;
     private Spel spel;
-    private LocalTime beginTijd;
+
 
     public StartPresenter(
             Spel model,
@@ -54,6 +54,7 @@ public class StartPresenter {
                     gameView.setStyle("-fx-background-image: url(achtergrond.jpg); -fx-background-position: center center; -fx-background-size: 2000 1700");
                     gameView.setPrefWidth(100);
                     gameView.setPrefHeight(500);
+
                 } else {
                     System.out.println("Niet genoeg users ingevuld");
                     view.getTitelMetUitleg().setVisible(true);
