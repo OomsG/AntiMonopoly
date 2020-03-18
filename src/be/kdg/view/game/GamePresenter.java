@@ -2,6 +2,7 @@ package be.kdg.view.game;
 
 
 import be.kdg.spelLogica.spel.Spel;
+import be.kdg.spelLogica.speler.Rol;
 import be.kdg.spelLogica.speler.Speler;
 import be.kdg.spelLogica.vak.Fonds;
 import be.kdg.spelLogica.vak.Grond;
@@ -103,11 +104,22 @@ public class GamePresenter {
                             } else {
                                 if(huidigVak.isGekocht() && !huidigVak.isHuisGebouwd() && (huidigVak.getPrijs()*0.3)+1 <= mySpeler.getScore()) {
                                     view.voegToeAanConsoleBox(spel.boeteBetalen(mySpeler, huidigVak));
-                                } else if(huidigVak.isGekocht() && huidigVak.isHuisGebouwd() && (huidigVak.getPrijs()*0.5)+1 <= mySpeler.getScore()){
-                                    view.voegToeAanConsoleBox(spel.boeteBetalen(mySpeler, huidigVak));
-                                } else if(mySpeler.getScore() < 0) {
-                                    System.out.println("Speler kan boete niet betalen..");
-                                    view.voegToeAanConsoleBox(mySpeler.getNaam() + " kan boete niet betalen!");
+                                } else if(huidigVak.isGekocht() && huidigVak.isHuisGebouwd()){
+                                    boolean eigenaarIsMonopolist = false;
+                                    for(Speler eigenaar : spel.getSpelers()){
+                                        for(Grond bezitting : eigenaar.getBezittingen()){
+                                            if(bezitting.equals(huidigeGrond) && eigenaar.getRol() == Rol.MONOPOLIST){
+                                                eigenaarIsMonopolist = true;
+                                            }
+                                        }
+                                    }
+                                    if(eigenaarIsMonopolist && huidigVak.isGekocht() && huidigVak.isHuisGebouwd() && (huidigVak.getPrijs()*0.7)+1 <= mySpeler.getScore()){
+                                        view.voegToeAanConsoleBox(spel.boeteBetalen(mySpeler, huidigVak));
+                                    } else if(!eigenaarIsMonopolist && huidigVak.isGekocht() && huidigVak.isHuisGebouwd() && (huidigVak.getPrijs()*0.5)+1 <= mySpeler.getScore()){
+                                        view.voegToeAanConsoleBox(spel.boeteBetalen(mySpeler, huidigVak));
+                                    } else {
+                                        view.voegToeAanConsoleBox(mySpeler.getNaam() + " kan boete niet betalen!");
+                                    }
                                 }
                             }
                         }
