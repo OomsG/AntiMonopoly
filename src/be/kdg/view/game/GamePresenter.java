@@ -107,7 +107,7 @@ public class GamePresenter {
                                 }
                             }
                             if(eigenBezitting){
-                                if(huidigeGrond.getPrijs()*1.2 <= mySpeler.getScore()){
+                                if(huidigeGrond.getPrijs()*1.2 <= mySpeler.getScore() && (mySpeler.getBezittingen().size() >= 4 || mySpeler.getRol() == Rol.CONCURRENT)){
                                     if(huidigeGrond.isHuisGebouwd()){
                                         view.toggleGrondBouwen(true,(int)(huidigeGrond.getPrijs()*1.2), true);
                                     } else {
@@ -207,7 +207,7 @@ public class GamePresenter {
                 view.voegToeAanConsoleBox("Hoera! " + mySpeler.getNaam() + " heeft "+huidigeGrond.getNaam()+" gekocht");
                 view.updateGetTaNaamBeurt(mySpeler);
                 view.toggleKoopGrond(false);
-                if(mySpeler.getScore() >= (int)(huidigeGrond.getPrijs()*1.2)){
+                if(mySpeler.getScore() >= (int)(huidigeGrond.getPrijs()*1.2) && (mySpeler.getBezittingen().size() >= 4 || mySpeler.getRol() == Rol.CONCURRENT)){
                     view.toggleGrondBouwen(true,(int)(huidigeGrond.getPrijs()*1.2),false);
                 }
             }
