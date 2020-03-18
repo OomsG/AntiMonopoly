@@ -129,7 +129,7 @@ public class Spel {
         bord[17] = new Fonds();
         bord[20] = new VrijParkeren();
         bord[22] = new Kans();
-        bord[30] = new Fonds(); //moet politie zijn
+        bord[30] = new Politie(); //moet politie zijn
         bord[33] = new Fonds();
         bord[36] = new Kans();
         // elke hoek heeft een vaste waarde
