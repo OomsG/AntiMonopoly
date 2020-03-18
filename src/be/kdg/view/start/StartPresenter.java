@@ -41,7 +41,7 @@ public class StartPresenter {
                 if(!view.getTfNaamSpeler3().isEmpty()) aantalIngevuldeVelden++;
                 if(!view.getTfNaamSpeler4().isEmpty()) aantalIngevuldeVelden++;
                 if(aantalIngevuldeVelden >= 2){
-                    spel = new Spel();
+                    spel = new Spel(LocalTime.now());
                     spel.maakSpelers(view.getTfNaamSpeler1(), view.getMonopolistOfConcurrent1(),
                             view.getTfNaamSpeler2(), view.getMonopolistOfConcurrent2(),
                             view.getTfNaamSpeler3(), view.getMonopolistOfConcurrent3(),
@@ -54,8 +54,6 @@ public class StartPresenter {
                     gameView.setStyle("-fx-background-image: url(achtergrond.jpg); -fx-background-position: center center; -fx-background-size: 2000 1700");
                     gameView.setPrefWidth(100);
                     gameView.setPrefHeight(500);
-                    beginTijd = LocalTime.now();
-                    System.out.println(beginTijd);
                 } else {
                     System.out.println("Niet genoeg users ingevuld");
                     view.getTitelMetUitleg().setVisible(true);

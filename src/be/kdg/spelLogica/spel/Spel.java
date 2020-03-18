@@ -6,6 +6,7 @@ import be.kdg.spelLogica.vak.*;
 import be.kdg.view.game.GamePresenter;
 import be.kdg.view.game.GameView;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -16,7 +17,13 @@ public class Spel {
     private Random generator = new Random();
     private boolean einde = false;
     private boolean spelerHeeftGedobbeld;
+    private LocalTime startTijd;
+    private LocalTime eindTijd;
     Vak[] bord = new Vak[40];
+
+    public Spel(LocalTime startTijd) {
+        this.startTijd = startTijd;
+    }
 
     protected ArrayList<Speler> spelers = new ArrayList<Speler>();
 
