@@ -6,9 +6,10 @@ import be.kdg.spelLogica.vak.*;
 import be.kdg.view.game.GamePresenter;
 import be.kdg.view.game.GameView;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -18,49 +19,103 @@ public class Spel {
     private Random generator = new Random();
     private boolean einde = false;
     private boolean spelerHeeftGedobbeld;
-    private LocalTime beginTijd;
-    private LocalTime eindeTijd;
-    private LocalTime totaalTijd;
+    private LocalTime beginTijd = LocalTime.now();
     Vak[] bord = new Vak[40];
 
-    public void setEinde(boolean einde) {
-        if(einde){
-            this.einde = true;
-            HashMap<Speler,Integer> eindScore = new HashMap<>();
-            for(Speler speler : spelers){
-                int totaleScore = speler.getScore();
-                for(Grond grond : speler.getBezittingen()){
-                    totaleScore += grond.getPrijs();
-                    if(grond.isHuisGebouwd()){
-                        totaleScore += grond.getPrijs()*1.2;
-                    }
+    public void setEinde() throws IOException {
+        einde = true;
+        System.out.println("************************EINDE************************");
+        this.einde = true;
+        Speler bestPlayerOfThisGame = null;
+        HashMap<Speler, Integer> eindScore = new HashMap<>();
+        for (Speler speler : spelers) {
+            int totaleScore = speler.getScore();
+            for (Grond grond : speler.getBezittingen()) {
+                totaleScore += grond.getPrijs();
+                if (grond.isHuisGebouwd()) {
+                    totaleScore += grond.getPrijs() * 1.2;
                 }
-                eindScore.put(speler,totaleScore);
             }
-            String path = "C:\\MonopolyScores";
-            String fileName = "scores.csv";
-            File myDir = new File(path);
-            File myFile = new File(path+"\\"+fileName);
-            if(!myDir.exists()){
-                myDir.mkdir();
-            }
-            try {
-                List<String> mijnRegelsTekst = Files.readAllLines(myFile.toPath());
-                for(String huidigeRegel : mijnRegelsTekst){
-                    String[] huidigeScore = new String[2];
-                    huidigeScore = huidigeRegel.split(";");
-
-
+            eindScore.put(speler, totaleScore);
+            for (Speler spelervegelijker : eindScore.keySet()) {
+                if (eindScore.get(spelervegelijker) >= totaleScore) {
+                    bestPlayerOfThisGame = spelervegelijker;
                 }
-            } catch(IOException ex){
-                System.out.println("Could not read file because: "+ex.getCause());
             }
         }
+        String path = "C:\\MonopolyScores";
+        String fileName = "scores.csv";
+        File myDir = new File(path);
+        File myFile = new File(path + "\\" + fileName);
+
+        if (!myDir.exists()) {
+            myDir.mkdir();
+        }
+        if (!myFile.exists()) {
+            myFile.createNewFile();
+        }
+        try {
+            System.out.println("Trying to read file..");
+            List<String> mijnRegelsTekst;
+            mijnRegelsTekst = Files.readAllLines(myFile.toPath());
+            String myNewText = "";
+            int lijnLaagsteScore = 0;
+            if (mijnRegelsTekst.size() == 0) {
+                System.out.println("File has no content");
+                String setStartText = "0;1;0\n" +
+                        "0;2;0\n" +
+                        "0;3;0\n" +
+                        "0;4;0\n" +
+                        "0;5;0\n";
+
+                BufferedWriter writer = new BufferedWriter(new FileWriter(myFile, true));
+                writer.append(setStartText);
+                writer.close();
+                System.out.println("Content created");
+                mijnRegelsTekst = Files.readAllLines(myFile.toPath());
+            }
+            int counter = 0;
+            for (String huidigeRegel : mijnRegelsTekst) {
+                System.out.println("Line "+counter+": "+huidigeRegel);
+                String[] huidigeScore = new String[3];
+                huidigeScore = huidigeRegel.split(";");
+                String[] getLijnLaagsteScore = mijnRegelsTekst.get(lijnLaagsteScore).split(";");
+                int mySum = Integer.parseInt(huidigeScore[1]) + Integer.parseInt(getLijnLaagsteScore[1]);
+                System.out.println( Integer.parseInt(huidigeScore[1])+ " + " +Integer.parseInt(getLijnLaagsteScore[1]) +" = "+mySum );
+                if (Integer.parseInt(huidigeScore[1]) < Integer.parseInt(getLijnLaagsteScore[1])) {
+                    lijnLaagsteScore = counter;
+                    System.out.println("New lowest score: "+counter);
+                }
+                counter++;
+            }
+            System.out.println("FINAL lowest score: "+lijnLaagsteScore);
+            counter = 0;
+            for (String huidigeRegel : mijnRegelsTekst) {
+                String[] huidigeScore = new String[3];
+                huidigeScore = huidigeRegel.split(";");
+                if (lijnLaagsteScore == counter) {
+                    Duration myDuration = Duration.between(beginTijd,LocalTime.now());
+                    myNewText += String.format("%s;%d;%d%n", bestPlayerOfThisGame.getNaam(), eindScore.get(bestPlayerOfThisGame), 1);
+                } else {
+                    myNewText += String.format("%s%n",huidigeRegel);
+                }
+                counter++;
+            }
+
+            myFile.delete();
+            myFile.createNewFile();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(myFile, true));
+            writer.append(myNewText);
+            writer.close();
+        } catch (IOException ex) {
+            System.out.println("Could not read file because: " + ex.getCause());
+        }
+
     }
 
     protected ArrayList<Speler> spelers = new ArrayList<Speler>();
 
-    public void voegSpelerToe(Speler speler){
+    public void voegSpelerToe(Speler speler) {
         this.spelers.add(speler);
     }
 
@@ -68,93 +123,92 @@ public class Spel {
         return spelers;
     }
 
-    public void maakSpelers(){
+    public void maakSpelers() {
         Rol rolDefined = null;
         Scanner myKeyboard = new Scanner(System.in);
         //Random myRandom = new Random();
         int rolKeuze = 0;
         System.out.print("Met hoeveel spelers wilt u spelen: ");
         int aantalSpelers = myKeyboard.nextInt();
-        if(aantalSpelers > 4){
+        if (aantalSpelers > 4) {
             aantalSpelers = 4;
             System.out.println("Je mag met max. 4 spelers spelen");
-        }
-        else if(aantalSpelers < 2){
+        } else if (aantalSpelers < 2) {
             aantalSpelers = 2;
             System.out.println("Je mag met min. 2 spelers spelen");
         }
-        for(int i = 1;i<=aantalSpelers;i++){
-            System.out.print("Naam speler "+i+": ");
+        for (int i = 1; i <= aantalSpelers; i++) {
+            System.out.print("Naam speler " + i + ": ");
             String naam = myKeyboard.next();
-            do{
+            do {
                 System.out.print("Welke rol wilt u?\n- Druk op '1' voor concurrent.\n- Druk op '2' voor monopolist\nUw keuze: ");
                 rolKeuze = myKeyboard.nextInt();
-                if(rolKeuze == 1){
+                if (rolKeuze == 1) {
                     rolDefined = Rol.CONCURRENT;
-                } else if(rolKeuze == 2) {
+                } else if (rolKeuze == 2) {
                     rolDefined = Rol.MONOPOLIST;
                 } else {
                     System.out.println("Foute keuze");
                 }
-            }while(rolKeuze < 1 || rolKeuze > 2);
+            } while (rolKeuze < 1 || rolKeuze > 2);
             Speler speler = new Speler(naam, rolDefined);
             voegSpelerToe(speler);
-            for(int x = 0;x<2;x++) System.out.println("\n");
+            for (int x = 0; x < 2; x++) System.out.println("\n");
         }
     }
 
-    public void koopGrond(Speler speler, Grond grond){
+    public void koopGrond(Speler speler, Grond grond) {
         speler.setScore(speler.getScore() - grond.getPrijs());
         grond.setGekocht(true);
         speler.voegBezittingToe(grond);
     }
 
-    public Vak getVak(int positie){
+    public Vak getVak(int positie) {
         return bord[positie];
     }
 
-    public void maakSpelers(String naam1, Rol rol1, String naam2, Rol rol2, String naam3, Rol rol3, String naam4, Rol rol4){
+    public void maakSpelers(String naam1, Rol rol1, String naam2, Rol rol2, String naam3, Rol rol3, String naam4, Rol rol4) {
         int aantalSpelers = 0;
-        if(naam1.length() > 0){
-            if(rol1 != Rol.MONOPOLIST && rol1 != Rol.CONCURRENT){
+        if (naam1.length() > 0) {
+            if (rol1 != Rol.MONOPOLIST && rol1 != Rol.CONCURRENT) {
                 rol1 = Rol.MONOPOLIST;
             }
             Speler speler = new Speler(naam1, rol1);
             voegSpelerToe(speler);
             aantalSpelers++;
-            System.out.println("1 ingevuld: "+naam1+" "+rol1);
+            System.out.println("1 ingevuld: " + naam1 + " " + rol1);
         }
-        if(naam2.length() > 0){
-            if(rol2 != Rol.MONOPOLIST && rol2 != Rol.CONCURRENT){
+        if (naam2.length() > 0) {
+            if (rol2 != Rol.MONOPOLIST && rol2 != Rol.CONCURRENT) {
                 rol2 = Rol.MONOPOLIST;
             }
             Speler speler = new Speler(naam2, rol2);
             voegSpelerToe(speler);
             aantalSpelers++;
-            System.out.println("2 ingevuld: "+naam2+" "+rol2);
+            System.out.println("2 ingevuld: " + naam2 + " " + rol2);
         }
-        if(naam3.length() > 0){
-            if(rol3 != Rol.MONOPOLIST && rol3 != Rol.CONCURRENT){
+        if (naam3.length() > 0) {
+            if (rol3 != Rol.MONOPOLIST && rol3 != Rol.CONCURRENT) {
                 rol3 = Rol.MONOPOLIST;
             }
             Speler speler = new Speler(naam3, rol3);
             voegSpelerToe(speler);
             aantalSpelers++;
-            System.out.println("3 ingevuld: "+naam3+" "+rol3);
+            System.out.println("3 ingevuld: " + naam3 + " " + rol3);
         }
-        if(naam4.length() > 0){
-            if(rol4 != Rol.MONOPOLIST && rol4 != Rol.CONCURRENT){
+        if (naam4.length() > 0) {
+            if (rol4 != Rol.MONOPOLIST && rol4 != Rol.CONCURRENT) {
                 rol4 = Rol.MONOPOLIST;
             }
             Speler speler = new Speler(naam4, rol4);
             voegSpelerToe(speler);
             aantalSpelers++;
-            System.out.println("4 ingevuld: "+naam4+" "+rol4);
+            System.out.println("4 ingevuld: " + naam4 + " " + rol4);
         }
 
-        while(aantalSpelers++ < 2){
+        while (aantalSpelers++ < 2) {
             System.out.println("Te weinig spelers, extra speler automatisch aangemaakt!");
-            Speler speler = new Speler("Guest"+aantalSpelers+"_"+(generator.nextInt(8999)+1000), Rol.MONOPOLIST);
+            Speler speler = new Speler("Guest" + aantalSpelers + "_" + (generator.nextInt(8999) + 1000), Rol.MONOPOLIST);
             voegSpelerToe(speler);
         }
     }
@@ -203,162 +257,159 @@ public class Spel {
             }
         }*/
         for (int i = 0; i < bord.length; i++) {
-            if(i <= 9) {
-                if(i == 3) grondXCoords = 464;
+            if (i <= 9) {
+                if (i == 3) grondXCoords = 464;
                 grondXCoords -= 66;
                 grondYCoords = 650;
-            } else if(i <= 20){
-                if(i == 10) grondYCoords = 580+60;
+            } else if (i <= 20) {
+                if (i == 10) grondYCoords = 580 + 60;
                 grondXCoords = 40;
                 grondYCoords -= 66;
-            } else if(i <= 30){
-                if(i == 21) grondXCoords = 64;
+            } else if (i <= 30) {
+                if (i == 21) grondXCoords = 64;
                 grondXCoords += 66;
                 grondYCoords = 35;
-            } else if(i <= 40){
+            } else if (i <= 40) {
                 grondXCoords = 760;
                 grondYCoords += 66;
             }
             if (bord[i] == null) {
-                bord[i] = new Grond(prijs,i,grondXCoords,grondYCoords);
+                bord[i] = new Grond(prijs, i, grondXCoords, grondYCoords);
                 prijs += 15;
             }
         }
     }
 
-    public int opFonds(int newPos, Speler speler){
-        Fonds fonds = (Fonds)this.bord[newPos];
-        int prijs = (generator.nextInt(4)+1)*100;
-        speler.setScore(speler.getScore()+prijs);
+    public int opFonds(int newPos, Speler speler) {
+        Fonds fonds = (Fonds) this.bord[newPos];
+        int prijs = (generator.nextInt(4) + 1) * 100;
+        speler.setScore(speler.getScore() + prijs);
         return prijs;
     }
 
-    public int voorbijStart(Speler speler, int vorigePositie, int nieuwePositie){
-        if(nieuwePositie == 0){
+    public int voorbijStart(Speler speler, int vorigePositie, int nieuwePositie) {
+        if (nieuwePositie == 0) {
             return 400;
-        } else if(nieuwePositie < vorigePositie){
-            return 200;
+        } else if (nieuwePositie < vorigePositie) {
+            //return 200;
+            return -20000;
         }
         return 0;
     }
 
-    public String boeteBetalen(Speler speler, Grond vak){
+    public String boeteBetalen(Speler speler, Grond vak) {
         int boete;
         Speler deEigenaar = null;
-        for(Speler eigenaar : spelers){
-            if(eigenaar.toonBezittingen().contains(vak.getNaam())){
+        for (Speler eigenaar : spelers) {
+            if (eigenaar.toonBezittingen().contains(vak.getNaam())) {
                 deEigenaar = eigenaar;
             }
         }
 
-        if(vak.isHuisGebouwd() && deEigenaar.getRol() == Rol.MONOPOLIST){
-            boete = (int)(vak.getPrijs()*0.7);
-        } else if(vak.isHuisGebouwd()){
-            boete = (int)(vak.getPrijs()*0.5);
+        if (vak.isHuisGebouwd() && deEigenaar.getRol() == Rol.MONOPOLIST) {
+            boete = (int) (vak.getPrijs() * 0.7);
+        } else if (vak.isHuisGebouwd()) {
+            boete = (int) (vak.getPrijs() * 0.5);
         } else {
-            boete = (int)(vak.getPrijs()*0.3);
+            boete = (int) (vak.getPrijs() * 0.3);
         }
-        speler.setScore(speler.getScore()-boete);
-        deEigenaar.setScore(deEigenaar.getScore()+boete);
-        return speler.getNaam() + " heeft €"+boete+" boete moeten betalen aan "+deEigenaar.getNaam();
+        speler.setScore(speler.getScore() - boete);
+        deEigenaar.setScore(deEigenaar.getScore() + boete);
+        return speler.getNaam() + " heeft €" + boete + " boete moeten betalen aan " + deEigenaar.getNaam();
     }
 
     //moet herbekeken worden
-    public void opGrond(int newPos, Speler speler){
-        Grond vak = (Grond)this.bord[newPos];
-        if(!vak.isGekocht() && vak.getPrijs() <= speler.getScore()){
-            System.out.print("**Druk op '1' om de grond '"+vak.getNaam()+"' (€"+vak.getPrijs()+") te kopen. Druk op 0 om uw beurt te beëindigen. ");
-            if(myKeyboard.nextInt() == 1){
+    public void opGrond(int newPos, Speler speler) {
+        Grond vak = (Grond) this.bord[newPos];
+        if (!vak.isGekocht() && vak.getPrijs() <= speler.getScore()) {
+            System.out.print("**Druk op '1' om de grond '" + vak.getNaam() + "' (€" + vak.getPrijs() + ") te kopen. Druk op 0 om uw beurt te beëindigen. ");
+            if (myKeyboard.nextInt() == 1) {
                 speler.setScore(speler.getScore() - vak.getPrijs());
                 vak.setGekocht(true);
                 speler.voegBezittingToe(vak);
                 System.out.println(speler.toonBezittingen());
             }
-        } else if(vak.isGekocht() && (vak.getPrijs()*0.3)+1 <= speler.getScore()){
-            int boete = (int)(vak.getPrijs()*0.3);
-            speler.setScore(speler.getScore()-boete);
-            System.out.println("** U hebt €"+boete+" moeten betalen voor uw bezoek op de "+vak.getNaam()+".");
-            for(Speler eigenaar : spelers){
-                if(eigenaar.toonBezittingen().contains(vak.getNaam())){
-                    eigenaar.setScore(eigenaar.getScore()+boete);
-                    System.out.println(eigenaar.getNaam()+" zijn balens is met €"+boete+" gestegen.");
+        } else if (vak.isGekocht() && (vak.getPrijs() * 0.3) + 1 <= speler.getScore()) {
+            int boete = (int) (vak.getPrijs() * 0.3);
+            speler.setScore(speler.getScore() - boete);
+            System.out.println("** U hebt €" + boete + " moeten betalen voor uw bezoek op de " + vak.getNaam() + ".");
+            for (Speler eigenaar : spelers) {
+                if (eigenaar.toonBezittingen().contains(vak.getNaam())) {
+                    eigenaar.setScore(eigenaar.getScore() + boete);
+                    System.out.println(eigenaar.getNaam() + " zijn balens is met €" + boete + " gestegen.");
                 }
             }
-            System.out.println("Uw nieuwe balans: €"+speler.getScore());
-        } else if(speler.getScore() < 0) {
+            System.out.println("Uw nieuwe balans: €" + speler.getScore());
+        } else if (speler.getScore() < 0) {
             einde = true;
         }
     }
 
-    public int opKans(int newPos, Speler speler){
-        Kans kans = (Kans)this.bord[newPos];
+    public int opKans(int newPos, Speler speler) {
+        Kans kans = (Kans) this.bord[newPos];
         int prijs = 0;
-        while(prijs == 0) prijs = ((generator.nextInt(8)-4))*100;
-        speler.setScore(speler.getScore()+prijs);
+        while (prijs == 0) prijs = ((generator.nextInt(8) - 4)) * 100;
+        speler.setScore(speler.getScore() + prijs);
         return prijs;
     }
 
-    public void opStart(Speler speler){
-        speler.setScore(speler.getScore()+100);
-    }
-
-    public String opWelkVak(int newPos, Speler speler){
-        if(this.bord[newPos].getSoort() == "start"){
+    public String opWelkVak(int newPos, Speler speler) {
+        if (this.bord[newPos].getSoort() == "start") {
             return "start";
-        } else if(this.bord[newPos].getSoort() == "kans"){
+        } else if (this.bord[newPos].getSoort() == "kans") {
             return "kans";
-        } else if(this.bord[newPos].getSoort() == "fonds"){
+        } else if (this.bord[newPos].getSoort() == "fonds") {
             return "fonds";
-        } else if(this.bord[newPos].getSoort() == "vrijparkeren"){
-            speler.setScore(speler.getScore()+100);
+        } else if (this.bord[newPos].getSoort() == "vrijparkeren") {
+            speler.setScore(speler.getScore() + 100);
             return "vrijparkeren";
-        } else if(this.bord[newPos].getSoort() == "politie"){
+        } else if (this.bord[newPos].getSoort() == "politie") {
             int nodigePositie = 10;
-            for(int i = 0;i<bord.length;i++){
-                if(bord[i].getSoort().equals("gevangenis")){
+            for (int i = 0; i < bord.length; i++) {
+                if (bord[i].getSoort().equals("gevangenis")) {
                     nodigePositie = i;
                     break;
                 }
             }
             speler.setPositie(nodigePositie);
-            speler.setScore(speler.getScore()-200);
+            speler.setScore(speler.getScore() - 200);
             return "politie";
         } else {
             return "undefined";
         }
     }
 
-    public int dobbelNewPos(Speler speler){
-        int newPos = speler.getPositie() + (generator.nextInt(5)+1)*2;
-        if(newPos >= 39){
+    public int dobbelNewPos(Speler speler) {
+        int newPos = speler.getPositie() + (generator.nextInt(5) + 1) * 2;
+        if (newPos >= 39) {
             newPos -= 39;
         }
         return newPos;
     }
 
-    public int dobbelNewPos(){
-        int newPos = (generator.nextInt(5)+1)*2;
+    public int dobbelNewPos() {
+        int newPos = (generator.nextInt(5) + 1) * 2;
         return newPos;
     }
 
     public void startSpel() throws InterruptedException {
         System.out.println("Spel begint...");
         int counter = 0;
-        while(!einde){
+        while (!einde) {
             counter++;
-            for(int i = 0;i<spelers.size(); i++){
+            for (int i = 0; i < spelers.size(); i++) {
                 spelerHeeftGedobbeld = false;
                 Speler speler = spelers.get(i);
-                System.out.println("\n-"+counter+"--------------------");
-                System.out.println("Beurt aan "+speler.getNaam()+", uw vorige positie: "+speler.getPositie());
+                System.out.println("\n-" + counter + "--------------------");
+                System.out.println("Beurt aan " + speler.getNaam() + ", uw vorige positie: " + speler.getPositie());
 
 
                 int newPos = dobbelNewPos(speler);
                 speler.setPositie(newPos);
                 spelerHeeftGedobbeld = true;
 
-                System.out.println("Uw nieuwe positie is: "+newPos);
-                System.out.println("U hebt momenteel €"+speler.getScore());
+                System.out.println("Uw nieuwe positie is: " + newPos);
+                System.out.println("U hebt momenteel €" + speler.getScore());
 
                 opWelkVak(newPos, speler);
 
@@ -368,7 +419,7 @@ public class Spel {
         System.out.println("EINDE");
     }
 
-    public void start(){
+    public void start() {
 
     }
 }

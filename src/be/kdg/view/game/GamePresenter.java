@@ -11,6 +11,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
+import java.io.IOException;
+
 
 public class GamePresenter {
     private GameView view;
@@ -131,8 +133,6 @@ public class GamePresenter {
                                         view.voegToeAanConsoleBox(spel.boeteBetalen(mySpeler, huidigVak));
                                     } else if(!eigenaarIsMonopolist && huidigVak.isGekocht() && huidigVak.isHuisGebouwd() && (huidigVak.getPrijs()*0.5)+1 <= mySpeler.getScore()){
                                         view.voegToeAanConsoleBox(spel.boeteBetalen(mySpeler, huidigVak));
-                                    } else {
-                                        view.voegToeAanConsoleBox(mySpeler.getNaam() + " kan boete niet betalen!");
                                     }
                                 }
                             }
@@ -162,6 +162,19 @@ public class GamePresenter {
                     }
                     view.updateGetTaNaamBeurt(spel.getSpelers().get(i));
                     view.toggleBeurtBtn(true);
+
+                    if(mySpeler.getScore()<0){
+                        view.toggleDobbelBtn(false);
+                        view.toggleBeurtBtn(false);
+                        view.voegToeAanConsoleBox(mySpeler.getNaam() + " kan boete niet betalen.");
+                        view.voegToeAanConsoleBox("SPEL IS BEËINDIGD");
+                        try {
+                            spel.setEinde();
+                        } catch (IOException e) {
+                            System.out.println("Could not execute EINDE");
+                        }
+                    }
+
                 } else {
                     view.voegToeAanConsoleBox("Geef de beurt eerst aan de volgende!");
                     view.toggleBeurtBtn(true);
