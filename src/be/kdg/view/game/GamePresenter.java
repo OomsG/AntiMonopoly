@@ -9,6 +9,7 @@ import be.kdg.spelLogica.vak.Grond;
 import be.kdg.spelLogica.vak.Kans;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
@@ -173,10 +174,20 @@ public class GamePresenter {
                         try {
                             if(spel.setEinde()==0){
                                 view.voegToeAanConsoleBox("Kon highscores bestand niet updaten");
+                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setHeaderText("");
+                                alert.setContentText("Kon highscores bestand niet updaten.");
+                                alert.setTitle("Error");
+                                alert.showAndWait();
                             }
                         } catch (IOException e) {
                             System.out.println("Could not execute EINDE");
                             view.voegToeAanConsoleBox("Kon highscores bestand niet updaten");
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setHeaderText("");
+                            alert.setContentText("Kon highscores bestand niet updaten.");
+                            alert.setTitle("Error");
+                            alert.showAndWait();
                         }
                     }
 
