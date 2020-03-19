@@ -274,6 +274,17 @@ public class Spel {
         } else if(this.bord[newPos].getSoort() == "vrijparkeren"){
             speler.setScore(speler.getScore()+100);
             return "vrijparkeren";
+        } else if(this.bord[newPos].getSoort() == "politie"){
+            int nodigePositie = 10;
+            for(int i = 0;i<bord.length;i++){
+                if(bord[i].getSoort().equals("gevangenis")){
+                    nodigePositie = i;
+                    break;
+                }
+            }
+            speler.setPositie(nodigePositie);
+            speler.setScore(speler.getScore()-200);
+            return "politie";
         } else {
             return "undefined";
         }

@@ -156,6 +156,8 @@ public class GamePresenter {
                             view.voegToeAanConsoleBox(msgFinal);
                         } else if(vakSoort == "vrijparkeren"){
                             view.voegToeAanConsoleBox(mySpeler.getNaam()+" heeft €100 gekregen omdat hij op vrij parkeren is beland!");
+                        } else if(vakSoort == "politie"){
+                            view.voegToeAanConsoleBox(mySpeler.getNaam()+" is naar de gevangenis gestuurd en heeft €200 moeten betalen om vrij te komen!");
                         }
                     }
                     view.updateGetTaNaamBeurt(spel.getSpelers().get(i));
