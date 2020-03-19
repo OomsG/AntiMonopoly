@@ -19,6 +19,8 @@ public class Spel {
     private boolean einde = false;
     private boolean spelerHeeftGedobbeld;
     private LocalTime beginTijd;
+    private LocalTime eindeTijd;
+    private LocalTime totaalTijd;
     Vak[] bord = new Vak[40];
 
     public void setEinde(boolean einde) {
