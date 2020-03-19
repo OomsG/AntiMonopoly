@@ -293,8 +293,7 @@ public class Spel {
         if (nieuwePositie == 0) {
             return 400;
         } else if (nieuwePositie < vorigePositie) {
-            //return 200;
-            return -20000;
+            return 200;
         }
         return 0;
     }
