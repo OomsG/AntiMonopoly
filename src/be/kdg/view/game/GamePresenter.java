@@ -166,8 +166,10 @@ public class GamePresenter {
                     if(mySpeler.getScore()<0){
                         view.toggleDobbelBtn(false);
                         view.toggleBeurtBtn(false);
+                        view.getTainstructiesConsoleBox().setText("---------------------------");
                         view.voegToeAanConsoleBox(mySpeler.getNaam() + " kan boete niet betalen.");
                         view.voegToeAanConsoleBox("SPEL IS BEËINDIGD");
+                        view.voegToeAanConsoleBox("---------------------------");
                         try {
                             spel.setEinde();
                         } catch (IOException e) {

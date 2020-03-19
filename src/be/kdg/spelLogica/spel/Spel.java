@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -95,7 +96,8 @@ public class Spel {
                 huidigeScore = huidigeRegel.split(";");
                 if (lijnLaagsteScore == counter) {
                     Duration myDuration = Duration.between(beginTijd,LocalTime.now());
-                    myNewText += String.format("%s;%d;%d%n", bestPlayerOfThisGame.getNaam(), eindScore.get(bestPlayerOfThisGame), 1);
+                    String newDuration = LocalTime.MIDNIGHT.plus(myDuration).format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+                    myNewText += String.format("%s;%d;%s%n", bestPlayerOfThisGame.getNaam(), eindScore.get(bestPlayerOfThisGame), newDuration);
                 } else {
                     myNewText += String.format("%s%n",huidigeRegel);
                 }
