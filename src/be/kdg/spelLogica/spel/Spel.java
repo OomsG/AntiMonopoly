@@ -6,8 +6,12 @@ import be.kdg.spelLogica.vak.*;
 import be.kdg.view.game.GamePresenter;
 import be.kdg.view.game.GameView;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -19,6 +23,24 @@ public class Spel {
     private boolean spelerHeeftGedobbeld;
     private LocalTime beginTijd;
     Vak[] bord = new Vak[40];
+
+    public void setEinde(boolean einde) throws IOException {
+        if(einde){
+            this.einde = true;
+            HashMap<Speler,Integer> eindScore = new HashMap<>();
+            for(Speler speler : spelers){
+                int totaleScore = speler.getScore();
+                for(Grond grond : speler.getBezittingen()){
+                    totaleScore += grond.getPrijs();
+                    if(grond.isHuisGebouwd()){
+                        totaleScore += grond.getPrijs()*1.2;
+                    }
+                }
+                eindScore.put(speler,totaleScore);
+            }
+
+        }
+    }
 
     protected ArrayList<Speler> spelers = new ArrayList<Speler>();
 
