@@ -63,11 +63,11 @@ public class Spel {
             int lijnLaagsteScore = 0;
             if (mijnRegelsTekst.size() == 0) {
                 System.out.println("File has no content");
-                String setStartText = "naam;0;tijd;rol\n" +
-                        "naam;0;tijd;rol\n" +
-                        "naam;0;tijd;rol\n" +
-                        "naam;0;tijd;rol\n" +
-                        "naam;0;tijd;rol\n";
+                String setStartText = "naamVanHighScore5;-1;tijd;rol\n" +
+                        "naamVanHighScore4;-2;tijd;rol\n" +
+                        "naamVanHighScore3;-3;tijd;rol\n" +
+                        "naamVanHighScore2;-4;tijd;rol\n" +
+                        "naamVanHighScore1;-5;tijd;rol\n";
 
                 BufferedWriter writer = new BufferedWriter(new FileWriter(myFile, true));
                 writer.append(setStartText);
