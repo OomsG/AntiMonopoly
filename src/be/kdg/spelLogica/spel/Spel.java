@@ -63,11 +63,11 @@ public class Spel {
             int lijnLaagsteScore = 0;
             if (mijnRegelsTekst.size() == 0) {
                 System.out.println("File has no content");
-                String setStartText = "0;1;0\n" +
-                        "0;2;0\n" +
-                        "0;3;0\n" +
-                        "0;4;0\n" +
-                        "0;5;0\n";
+                String setStartText = "naam;0;tijd;rol\n" +
+                        "naam;0;tijd;rol\n" +
+                        "naam;0;tijd;rol\n" +
+                        "naam;0;tijd;rol\n" +
+                        "naam;0;tijd;rol\n";
 
                 BufferedWriter writer = new BufferedWriter(new FileWriter(myFile, true));
                 writer.append(setStartText);
@@ -78,7 +78,7 @@ public class Spel {
             int counter = 0;
             for (String huidigeRegel : mijnRegelsTekst) {
                 System.out.println("Line "+counter+": "+huidigeRegel);
-                String[] huidigeScore = new String[3];
+                String[] huidigeScore = new String[4];
                 huidigeScore = huidigeRegel.split(";");
                 String[] getLijnLaagsteScore = mijnRegelsTekst.get(lijnLaagsteScore).split(";");
                 int mySum = Integer.parseInt(huidigeScore[1]) + Integer.parseInt(getLijnLaagsteScore[1]);
@@ -92,12 +92,12 @@ public class Spel {
             System.out.println("FINAL lowest score: "+lijnLaagsteScore);
             counter = 0;
             for (String huidigeRegel : mijnRegelsTekst) {
-                String[] huidigeScore = new String[3];
+                String[] huidigeScore = new String[4];
                 huidigeScore = huidigeRegel.split(";");
                 if (lijnLaagsteScore == counter) {
                     Duration myDuration = Duration.between(beginTijd,LocalTime.now());
                     String newDuration = LocalTime.MIDNIGHT.plus(myDuration).format(DateTimeFormatter.ofPattern("HH:mm:ss"));
-                    myNewText += String.format("%s;%d;%s%n", bestPlayerOfThisGame.getNaam(), eindScore.get(bestPlayerOfThisGame), newDuration);
+                    myNewText += String.format("%s;%d;%s;%s%n", bestPlayerOfThisGame.getNaam(), eindScore.get(bestPlayerOfThisGame), newDuration,bestPlayerOfThisGame.getRol().toString());
                 } else {
                     myNewText += String.format("%s%n",huidigeRegel);
                 }
