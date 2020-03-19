@@ -3,30 +3,21 @@ package be.kdg.spelLogica.spel;
 import be.kdg.spelLogica.speler.Rol;
 import be.kdg.spelLogica.speler.Speler;
 import be.kdg.spelLogica.vak.*;
-import be.kdg.view.game.GamePresenter;
-import be.kdg.view.game.GameView;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.time.Duration;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 public class Spel {
-    private Scanner myKeyboard = new Scanner(System.in);
     private Random generator = new Random();
-    private boolean einde = false;
-    private boolean spelerHeeftGedobbeld;
     private LocalTime beginTijd = LocalTime.now();
     Vak[] bord = new Vak[40];
 
     public void setEinde() throws IOException {
-        einde = true;
         System.out.println("************************EINDE************************");
-        this.einde = true;
         Speler bestPlayerOfThisGame = null;
         HashMap<Speler, Integer> eindScore = new HashMap<>();
         for (Speler speler : spelers) {
@@ -92,8 +83,6 @@ public class Spel {
             System.out.println("FINAL lowest score: "+lijnLaagsteScore);
             counter = 0;
             for (String huidigeRegel : mijnRegelsTekst) {
-                String[] huidigeScore = new String[4];
-                huidigeScore = huidigeRegel.split(";");
                 if (lijnLaagsteScore == counter) {
                     Duration myDuration = Duration.between(beginTijd,LocalTime.now());
                     String newDuration = LocalTime.MIDNIGHT.plus(myDuration).format(DateTimeFormatter.ofPattern("HH:mm:ss"));
@@ -123,40 +112,6 @@ public class Spel {
 
     public ArrayList<Speler> getSpelers() {
         return spelers;
-    }
-
-    public void maakSpelers() {
-        Rol rolDefined = null;
-        Scanner myKeyboard = new Scanner(System.in);
-        //Random myRandom = new Random();
-        int rolKeuze = 0;
-        System.out.print("Met hoeveel spelers wilt u spelen: ");
-        int aantalSpelers = myKeyboard.nextInt();
-        if (aantalSpelers > 4) {
-            aantalSpelers = 4;
-            System.out.println("Je mag met max. 4 spelers spelen");
-        } else if (aantalSpelers < 2) {
-            aantalSpelers = 2;
-            System.out.println("Je mag met min. 2 spelers spelen");
-        }
-        for (int i = 1; i <= aantalSpelers; i++) {
-            System.out.print("Naam speler " + i + ": ");
-            String naam = myKeyboard.next();
-            do {
-                System.out.print("Welke rol wilt u?\n- Druk op '1' voor concurrent.\n- Druk op '2' voor monopolist\nUw keuze: ");
-                rolKeuze = myKeyboard.nextInt();
-                if (rolKeuze == 1) {
-                    rolDefined = Rol.CONCURRENT;
-                } else if (rolKeuze == 2) {
-                    rolDefined = Rol.MONOPOLIST;
-                } else {
-                    System.out.println("Foute keuze");
-                }
-            } while (rolKeuze < 1 || rolKeuze > 2);
-            Speler speler = new Speler(naam, rolDefined);
-            voegSpelerToe(speler);
-            for (int x = 0; x < 2; x++) System.out.println("\n");
-        }
     }
 
     public void koopGrond(Speler speler, Grond grond) {
@@ -319,33 +274,6 @@ public class Spel {
         return speler.getNaam() + " heeft €" + boete + " boete moeten betalen aan " + deEigenaar.getNaam();
     }
 
-    //moet herbekeken worden
-    public void opGrond(int newPos, Speler speler) {
-        Grond vak = (Grond) this.bord[newPos];
-        if (!vak.isGekocht() && vak.getPrijs() <= speler.getScore()) {
-            System.out.print("**Druk op '1' om de grond '" + vak.getNaam() + "' (€" + vak.getPrijs() + ") te kopen. Druk op 0 om uw beurt te beëindigen. ");
-            if (myKeyboard.nextInt() == 1) {
-                speler.setScore(speler.getScore() - vak.getPrijs());
-                vak.setGekocht(true);
-                speler.voegBezittingToe(vak);
-                System.out.println(speler.toonBezittingen());
-            }
-        } else if (vak.isGekocht() && (vak.getPrijs() * 0.3) + 1 <= speler.getScore()) {
-            int boete = (int) (vak.getPrijs() * 0.3);
-            speler.setScore(speler.getScore() - boete);
-            System.out.println("** U hebt €" + boete + " moeten betalen voor uw bezoek op de " + vak.getNaam() + ".");
-            for (Speler eigenaar : spelers) {
-                if (eigenaar.toonBezittingen().contains(vak.getNaam())) {
-                    eigenaar.setScore(eigenaar.getScore() + boete);
-                    System.out.println(eigenaar.getNaam() + " zijn balens is met €" + boete + " gestegen.");
-                }
-            }
-            System.out.println("Uw nieuwe balans: €" + speler.getScore());
-        } else if (speler.getScore() < 0) {
-            einde = true;
-        }
-    }
-
     public int opKans(int newPos, Speler speler) {
         Kans kans = (Kans) this.bord[newPos];
         int prijs = 0;
@@ -380,47 +308,8 @@ public class Spel {
         }
     }
 
-    public int dobbelNewPos(Speler speler) {
-        int newPos = speler.getPositie() + (generator.nextInt(5) + 1) * 2;
-        if (newPos >= 39) {
-            newPos -= 39;
-        }
-        return newPos;
-    }
-
     public int dobbelNewPos() {
         int newPos = (generator.nextInt(5) + 1) * 2;
         return newPos;
-    }
-
-    public void startSpel() throws InterruptedException {
-        System.out.println("Spel begint...");
-        int counter = 0;
-        while (!einde) {
-            counter++;
-            for (int i = 0; i < spelers.size(); i++) {
-                spelerHeeftGedobbeld = false;
-                Speler speler = spelers.get(i);
-                System.out.println("\n-" + counter + "--------------------");
-                System.out.println("Beurt aan " + speler.getNaam() + ", uw vorige positie: " + speler.getPositie());
-
-
-                int newPos = dobbelNewPos(speler);
-                speler.setPositie(newPos);
-                spelerHeeftGedobbeld = true;
-
-                System.out.println("Uw nieuwe positie is: " + newPos);
-                System.out.println("U hebt momenteel €" + speler.getScore());
-
-                opWelkVak(newPos, speler);
-
-            }
-            TimeUnit.MILLISECONDS.sleep(400);
-        }
-        System.out.println("EINDE");
-    }
-
-    public void start() {
-
     }
 }
