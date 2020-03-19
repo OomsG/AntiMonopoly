@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Grond implements Vak {
-    protected String soort = "grond";
+    final protected String soort = "grond";
     private boolean gekocht = false;
     private boolean huisGebouwd = false;
-    private int prijs;
-    private String naam;
-    private Random generator = new Random();
+    final private int prijs;
+    final private String naam;
+    final private Random generator = new Random();
     private double x;
     private double y;
 

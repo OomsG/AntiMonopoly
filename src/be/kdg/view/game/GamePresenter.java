@@ -15,8 +15,8 @@ import java.io.IOException;
 
 
 public class GamePresenter {
-    private GameView view;
-    private Spel spel;
+    final private GameView view;
+    final private Spel spel;
     private boolean heeftGedobbeld = true;
     private boolean kanGrondKopen = false;
     private Grond huidigeGrond = null;

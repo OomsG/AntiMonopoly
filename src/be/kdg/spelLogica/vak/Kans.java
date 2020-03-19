@@ -3,8 +3,8 @@ package be.kdg.spelLogica.vak;
 import java.util.Random;
 
 public class Kans implements Vak {
-    protected String soort = "kans";
-    private Random generator = new Random();
+    final protected String soort = "kans";
+    final private Random generator = new Random();
     /*protected final double x;
     protected final double y;*/
 

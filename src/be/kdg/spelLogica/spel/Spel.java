@@ -13,7 +13,7 @@ import java.util.*;
 
 public class Spel {
     private Random generator = new Random();
-    private LocalTime beginTijd = LocalTime.now();
+    final private LocalTime beginTijd = LocalTime.now();
     Vak[] bord = new Vak[40];
 
     public int setEinde() throws IOException {

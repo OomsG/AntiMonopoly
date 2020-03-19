@@ -1,7 +1,7 @@
 package be.kdg.spelLogica.vak;
 
 public class Start implements Vak {
-    protected String soort = "start";
+    final protected String soort = "start";
 
     public void getLocatie() {
 

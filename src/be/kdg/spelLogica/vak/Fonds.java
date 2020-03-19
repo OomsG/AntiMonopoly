@@ -3,8 +3,8 @@ package be.kdg.spelLogica.vak;
 import java.util.Random;
 
 public class Fonds implements Vak {
-    protected String soort = "fonds";
-    private Random generator = new Random();
+    final protected String soort = "fonds";
+    final private Random generator = new Random();
 
     private String[] messages = {
             "%s vindt een briefje van €%d op straat.",
