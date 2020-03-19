@@ -10,10 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class Spel {
@@ -24,7 +21,7 @@ public class Spel {
     private LocalTime beginTijd;
     Vak[] bord = new Vak[40];
 
-    public void setEinde(boolean einde) throws IOException {
+    public void setEinde(boolean einde) {
         if(einde){
             this.einde = true;
             HashMap<Speler,Integer> eindScore = new HashMap<>();
@@ -38,7 +35,24 @@ public class Spel {
                 }
                 eindScore.put(speler,totaleScore);
             }
+            String path = "C:\\MonopolyScores";
+            String fileName = "scores.csv";
+            File myDir = new File(path);
+            File myFile = new File(path+"\\"+fileName);
+            if(!myDir.exists()){
+                myDir.mkdir();
+            }
+            try {
+                List<String> mijnRegelsTekst = Files.readAllLines(myFile.toPath());
+                for(String huidigeRegel : mijnRegelsTekst){
+                    String[] huidigeScore = new String[2];
+                    huidigeScore = huidigeRegel.split(";");
 
+
+                }
+            } catch(IOException ex){
+                System.out.println("Could not read file because: "+ex.getCause());
+            }
         }
     }
 
