@@ -171,9 +171,12 @@ public class GamePresenter {
                         view.voegToeAanConsoleBox("SPEL IS BEËINDIGD");
                         view.voegToeAanConsoleBox("---------------------------");
                         try {
-                            spel.setEinde();
+                            if(spel.setEinde()==0){
+                                view.voegToeAanConsoleBox("Kon highscores bestand niet updaten");
+                            }
                         } catch (IOException e) {
                             System.out.println("Could not execute EINDE");
+                            view.voegToeAanConsoleBox("Kon highscores bestand niet updaten");
                         }
                     }
 

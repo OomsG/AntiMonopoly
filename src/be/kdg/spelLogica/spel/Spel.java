@@ -16,7 +16,7 @@ public class Spel {
     private LocalTime beginTijd = LocalTime.now();
     Vak[] bord = new Vak[40];
 
-    public void setEinde() throws IOException {
+    public int setEinde() throws IOException {
         System.out.println("************************EINDE************************");
         Speler bestPlayerOfThisGame = null;
         HashMap<Speler, Integer> eindScore = new HashMap<>();
@@ -98,8 +98,11 @@ public class Spel {
             BufferedWriter writer = new BufferedWriter(new FileWriter(myFile, true));
             writer.append(myNewText);
             writer.close();
+
+            return 1;
         } catch (IOException ex) {
             System.out.println("Could not read file because: " + ex.getCause());
+            return 0;
         }
 
     }
