@@ -62,6 +62,19 @@ public class StartPresenter {
 
             }
         });
+
+        view.getHelpIcon().setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                HelpView helpView = new HelpView();
+                HelpPresenter helpPresenter = new HelpPresenter(spel, helpView);
+
+                view.getScene().setRoot(helpView);
+                helpView.getScene().getWindow().sizeToScene();
+                helpView.setStyle("-fx-background-image: url(achtergrond.jpg); -fx-background-position: center center; -fx-background-size: 1024 950");
+
+            }
+        });
     }
 
 
@@ -84,18 +97,6 @@ public class StartPresenter {
             }
         });
 
-        view.getHelpIcon().setOnMouseReleased(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                HelpView helpView = new HelpView();
-                HelpPresenter helpPresenter = new HelpPresenter(spel, helpView);
-
-                view.getScene().setRoot(helpView);
-                helpView.getScene().getWindow().sizeToScene();
-                helpView.setStyle("-fx-background-image: url(achtergrond.jpg); -fx-background-position: center center; -fx-background-size: 1024 950");
-
-            }
-        });
     }
 
 
