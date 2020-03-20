@@ -19,6 +19,11 @@ public class Grond implements Vak {
         this.prijs = prijs;
         ArrayList<String> straatNamen = new ArrayList<String>();
         straatNamen.add("sander");
+        straatNamen.add("hart");
+        straatNamen.add("hard");
+        straatNamen.add("vis");
+        straatNamen.add("kop");
+        straatNamen.add("dob");
         straatNamen.add("grove");
         straatNamen.add("leopold");
         straatNamen.add("maarten");
@@ -40,12 +45,12 @@ public class Grond implements Vak {
         straatNamen.add("ram");
         straatNamen.add("puts");
         straatNamen.add("amerika");
-        straatNamen.add("");
         straatNamen.add("maria");
         straatNamen.add("duin");
         straatNamen.add("covid");
         straatNamen.add("hong");
         straatNamen.add("kong");
+        straatNamen.add("chauffage");
         straatNamen.add("");
         this.naam = (straatNamen.get(generator.nextInt(straatNamen.size()))+straatNamen.get(generator.nextInt(straatNamen.size()))+"-straat "+nummer).toUpperCase();
     }
