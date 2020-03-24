@@ -26,7 +26,7 @@ public class Grond implements Vak {
         straatNamen.add("dob");
         straatNamen.add("grove");
         straatNamen.add("leopold");
-        straatNamen.add("maarten");
+        //straatNamen.add("maarten");
         straatNamen.add("nathan");
         straatNamen.add("bolivar");
         straatNamen.add("karel");

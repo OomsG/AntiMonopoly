@@ -15,12 +15,16 @@ public class Spel {
     private Random generator = new Random();
     final private LocalTime beginTijd = LocalTime.now();
     Vak[] bord = new Vak[40];
+    protected ArrayList<Speler> spelers = new ArrayList<Speler>();
 
+    //bestand wegschrijven
     public int setEinde() throws IOException {
-        System.out.println("************************EINDE************************");
+        System.out.println("**EINDE**");
         Speler bestPlayerOfThisGame = null;
         HashMap<Speler, Integer> eindScore = new HashMap<>();
+        //beste speler zoeken
         for (Speler speler : spelers) {
+            //totale score zoeken, bezittingen + eind saldo
             int totaleScore = speler.getScore();
             for (Grond grond : speler.getBezittingen()) {
                 totaleScore += grond.getPrijs();
@@ -28,6 +32,8 @@ public class Spel {
                     totaleScore += grond.getPrijs() * 1.2;
                 }
             }
+
+            //beste speler bepalen
             eindScore.put(speler, totaleScore);
             for (Speler spelervegelijker : eindScore.keySet()) {
                 if (eindScore.get(spelervegelijker) >= totaleScore) {
@@ -35,11 +41,13 @@ public class Spel {
                 }
             }
         }
+        //bestand + locatie bepalen
         String path = "C:\\MonopolyScores";
         String fileName = "scores.csv";
         File myDir = new File(path);
         File myFile = new File(path + "\\" + fileName);
 
+        //bestand/map aanmaken indien het nog niet bestaat
         if (!myDir.exists()) {
             myDir.mkdir();
         }
@@ -47,9 +55,13 @@ public class Spel {
             myFile.createNewFile();
         }
         try {
+
+            //bestand lezen
             System.out.println("Trying to read file..");
             List<String> mijnRegelsTekst;
             mijnRegelsTekst = Files.readAllLines(myFile.toPath());
+
+            //als leeg is, maak content
             String myNewText = "";
             int lijnLaagsteScore = 0;
             if (mijnRegelsTekst.size() == 0) {
@@ -66,6 +78,8 @@ public class Spel {
                 System.out.println("Content created");
                 mijnRegelsTekst = Files.readAllLines(myFile.toPath());
             }
+
+            //lijn van slechtste score bepalen
             int counter = 0;
             for (String huidigeRegel : mijnRegelsTekst) {
                 System.out.println("Line "+counter+": "+huidigeRegel);
@@ -81,8 +95,11 @@ public class Spel {
                 counter++;
             }
             System.out.println("FINAL lowest score: "+lijnLaagsteScore);
+
+            //nieuw bestand uitschrijven
             counter = 0;
             for (String huidigeRegel : mijnRegelsTekst) {
+                //als lijn = lijn van laagste score, herschrijf -> Anders, behoud data
                 if (lijnLaagsteScore == counter) {
                     Duration myDuration = Duration.between(beginTijd,LocalTime.now());
                     String newDuration = LocalTime.MIDNIGHT.plus(myDuration).format(DateTimeFormatter.ofPattern("HH:mm:ss"));
@@ -93,6 +110,7 @@ public class Spel {
                 counter++;
             }
 
+            //vorig bestand verwijderen om een nieuw clean bestand te krijgen
             myFile.delete();
             myFile.createNewFile();
             BufferedWriter writer = new BufferedWriter(new FileWriter(myFile, true));
@@ -107,28 +125,33 @@ public class Spel {
 
     }
 
-    protected ArrayList<Speler> spelers = new ArrayList<Speler>();
-
+    //voeg speler toe
     public void voegSpelerToe(Speler speler) {
         this.spelers.add(speler);
     }
 
+    //lijst van spelers teruggeven
     public ArrayList<Speler> getSpelers() {
         return spelers;
     }
 
+    //grond als verkocht zetten en aan speler toewijzen
     public void koopGrond(Speler speler, Grond grond) {
         speler.setScore(speler.getScore() - grond.getPrijs());
         grond.setGekocht(true);
         speler.voegBezittingToe(grond);
     }
 
+    //returnt een Vak door de positie mee te geven
     public Vak getVak(int positie) {
         return bord[positie];
     }
 
+    //Maakt de nodige spelers aan en filtert de lege vakken weg
     public void maakSpelers(String naam1, Rol rol1, String naam2, Rol rol2, String naam3, Rol rol3, String naam4, Rol rol4) {
         int aantalSpelers = 0;
+
+        //voegt spelers toe aan lijst indien de naam is ingevuld,
         if (naam1.length() > 0) {
             if (rol1 != Rol.MONOPOLIST && rol1 != Rol.CONCURRENT) {
                 rol1 = Rol.MONOPOLIST;
@@ -166,6 +189,7 @@ public class Spel {
             System.out.println("4 ingevuld: " + naam4 + " " + rol4);
         }
 
+        //indien te weinig spelers meegegeven, maak zelf spelers aan zodat spel werkt
         while (aantalSpelers++ < 2) {
             System.out.println("Te weinig spelers, extra speler automatisch aangemaakt!");
             Speler speler = new Speler("Guest" + aantalSpelers + "_" + (generator.nextInt(8999) + 1000), Rol.MONOPOLIST);
@@ -173,6 +197,7 @@ public class Spel {
         }
     }
 
+    //Vakken toewijzen aan een positie op het bord
     public void maakBord() {
         bord[0] = new Start();
         bord[2] = new Fonds();
@@ -181,10 +206,10 @@ public class Spel {
         bord[17] = new Fonds();
         bord[20] = new VrijParkeren();
         bord[22] = new Kans();
-        bord[30] = new Politie(); //moet politie zijn
+        bord[30] = new Politie();
         bord[33] = new Fonds();
         bord[36] = new Kans();
-        // elke hoek heeft een vaste waarde
+        // elke speciale vak heeft een vaste positie
 
         int prijs = 100;
         int grondXCoords = 730;
@@ -217,6 +242,8 @@ public class Spel {
             }
         }*/
         for (int i = 0; i < bord.length; i++) {
+
+            //coordinaten geven aan de vakken, zijn uiteindelijk niet gebruikt
             if (i <= 9) {
                 if (i == 3) grondXCoords = 464;
                 grondXCoords -= 66;
@@ -240,6 +267,7 @@ public class Spel {
         }
     }
 
+    //wat er moet gebeuren wanneer je op fonds staat
     public int opFonds(int newPos, Speler speler) {
         Fonds fonds = (Fonds) this.bord[newPos];
         int prijs = (generator.nextInt(4) + 1) * 100;
@@ -247,6 +275,7 @@ public class Spel {
         return prijs;
     }
 
+    //wat er moet gebeuren wanneer je op fonds staat
     public int voorbijStart(Speler speler, int vorigePositie, int nieuwePositie) {
         if (nieuwePositie == 0) {
             return 400;
@@ -256,6 +285,7 @@ public class Spel {
         return 0;
     }
 
+    //speler komt op vak van andere speler, betaal boete adhv prijs Grond
     public String boeteBetalen(Speler speler, Grond vak) {
         int boete;
         Speler deEigenaar = null;
@@ -277,6 +307,7 @@ public class Spel {
         return speler.getNaam() + " heeft €" + boete + " boete moeten betalen aan " + deEigenaar.getNaam();
     }
 
+    //speler komt op kans, return prijs
     public int opKans(int newPos, Speler speler) {
         Kans kans = (Kans) this.bord[newPos];
         int prijs = 0;
@@ -285,6 +316,7 @@ public class Spel {
         return prijs;
     }
 
+    //voert nodige soort van vak
     public String opWelkVak(int newPos, Speler speler) {
         if (this.bord[newPos].getSoort() == "start") {
             return "start";
@@ -311,7 +343,9 @@ public class Spel {
         }
     }
 
+    //returnt de dobbel
     public int dobbelNewPos() {
+        //2 dobbelstenen met waardes van [1-6]
         int newPos = (generator.nextInt(5) + 1) * 2;
         return newPos;
     }
